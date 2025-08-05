@@ -1,16 +1,13 @@
 ---
-import "../../src/styles/main.css";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Button from "../components/Button.astro";
 
-const dankje = Astro.url.searchParams.get('dankje') === '1';
+import BaseLayout from "../layouts/BaseLayout.astro";
+
 ---
 
-<BaseLayout title="PGB Planner - Home">
-    <main>
-      <header>
+<BaseLayout>
+        <header>
         <div class="logo-wrapper">
-					<a class="link" href="/">
+          <a href="/" class="link">
           <svg
             width="268"
             height="83"
@@ -78,30 +75,12 @@ const dankje = Astro.url.searchParams.get('dankje') === '1';
               </linearGradient>
             </defs>
           </svg>
-					</a>
+          </a>
         </div>
-        <h1>
-          <span class="h1-span-color-purple">Grip op je PGB.</span><br />
-          <span class="h1-span-color-blue">Zonder gedoe.</span>
-        </h1>
-      </header>
-      <section class="email-collect">
-        <p>
-          Meld je aan om als eerste op de hoogte te blijven van de lancering.
-        </p>
-        <form class="launch-form" action="https://app.kit.com/forms/8399224/subscriptions" method="POST" target="_blank">
-          <div class="input-group">
-            <input type="email" name="email_address" placeholder="Voer je e-mailadres in" required />
-            <button class="btn sub-button" type="submit">Aanmelden</button>
-          </div>
-        </form>
+        </header>
+        <div class="content-wrapper">
+          <iframe data-tally-src="https://tally.so/embed/mYl5Ez?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="3481" frameborder="0" marginheight="0" marginwidth="0" title="Deel jouw PGB ervaring (5-10 min)"></iframe>
+<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+        </div>
 
-				<div class="buttons-wrapper">
-					<a href="/lees-meer" class="btn btn-secondary">Lees Meer</a>
-					<a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
-					<!-- <button class="btn btn-secondary">Geef jouw input</button> -->
-
-				</div>
-      </section>
-    </main>
 </BaseLayout>

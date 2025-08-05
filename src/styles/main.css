@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+:root{
+  --font-primary: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --font-weight-black: 900;
+  --font-weight-medium: 520;
+  --font-weight-regular: 400;
+  --font-weight-normal: 300;
+
+  --color-black: #414040;
+  --color-white: #ffffff;
+  --color-purple: #BD4BF2;
+  --color-blue: #343EEA;
+  --color-form-border: #D4D4E5;
+  --color-form-body: #F6F6F6;
+  --color-form-btn: #02007F;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-primary);
+  font-size: 18px;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 4rem 1rem 0 1rem;
+  /* text-align: center; */
+}
+
+header{
+  margin-bottom: 3rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-primary);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 2.5rem;
+  /* font-weight: var(--font-weight-black); */
+}
+
+.h1-span-color-purple{
+  color: var(--color-purple);
+}
+.h1-span-color-blue{
+  color: var(--color-blue);
+}
+
+h2{
+  color: var(--color-blue);
+  font-size: 1.33rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+p,
+li,
+span,
+div {
+  font-family: var(--font-primary);
+  /* font-weight: var(--font-weight-normal); */
+  text-wrap: pretty;
+  font-size: var(--font-size-body);
+}
+
+li {
+  list-style: none;
+  display: block;
+}
+
+img {
+  display: block;
+  aspect-ratio: auto;
+  width: auto;
+  overflow: auto;
+  object-fit: fill;
+  height: 100%;
+  max-width: none;
+  border-radius: 0.75rem;
+}
+
+.font-bold{
+  font-weight: 750;
+}
+
+.logo-wrapper{
+  margin-bottom: 1.5rem;
+}
+
+.email-collect p{
+  color: var(--color-blue);
+  margin-bottom: 1rem;
+}
+
+.launch-form{
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+
+
+.input-group{
+  display: flex;
+  justify-content: space-between;
+  padding: .1rem .1rem .1rem 1.5rem;
+  border: 1.5px solid var(--color-form-border);
+  background-color: var(--color-form-body);
+  border-radius: 100rem;
+  width: 100%;
+  max-width: 571px;
+}
+
+.input-group:has(input:focus){
+  border-color: var(--color-purple);
+ 
+}
+input{
+  flex: 1;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.buttons-wrapper{
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn{
+  font-size: 1rem;
+  height: 100%;
+  padding: .5rem 1.5rem;
+  border-radius: 100rem;
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  background: var(--color-form-btn);
+  transition: background-color 0.3s ease;
+}
+
+
+.sub-button{
+  background: var(--color-form-btn);
+}
+
+.sub-button:hover{
+  background: var(--color-blue);
+}
+
+
+.btn-secondary{
+    background: var(--color-purple);
+}
+
+.btn-secondary:hover{
+  background: var(--color-blue);
+}
+
+.link{
+  cursor: pointer;
+}
+
+/*-------------- Lees Meer --------------*/
+
+.content-wrapper{
+  max-width: 764px;
+  width: 100%;
+}
+
+.content-wrapper section{
+  margin-bottom: 2rem;
+}
