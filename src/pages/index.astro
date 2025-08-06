@@ -3,14 +3,14 @@ import "../../src/styles/main.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
 
-const dankje = Astro.url.searchParams.get('dankje') === '1';
+const dankje = Astro.url.searchParams.get("dankje") === "1";
 ---
 
 <BaseLayout title="PGB Planner - Home">
-    <main>
-      <header>
-        <div class="logo-wrapper">
-					<a class="link" href="/">
+  <main>
+    <header>
+      <div class="logo-wrapper">
+        <a class="link" href="/">
           <svg
             width="268"
             height="83"
@@ -78,31 +78,57 @@ const dankje = Astro.url.searchParams.get('dankje') === '1';
               </linearGradient>
             </defs>
           </svg>
-					</a>
+        </a>
+      </div>
+      <h1>
+        <span class="h1-span-color-purple">Rust in je PGB.</span><br />
+        <span class="h1-span-color-blue">Alles overzichtelijk op één plek.</span
+        >
+      </h1>
+    </header>
+    <section class="email-collect">
+      <p>
+        Een praktische online tool in ontwikkeling die je helpt om je PGB
+        duidelijk, makkelijk en zonder stress te beheren. Meld je aan om als
+        eerste op de hoogte te blijven van de lancering.
+      </p>
+      <form
+        class="launch-form"
+        action="https://app.kit.com/forms/8399224/subscriptions"
+        method="POST"
+        target="_blank"
+      >
+        <div class="input-group">
+          <input
+            type="email"
+            name="email_address"
+            placeholder="Email"
+            required
+          />
+          <button class="btn sub-button" type="submit">
+            <span class="button-text">Aanmelden</span>
+            <svg
+              class="button-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
         </div>
-        <h1>
-          <span class="h1-span-color-purple">Rust in je PGB.</span><br />
-          <span class="h1-span-color-blue">Alles overzichtelijk op één plek.</span>
-        </h1>
-      </header>
-      <section class="email-collect">
-        <p>
-          Een praktische online tool in ontwikkeling die je helpt om je PGB duidelijk, makkelijk en zonder stress te beheren.
-          Meld je aan om als eerste op de hoogte te blijven van de lancering.
-        </p>
-        <form class="launch-form" action="https://app.kit.com/forms/8399224/subscriptions" method="POST" target="_blank">
-          <div class="input-group">
-            <input type="email" name="email_address" placeholder="Email" required />
-            <button class="btn sub-button" type="submit">Aanmelden</button>
-          </div>
-        </form>
+      </form>
 
-				<div class="buttons-wrapper">
-					<a href="/lees-meer" class="btn btn-secondary">Lees Meer</a>
-					<a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
-					<!-- <button class="btn btn-secondary">Geef jouw input</button> -->
-
-				</div>
-      </section>
-    </main>
+      <div class="buttons-wrapper">
+        <a href="/lees-meer" class="btn btn-secondary">Lees Meer</a>
+        <a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
+        <!-- <button class="btn btn-secondary">Geef jouw input</button> -->
+      </div>
+    </section>
+  </main>
 </BaseLayout>
