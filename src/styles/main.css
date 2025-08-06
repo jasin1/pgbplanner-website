@@ -43,12 +43,14 @@ main{
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  padding: 4rem 1rem 0 1rem;
+  padding: 2rem 1rem 0 1rem;
   /* text-align: center; */
 }
 
 header{
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 500px;
 }
 
 h1,
@@ -115,11 +117,15 @@ img {
 }
 
 .logo-wrapper{
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.email-collect{
+  max-width: 500px;
 }
 
 .email-collect p{
-  color: var(--color-blue);
+  color: var(--color-black);
   margin-bottom: 1rem;
 }
 
@@ -141,7 +147,7 @@ img {
   background-color: var(--color-form-body);
   border-radius: 100rem;
   width: 100%;
-  max-width: 571px;
+  max-width: 500px;
 }
 
 .input-group:has(input:focus){
