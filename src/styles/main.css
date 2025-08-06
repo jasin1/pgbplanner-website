@@ -44,6 +44,7 @@ main{
   justify-content: flex-start;
   min-height: 100vh;
   padding: 2rem 1rem 0 1rem;
+  width: 100%;
   /* text-align: center; */
 }
 
@@ -120,9 +121,14 @@ img {
   margin-bottom: 1rem;
 }
 
-.email-collect{
+.email-collect,
+.launch-form,
+.input-group {
+  width: 100%;
   max-width: 500px;
 }
+
+
 
 .email-collect p{
   color: var(--color-black);
@@ -135,6 +141,7 @@ img {
   font-family: var(--font-primary);
   font-size: 1rem;
   transition: border-color 0.2s ease;
+  padding: 0 0.5rem;
 }
 
 
@@ -146,8 +153,6 @@ img {
   border: 1.5px solid var(--color-form-border);
   background-color: var(--color-form-body);
   border-radius: 100rem;
-  width: 100%;
-  max-width: 500px;
 }
 
 .input-group:has(input:focus){
