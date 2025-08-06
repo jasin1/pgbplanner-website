@@ -143,7 +143,7 @@ img {
 
 .input-group {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   overflow: hidden;
   justify-content: space-between;
   padding: 0.1rem 0.1rem 0.1rem 1.5rem;
