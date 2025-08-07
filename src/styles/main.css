@@ -138,7 +138,7 @@ img {
   font-family: var(--font-primary);
   font-size: 1rem;
   transition: border-color 0.2s ease;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
 }
 
 .input-group {
