@@ -1,12 +1,8 @@
 ---
-import "../../src/styles/main.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Button from "../components/Button.astro";
-
-const dankje = Astro.url.searchParams.get("dankje") === "1";
 ---
 
-<BaseLayout title="PGB Planner - Home">
+<BaseLayout title="Bedankt voor het aanmelden">
   <main>
     <header>
       <div class="logo-wrapper">
@@ -81,53 +77,12 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         </a>
       </div>
       <h1>
-        <span class="h1-span-color-purple">Rust in je PGB.</span><br />
-        <span class="h1-span-color-blue">Alles overzichtelijk op één plek.</span
-        >
+        <span class="h1-span-color-purple">Bedankt voor je aanmelding!</span><br />
       </h1>
     </header>
-    <section class="email-collect">
-      <p>
-        Een praktische online tool in ontwikkeling die je helpt om je PGB
-        duidelijk, makkelijk en zonder stress te beheren. Meld je aan om als
-        eerste op de hoogte te blijven van de lancering.
-      </p>
-      <form
-        class="launch-form"
-        action="https://app.kit.com/forms/8399224/subscriptions"
-        method="POST"
-    
-      >
-        <div class="input-group">
-          <input
-            type="email"
-            name="email_address"
-            placeholder="Email"
-            required
-          />
-          <button class="btn sub-button" type="submit">
-            <span class="button-text">Aanmelden</span>
-            <svg
-              class="button-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-      </form>
-
-      <div class="buttons-wrapper">
-        <a href="/lees-meer" class="btn btn-secondary">Lees Meer</a>
-        <a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
-      </div>
+    <section class="bedankt-txt-wrapper">
+      <p>We houden je op de hoogte van het laatste nieuws over PGB Planner.<br>
+Wil je ons helpen nóg beter te worden? Vul dan <span class="inline-link-wrapper"><a class="inline-link" href="/vragenlijst">de korte vragenlijst</a></span> in, het kost je maar 2 minuten.</p>
     </section>
   </main>
 </BaseLayout>

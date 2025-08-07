@@ -251,3 +251,19 @@ input:focus {
 .content-wrapper section {
   margin-bottom: 2rem;
 }
+
+
+/*-------------- bedankt --------------*/
+
+.bedankt-txt-wrapper{
+  max-width: 600px;
+}
+
+.inline-link-wrapper{
+  font-weight: bold;
+}
+
+.inline-link{
+  cursor: pointer;
+  color: var(--color-purple);
+}
