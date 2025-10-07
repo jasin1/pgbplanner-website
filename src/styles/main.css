@@ -267,3 +267,45 @@ input:focus {
   cursor: pointer;
   color: var(--color-purple);
 }
+
+/* Smooth scroll (met reduced-motion fallback) */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Skip-link zichtbaar bij focus */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+  background: #fff;
+  padding: .5rem .75rem;
+  border: 2px solid #3B73B4; /* jouw primary */
+  border-radius: .5rem;
+  z-index: 999;
+}
+
+/* Sticky header basis (pas classnaam aan je headercomponent) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(180%) blur(8px);
+  background: rgba(255,255,255,.85);
+  border-bottom: 1px solid #E6ECEF;
+}
+
+/* Zorg dat anchor-scroll niet achter de sticky header valt */
+section[id] { scroll-margin-top: 80px; } /* stem 80px af op je headerhoogte */
+
+/* (optioneel) Active nav-link stijl, als je IO gebruikt */
+.nav-link.active {
+  color: #3B73B4;
+  background: rgba(59,115,180,.08);
+  border-radius: .35rem;
+}
