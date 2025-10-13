@@ -8,7 +8,6 @@ const nav = [
 ---
 
 <header class="site-header">
-  <a class="skip-link" href="#main">Direct naar inhoud</a>
   <div class="nav-wrapper">
     <a class="logo" href="/">
       <svg
@@ -80,60 +79,338 @@ const nav = [
     </a>
     <nav class="nav" aria-label="Hoofdnavigatie">
       <button
-      class="hamburger"
-      id="hamburger"
-      aria-controls="primary-menu"
-      aria-expanded="false"
-      aria-label="Navigatie openen/sluiten"
+        class="hamburger"
+        id="hamburger"
+        aria-controls="primary-menu"
+        aria-expanded="false"
+        aria-label="Navigatie openen/sluiten"
       >
-      <span></span><span></span><span></span>
-    </button>
-          <ul id="primary-menu" class="menu">
-        {nav.map(item => (
-          <li>
-            <a class="nav-link" href={item.href}>{item.label}</a>
-          </li>
-        ))}
-        <li>
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="primary-menu" class="menu">
+        {
+          nav.map((item) => (
+            <li>
+              <a class="nav-link" href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="cta-mobile">
           <a class="btn primary" href="#aanmelden">Aanmelden</a>
         </li>
       </ul>
     </nav>
+    <!-- CTA voor desktop (rechts buiten het menu) -->
+    <a class="btn primary cta-desktop" href="#aanmelden">Aanmelden</a>
   </div>
-    <script is:inline>
-    // Mobile toggle
-    const btn = document.getElementById('hamburger');
-    const menu = document.getElementById('primary-menu');
-    btn?.addEventListener('click', () => {
-      const open = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
-    });
+</header>
+<script is:inline>
+  // Mobile toggle
+  const btn = document.getElementById("hamburger");
+  const menu = document.getElementById("primary-menu");
+  btn?.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", String(open));
+  });
 
-    // Sluit menu na klik op link (mobiel)
-    menu?.addEventListener('click', (e) => {
-      const a = e.target.closest('a');
-      if (a && menu.classList.contains('open')) {
-        menu.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-    });
+  // Sluit menu na klik op link (mobiel)
+  menu?.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a && menu.classList.contains("open")) {
+      menu.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
 
-    // Active link highlight met IntersectionObserver
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    const links = Array.from(document.querySelectorAll('.nav-link'));
+  // Active link highlight met IntersectionObserver
+  const sections = Array.from(document.querySelectorAll("section[id]"));
+  const links = Array.from(document.querySelectorAll(".nav-link"));
 
-    const byId = id => links.find(a => a.getAttribute('href') === `#${id}`);
+  const byId = (id) => links.find((a) => a.getAttribute("href") === `#${id}`);
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          links.forEach(a => a.classList.remove('active'));
+          links.forEach((a) => a.classList.remove("active"));
           const link = byId(entry.target.id);
-          link && link.classList.add('active');
+          link && link.classList.add("active");
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 },
+  );
 
-    sections.forEach(s => io.observe(s));
-  </script>
-</header>
+  sections.forEach((s) => io.observe(s));
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--c-bg, #fff);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: saturate(140%) blur(6px);
+  }
+
+  .site-header .nav-wrapper {
+    height: var(--header-h, 72px);
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--gap, 24px);
+    /* border: 1px solid red; */
+    width: 100%;
+  }
+
+  /* Logo */
+  .site-header .logo {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+  }
+
+  .site-header .logo svg {
+    height: 37px;
+    width: auto;
+  }
+
+  /* Skip link */
+  .site-header .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .site-header .skip-link:focus {
+    left: 16px;
+    top: 12px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    z-index: 100;
+  }
+
+  /* Nav bar wrapper */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    min-width: 0;
+    /* border: 1px solid green; */
+  }
+
+  /* Desktop menu */
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cta-desktop {
+    justify-self: end;
+  }
+
+  /* Links */
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 6px;
+    font-weight: 500;
+    color: var(--c-text, #4b5563);
+    text-decoration: none;
+    border-radius: 8px;
+    transition:
+      transform 0.18s ease,
+      background-color 0.18s ease,
+      color 0.18s ease;
+  }
+  .nav-link:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  .nav-link:focus-visible {
+    outline: 2px solid var(--c-brand, #3b74b4);
+    outline-offset: 2px;
+  }
+  .nav-link.active {
+    color: var(--c-brand, #3b74b4);
+  }
+
+  /* CTA button */
+  .btn.primary {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: var(--radius, 12px);
+    background: var(--c-brand, #3b74b4);
+    color: var(--c-brand-contrast, #fff);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background-color 0.18s ease;
+  }
+  .btn.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(59, 116, 180, 0.28);
+  }
+  .btn.primary:active {
+    transform: translateY(0);
+  }
+  .btn.primary:focus-visible {
+    outline: 2px solid var(--c-brand, #3b74b4);
+    outline-offset: 2px;
+  }
+
+  /* Hamburger (hidden on desktop) */
+
+  /* CTA in menu alleen zichtbaar op mobiel */
+  .cta-mobile {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    border-radius: 10px;
+  }
+  .hamburger:focus-visible {
+    outline: 2px solid var(--c-brand, #3b74b4);
+    outline-offset: 2px;
+  }
+  .hamburger span {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: var(--c-text, #4b5563);
+    border-radius: 2px;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease,
+      top 0.2s ease;
+  }
+  .hamburger span:nth-child(1) {
+    top: 13px;
+  }
+  .hamburger span:nth-child(2) {
+    top: 19px;
+  }
+  .hamburger span:nth-child(3) {
+    top: 25px;
+  }
+
+  /* Mobile layout */
+  @media (max-width: 768px) {
+    .nav-wrapper .cta-desktop {
+      display: none !important; /* verberg de rechter CTA op mobiel */
+    }
+    /* Toon CTA binnen het menu alléén wanneer het menu open is */
+    .menu .cta-mobile {
+      display: none;
+    }
+    .menu.open .cta-mobile {
+      display: block;
+    }
+    .site-header .nav-wrapper {
+      grid-template-columns: auto 1fr;
+    }
+
+    /* toon hamburger */
+    .hamburger {
+      display: inline-flex;
+      margin-left: 0;
+    }
+
+    .nav {
+      justify-self: end; /* zet de hamburger tegen de rechterrand van kolom 2 */
+    }
+
+    /* menu als overlay/slide-down */
+    .menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: var(--header-h, 72px);
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      background: var(--c-bg, #fff);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    /* open state vanuit je script */
+    .menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* reset push-right op mobile */
+    .menu li:last-child {
+      margin-left: 0;
+    }
+
+    .nav-link {
+      height: 44px;
+      padding: 0 10px;
+      border-radius: 10px;
+    }
+
+    .btn.primary {
+      height: 44px;
+      justify-content: center;
+    }
+  }
+
+  /* Hamburger naar 'X' als menu open is (gekoppeld aan aria-expanded) */
+  #hamburger[aria-expanded="true"] span:nth-child(1) {
+    top: 19px;
+    transform: rotate(45deg);
+  }
+  #hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburger[aria-expanded="true"] span:nth-child(3) {
+    top: 19px;
+    transform: rotate(-45deg);
+  }
+
+  /* Motion respect */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .btn.primary,
+    .menu,
+    .hamburger span {
+      transition: none !important;
+    }
+  }
+</style>

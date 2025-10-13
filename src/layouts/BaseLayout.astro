@@ -2,11 +2,8 @@
 import "../../src/styles/main.css";
 import Header from "../components/Header.astro";
 
-const {
-  title = "PGB Planner",
-  description = "Welkom bij PGB Planner.",
-} = Astro.props;
-
+const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
+  Astro.props;
 ---
 
 <html lang="nl">
@@ -16,15 +13,29 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <meta name="description" content={description} />
   </head>
   <body>
-        <!-- Skip link, eerst focusbaar element -->
+    <Header />
+    <!-- Skip link, eerst focusbaar element -->
     <a class="skip-link" href="#main">Direct naar inhoud</a>
-    <Header/>
     <main id="main">
       <slot />
     </main>
   </body>
-
-  </html>
+</html>
+<style is:global>
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading) !important;
+  }
+</style>

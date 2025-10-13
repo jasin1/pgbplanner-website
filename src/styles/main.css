@@ -1,7 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+/* @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&display=swap'); */
+
+
 
 :root {
-  --font-primary: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-primary: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --font-heading: "Lexend Deca", var(--font-primary);
 
   --font-weight-black: 900;
   --font-weight-medium: 520;
@@ -15,6 +20,20 @@
   --color-form-border: #d4d4e5;
   --color-form-body: #f6f6f6;
   --color-form-btn: #02007f;
+
+  --header-h: 72px;
+  --container-w: 1200px;
+
+  --c-text: #4b5563;
+  --c-text-muted: #6b7280;
+  --c-brand: #3b74b4;
+  --c-brand-contrast: #fff;
+  --c-bg: #ffffff;
+
+  --radius: 12px;
+  --gap: 24px;
+
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -44,13 +63,11 @@ main {
   min-height: 100vh;
   padding: 2rem 1rem 0 1rem;
   width: 100%;
-  /* text-align: center; */
 }
 
 header {
-  margin-bottom: 2rem;
   text-align: center;
-  max-width: 500px;
+  width: 100%;
 }
 
 h1,
@@ -58,10 +75,14 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--font-primary);
   line-height: 1.2;
   text-wrap: balance;
 }
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-heading) !important;
+}
+
 
 h1 {
   font-size: 2.5rem;
@@ -225,7 +246,7 @@ input:focus {
     font-size: 0.9rem;
     padding: 0.5rem 1.2rem;
   }
-    .button-text {
+  .button-text {
     display: none;
   }
 
@@ -234,7 +255,7 @@ input:focus {
     width: 1.25rem;
     height: 1.25rem;
   }
-    .submit-button {
+  .submit-button {
     padding: 0.5rem;
     aspect-ratio: 1 / 1; /* optioneel: vierkante knop */
     border-radius: 9999px; /* optioneel: ronde knop */
@@ -252,26 +273,29 @@ input:focus {
   margin-bottom: 2rem;
 }
 
-
 /*-------------- bedankt --------------*/
 
-.bedankt-txt-wrapper{
+.bedankt-txt-wrapper {
   max-width: 600px;
 }
 
-.inline-link-wrapper{
+.inline-link-wrapper {
   font-weight: bold;
 }
 
-.inline-link{
+.inline-link {
   cursor: pointer;
   color: var(--color-purple);
 }
 
 /* Smooth scroll (met reduced-motion fallback) */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Skip-link zichtbaar bij focus */
@@ -284,9 +308,9 @@ html { scroll-behavior: smooth; }
   left: 8px;
   top: 8px;
   background: #fff;
-  padding: .5rem .75rem;
-  border: 2px solid #3B73B4; /* jouw primary */
-  border-radius: .5rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #3b73b4; /* jouw primary */
+  border-radius: 0.5rem;
   z-index: 999;
 }
 
@@ -296,16 +320,18 @@ html { scroll-behavior: smooth; }
   top: 0;
   z-index: 50;
   backdrop-filter: saturate(180%) blur(8px);
-  background: rgba(255,255,255,.85);
-  border-bottom: 1px solid #E6ECEF;
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid #e6ecef;
 }
 
 /* Zorg dat anchor-scroll niet achter de sticky header valt */
-section[id] { scroll-margin-top: 80px; } /* stem 80px af op je headerhoogte */
+section[id] {
+  scroll-margin-top: 80px;
+} /* stem 80px af op je headerhoogte */
 
 /* (optioneel) Active nav-link stijl, als je IO gebruikt */
 .nav-link.active {
-  color: #3B73B4;
-  background: rgba(59,115,180,.08);
-  border-radius: .35rem;
+  color: #3b73b4;
+  background: rgba(59, 115, 180, 0.08);
+  border-radius: 0.35rem;
 }
