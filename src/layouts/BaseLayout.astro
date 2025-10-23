@@ -13,11 +13,9 @@ const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Kies hier exact de families die je gebruikt -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&family=BBH+Sans+Hegarty&display=swap" rel="stylesheet">
     <meta name="description" content={description} />
   </head>
   <body>
@@ -29,13 +27,4 @@ const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
     </main>
   </body>
 </html>
-<style is:global>
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-heading) !important;
-  }
-</style>
+

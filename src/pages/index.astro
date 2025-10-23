@@ -6,55 +6,213 @@ import Header from "../components/Header.astro";
 const dankje = Astro.url.searchParams.get("dankje") === "1";
 ---
 
-<BaseLayout title="PGB Planner - Home">
+<BaseLayout title="PGB Planner">
   <main>
-    <h1>
-      <span>Binnenkort:</span><br />
-      <span class="h1-span-color-blue">overzicht en grip op je PGB</span>
-    </h1>
-
-    <section class="email-collect">
+    <div class="hero">
+      <h1>
+        <span class="font-color-primary">Binnenkort:</span><br />
+        <span class="font-color-secondary">overzicht en grip op je PGB</span>
+      </h1>
       <p>
-        Een praktische online tool in ontwikkeling die je helpt om je PGB
-        duidelijk, makkelijk en zonder stress te beheren. Meld je aan om als
-        eerste op de hoogte te blijven van de lancering.
+        <span class="text-bold">PGB Planner</span> wordt jouw complete online omgeving
+        voor budgetbeheer! Overzichtelijk, betrouwbaar en zonder stress.
       </p>
-      <form
-        class="launch-form"
-        action="https://app.kit.com/forms/8399224/subscriptions"
-        method="POST"
-      >
-        <div class="input-group">
-          <input
-            type="email"
-            name="email_address"
-            placeholder="Email"
-            required
-          />
-          <button class="btn sub-button" type="submit">
-            <span class="button-text">Aanmelden</span>
-            <svg
-              class="button-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-      </form>
-
       <div class="buttons-wrapper">
-        <a href="/lees-meer" class="btn btn-secondary">Lees Meer</a>
+        <a href="/#aanmelden" class="btn btn-primary">Meld je aan</a>
         <a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
       </div>
+      <div class="hero-img-wrapper">
+        <img src="/public/hero-img-big.jpg" alt="" />
+      </div>
+    </div>
+    <section class="problem-section">
+      <div class="section-txt-block">
+        <h2>
+          Herkenbare<br />Problemen
+        </h2>
+        <p>
+          Iedereen met een PGB weet hoe lastig het kan zijn om het overzicht te bewaren. Je probeert alles netjes bij te houden, maar de realiteit is vaak rommelig.
+        </p>
+        <ul class="section-list-ul">
+          <li>
+            Je houdt alles bij in Excel of notities, maar het blijft
+            onoverzichtelijk
+          </li>
+          <li>
+            Je moet steeds opnieuw rekenen bij veranderingen in uren of tarieven
+          </li>
+          <li>Je twijfelt of de berekeningen die je maakt wel kloppen</li>
+          <li>De administratie kost uren die je liever aan zorg besteedt.</li>
+        </ul>
+      </div>
+      <div class="img-wrapper">
+        <img src="/public/problem-img-2.png" alt="" />
+      </div>
+    </section>
+    <section class="section-features">
+      <div class="features-heading">
+        <h2 class="alt-h2">Waarom PGB Planner</h2>
+        <span class="sub-heading-big"
+          >Een eenvoudige online omgeving die je helpt vooruit te kijken en
+          binnen je budget te blijven.</span
+        >
+        <p>
+          Met PGB Planner krijg je in één oogopslag overzicht over je
+          zorgbudget. Je ziet precies hoeveel er is uitgegeven, wat er nog over
+          is, en wat er gaat gebeuren, zodat je nooit meer voor verrassingen
+          komt te staan.
+        </p>
+        <div class="btn-one-wrapper">
+          <a class="btn btn-primary cta-desktop" href="#aanmelden">Aanmelden</a>
+        </div>
+      </div>
+      <ul class="features-list">
+        <li class="feature">
+          <img src="/public/icon-prognose.png" alt="" />
+          <div>
+            <h3>Maak prognoses en scenario’s</h3>
+            <p>
+              Zie wat er gebeurt als iemand meer of minder werkt, of een ander
+              tarief krijgt.
+            </p>
+          </div>
+        </li>
+        <li class="feature">
+          <img src="/public/icon-medewerkers.png" alt="" />
+          <div>
+            <h3>Bekijk kosten per medewerker</h3>
+            <p>
+              Begrijp waar het budget naartoe gaat en waar je kunt bijsturen.
+            </p>
+          </div>
+        </li>
+        <li class="feature">
+          <img src="/public/icon-budget.png" alt="" />
+          <div>
+            <h3>Houd controle over je jaarbudget</h3>
+            <p>
+              PGB Planner rekent automatisch mee, zodat jij rust houdt in de
+              cijfers.
+            </p>
+          </div>
+        </li>
+
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width" />
+            <meta name="generator" content={Astro.generator} />
+            <title>Document</title>
+          </head>
+          <body> </body>
+        </html>
+      </ul>
     </section>
   </main>
 </BaseLayout>
+<style>
+  .hero {
+    background-color: var(--color-bg);
+    width: 100%;
+    padding: 3rem 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 
+  .hero h1 {
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    max-width: 680px;
+  }
+
+  .text-bold {
+    font-weight: bold;
+  }
+
+  .problem-section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .section-txt-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 40.5rem;
+  }
+
+  .section-sub-header {
+    font-size: 1.5rem;
+  }
+
+  .section-txt-block ul {
+    margin-left: 0.5rem;
+  }
+
+  .section-txt-block li {
+    position: relative;
+    list-style: none;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .section-txt-block li::before {
+    content: "";
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    background: url("/public/list_ellipse.svg") no-repeat center / contain;
+    margin-right: 0.6rem;
+  }
+
+  .section-features {
+    background: var(--color-bg);
+    display: flex;
+    gap: 2.5rem;
+    justify-content: space-between;
+  }
+
+  .alt-h2 {
+    font-size: 1.5rem;
+  }
+
+  .sub-heading-big {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .features-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+  }
+
+  .features-list {
+    display: grid;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    max-width: 450px;
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+  }
+
+  .feature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--color-black);
+  }
+</style>
