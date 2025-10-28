@@ -12,6 +12,7 @@
   --color-secondary: #4baa96;
   --color-l-blue: #3b73b4;
   --color-bg: #f9f2ea;
+  --color-bg-icon: #DBEEEA;
   --color-black: #414040;
   --color-white: #ffffff;
   --color-purple: #bd4bf2;
@@ -352,4 +353,8 @@ section[id] {
   color: #3b73b4;
   background: rgba(59, 115, 180, 0.08);
   border-radius: 0.35rem;
+}
+
+.bg-light{
+  background: var(--color-bg);
 }

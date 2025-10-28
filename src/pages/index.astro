@@ -2,6 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
 import Header from "../components/Header.astro";
+import CheckIcon from "../components/CheckIcon.astro";
+import Card from "../components/card.astro";
+import ParentsIcon from "../components/ParentsIcon.astro";
+import HouderIcon from "../components/HouderIcon.astro";
+import ProsIcon from "../components/ProsIcon.astro";
+import PaperIcon from "../components/PaperIcon.astro";
+import StatsIcon from "../components/StatsIcon.astro";
+import CogIcon from "../components/CogIcon.astro";
+import StepCard from "../components/StepCard.astro";
 
 const dankje = Astro.url.searchParams.get("dankje") === "1";
 ---
@@ -31,40 +40,51 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
           Herkenbare<br />Problemen
         </h2>
         <p>
-          Iedereen met een PGB weet hoe lastig het kan zijn om het overzicht te bewaren. Je probeert alles netjes bij te houden, maar de realiteit is vaak rommelig.
+          Iedereen met een PGB weet hoe lastig het kan zijn om het overzicht te
+          bewaren. Je probeert alles netjes bij te houden, maar de realiteit is
+          vaak rommelig.
         </p>
         <ul class="section-list-ul">
           <li>
-            Je houdt alles bij in Excel of notities, maar het blijft
-            onoverzichtelijk
+            <CheckIcon class="check-icon" />
+            <span>
+              Je houdt alles bij in Excel of notities, maar het blijft
+              onoverzichtelijk
+            </span>
           </li>
           <li>
-            Je moet steeds opnieuw rekenen bij veranderingen in uren of tarieven
+            <CheckIcon class="check-icon" />
+            <span>
+              Je moet steeds opnieuw rekenen bij veranderingen in uren of
+              tarieven
+            </span>
           </li>
-          <li>Je twijfelt of de berekeningen die je maakt wel kloppen</li>
-          <li>De administratie kost uren die je liever aan zorg besteedt.</li>
+          <li>
+            <CheckIcon class="check-icon" />
+            <span>
+              Je twijfelt of de berekeningen die je maakt wel kloppen
+            </span>
+          </li>
+          <li>
+            <CheckIcon class="check-icon" />
+            <span>
+              De administratie kost uren die je liever aan zorg besteedt.
+            </span>
+          </li>
         </ul>
+        <p>Het kost energie, tijd en vaak ook gemoedsrust. Dat kan anders.</p>
       </div>
       <div class="img-wrapper">
         <img src="/public/problem-img-2.png" alt="" />
       </div>
     </section>
     <section class="section-features">
-      <div class="features-heading">
-        <h2 class="alt-h2">Waarom PGB Planner</h2>
+      <div class="section-heading">
+        <h2 class="h2">Daarom bouw ik PGB Planner</h2>
         <span class="sub-heading-big"
-          >Een eenvoudige online omgeving die je helpt vooruit te kijken en
-          binnen je budget te blijven.</span
+          >Een online omgeving die je helpt vooruit te kijken en binnen budget
+          te blijven</span
         >
-        <p>
-          Met PGB Planner krijg je in één oogopslag overzicht over je
-          zorgbudget. Je ziet precies hoeveel er is uitgegeven, wat er nog over
-          is, en wat er gaat gebeuren, zodat je nooit meer voor verrassingen
-          komt te staan.
-        </p>
-        <div class="btn-one-wrapper">
-          <a class="btn btn-primary cta-desktop" href="#aanmelden">Aanmelden</a>
-        </div>
       </div>
       <ul class="features-list">
         <li class="feature">
@@ -96,123 +116,417 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
             </p>
           </div>
         </li>
-
-        <html lang="en">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width" />
-            <meta name="generator" content={Astro.generator} />
-            <title>Document</title>
-          </head>
-          <body> </body>
-        </html>
       </ul>
+      <div>
+        <p>
+          PGB Planner is in ontwikkeling. De eerste testversie verschijnt in <strong
+            >november 2025.</strong
+          > Daarna bouwen we stap voor stap verder, samen met gebruikers die vanaf
+          het begin willen meedenken en testen.
+        </p>
+      </div>
+      <div class="btn-one-wrapper">
+        <a class="btn btn-primary cta-desktop" href="#aanmelden">Aanmelden</a>
+      </div>
     </section>
+    <section>
+      <div class="section-heading">
+        <h2 class="h2">Een eerste blik op PGB Planner</h2>
+        <span class="sub-heading-big"
+          >Dit is een eerste ontwerp van de tool. De interface laat zien hoe
+          Overzichtelijk en praktisch PGB Planner straks wordt. Het ontwerp kan
+          nog veranderen, maar dit geeft alvast een goed beeld van wat je kunt
+          verwachten.</span
+        >
+      </div>
+      <img src="/public/Dashboard_full.jpg" alt="" />
+    </section>
+    <section>
+      <div class="section-heading">
+        <h2>Voor wie is PGB Planner bedoeld?</h2>
+      </div>
+      <div class="cards-wrapper">
+        <Card
+          title="Ouders of mantelzorgers met een PGB"
+          description="Die grip willen houden op hun budget en planning"
+        >
+          <ParentsIcon slot="icon" />
+        </Card>
+        <Card
+          title="Budgethouder die overzicht willen houden"
+          description="En hun administratie willen vereenvoudigen"
+        >
+          <HouderIcon slot="icon" />
+        </Card>
+        <Card
+          title="PGB Professionals die cliënten ondersteunen"
+          description="En hun beter willen helpen met budget beheer"
+        >
+          <ProsIcon slot="icon" />
+        </Card>
+      </div>
+    </section>
+    <section class="section-center bg-light">
+      <div class="section-heading">
+        <h2 class="h2">Zo werkt het straks</h2>
+      </div>
+      <div class="howitworks__list">
+        <StepCard
+          title="Vul je basisgegevens en afspraken in"
+          description="Start met het invoeren van je PGB-informatie"
+        >
+          <PaperIcon
+            slot="icon"
+            class="icon"
+            style="color: var(--color-secondary);"
+          />
+        </StepCard>
+
+        <StepCard
+          title="Maak scenario’s met uren, tarieven en vakanties"
+          description="Stel verschillende situaties in om te vergelijken"
+        >
+          <CogIcon
+            slot="icon"
+            class="icon"
+            style="color: var(--color-secondary);"
+          />
+        </StepCard>
+
+        <StepCard
+          title="Bekijk de prognose en stuur bij waar nodig"
+          description="Krijg direct inzicht en pas aan wanneer nodig"
+        >
+          <StatsIcon
+            slot="icon"
+            class="icon"
+            style="color: var(--color-secondary);"
+          />
+        </StepCard>
+      </div>
+      <div class="under_text">
+        <p>Simpel, overzichtelijk en altijd up-to-date.</p>
+      </div>
+    </section>
+  <section class="pgb-signup">
+  <div class="pgb-signup__inner">
+    <div class="pgb-signup__copy">
+      <h2>Blijf op de hoogte<br>van PGB Planner</h2>
+      <p>
+        Binnenkort kun je alles rondom je PGB eenvoudig beheren.
+        Schrijf je in om een seintje te krijgen zodra we live gaan.
+      </p>
+    </div>
+
+    <form
+      class="pgb-signup__form"
+      method="post"
+      action="https://YOUR-KIT-FORM-URL"  
+      novalidate
+    >
+      <!-- Name -->
+      <label class="pgb-field">
+        <span class="pgb-label">Naam</span>
+        <input
+          type="text"
+          name="name"
+          id="pgb-name"
+          placeholder="Naam"
+          autocomplete="name"
+          required
+        />
+      </label>
+
+      <!-- Email -->
+      <label class="pgb-field">
+        <span class="pgb-label">Email</span>
+        <input
+          type="email"
+          name="email"
+          id="pgb-email"
+          placeholder="Email"
+          autocomplete="email"
+          required
+        />
+      </label>
+
+      <!-- PGB Type -->
+      <label class="pgb-field">
+        <span class="pgb-label">Welke PGB heb je?</span>
+        <select name="pgb_type" id="pgb-type" required>
+          <option value="" selected disabled>Welke PGB heb je?</option>
+          <option value="WLZ">WLZ</option>
+          <option value="WMO">WMO</option>
+          <option value="Jeugdwet">Jeugdwet</option>
+          <option value="Anders">Anders</option>
+        </select>
+      </label>
+
+      <!-- (optioneel) verborgen velden voor tags/redirects van je emailprovider -->
+      <!-- <input type="hidden" name="tags[]" value="prelaunch"> -->
+
+      <button class="pgb-btn" type="submit">Versturen</button>
+
+      <p class="pgb-small pgb-disclaimer">
+        We sturen alleen updates over de lancering. Uitschrijven kan altijd.
+      </p>
+    </form>
+  </div>
+</section>
   </main>
-</BaseLayout>
-<style>
-  .hero {
-    background-color: var(--color-bg);
-    width: 100%;
-    padding: 3rem 0rem;
+  <style>
+    .hero {
+      background-color: var(--color-bg);
+      width: 100%;
+      padding: 3rem 0rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 680px;
+    }
+
+    .text-bold {
+      font-weight: bold;
+    }
+
+    .problem-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-txt-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 40.5rem;
+    }
+
+    .section-sub-header {
+      font-size: 1.5rem;
+    }
+
+    .section-txt-block ul {
+      /* margin-left: 0.5rem; */
+    }
+
+    .section-txt-block li {
+      position: relative;
+      list-style: none;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .check-icon {
+      flex-shrink: 0; /* Voorkomt dat icon krimpt */
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+    }
+
+    .section-features {
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .alt-h2 {
+      font-size: 1.5rem;
+    }
+
+    .sub-heading-big {
+      font-size: 1.25rem;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      /* max-width: 600px; */
+    }
+
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    .img-wrapper img {
+      width: 100%;
+      max-width: 550px;
+      height: auto;
+    }
+
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: var(--color-black);
+      border: 1px solid var(--color-form-border);
+      border-radius: 1rem;
+      padding: 2rem 1rem;
+    }
+
+    .cards-wrapper {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .howitworks__list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+    .icon {
+      color: var(--color-secondary);
+    }
+
+    /*---------------- Form styles -----------------*/
+  /* ===== Layout ===== */
+  .pgb-signup {
+    background: #f6f5f2; /* lichte zandtint zoals je screenshot */
+    padding: 64px 24px;
+  }
+
+  .pgb-signup__inner {
+    max-width: 1120px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .hero h1 {
-    margin-bottom: 1rem;
-  }
-
-  .hero p {
-    max-width: 680px;
-  }
-
-  .text-bold {
-    font-weight: bold;
-  }
-
-  .problem-section {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .section-txt-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 40.5rem;
-  }
-
-  .section-sub-header {
-    font-size: 1.5rem;
-  }
-
-  .section-txt-block ul {
-    margin-left: 0.5rem;
-  }
-
-  .section-txt-block li {
-    position: relative;
-    list-style: none;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .section-txt-block li::before {
-    content: "";
-    display: inline-block;
-    width: 0.6rem;
-    height: 0.6rem;
-    background: url("/public/list_ellipse.svg") no-repeat center / contain;
-    margin-right: 0.6rem;
-  }
-
-  .section-features {
-    background: var(--color-bg);
-    display: flex;
-    gap: 2.5rem;
-    justify-content: space-between;
-  }
-
-  .alt-h2 {
-    font-size: 1.5rem;
-  }
-
-  .sub-heading-big {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  .features-heading {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 600px;
-  }
-
-  .features-list {
-    display: grid;
-    gap: 2rem;
-    list-style: none;
-    padding: 0;
-    max-width: 450px;
-  }
-
-  .img-wrapper img {
-    width: 100%;
-    max-width: 550px;
-    height: auto;
-  }
-
-  .feature {
-    display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
-    color: var(--color-black);
+    justify-content: space-between;
+    gap: 48px;
   }
-</style>
+
+  .pgb-signup__copy {
+    flex: 1 1 55%;
+    color: #2c7c6e; /* groene heading tint */
+  }
+
+  .pgb-signup__copy h2 {
+    font-size: 48px;
+    line-height: 1.1;
+    letter-spacing: 0.2px;
+    margin: 0 0 16px;
+    font-weight: 800;
+    color: #3ea08f; /* iets lichter groen voor frisse look */
+  }
+
+  .pgb-signup__copy p {
+    max-width: 640px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #3a3f46; /* donkergrijs body */
+    margin: 0;
+  }
+
+  /* ===== Form Card ===== */
+  .pgb-signup__form {
+    flex: 0 0 520px; /* vaste breedte zoals in je design */
+    background: #ffffff;
+    border: 1px solid #e8e6e2;
+    border-radius: 12px;
+    padding: 20px;
+    display: grid;
+    gap: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  }
+
+  .pgb-field {
+    display: grid;
+    gap: 6px;
+  }
+
+  .pgb-label {
+    position: absolute;
+    left: -9999px; /* visueel verborgen, wel toegankelijk */
+  }
+
+  .pgb-signup__form input,
+  .pgb-signup__form select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #d7d4cf;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #222;
+    background: #fff;
+    outline: none;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  .pgb-signup__form select {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, #6b7280 50%),
+      linear-gradient(135deg, #6b7280 50%, transparent 50%),
+      linear-gradient(to right, transparent, transparent);
+    background-position:
+      calc(100% - 22px) 22px,
+      calc(100% - 16px) 22px,
+      0 0;
+    background-size: 6px 6px, 6px 6px, 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .pgb-signup__form input::placeholder,
+  .pgb-signup__form select:invalid {
+    color: #9aa0a6;
+  }
+
+  .pgb-signup__form input:focus,
+  .pgb-signup__form select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+  }
+
+  .pgb-btn {
+    margin-top: 4px;
+    height: 46px;
+    border: none;
+    border-radius: 10px;
+    padding: 0 18px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #3b6fb7; /* blauw zoals je button */
+    color: #fff;
+    transition: transform 120ms ease, filter 120ms ease;
+  }
+
+  .pgb-btn:hover { filter: brightness(1.05); }
+  .pgb-btn:active { transform: translateY(1px); }
+
+  .pgb-small {
+    font-size: 12.5px;
+    color: #6b7280;
+    margin: 0;
+    text-align: center;
+    padding-top: 6px;
+  }
+
+  /* (Responsiveness komt later; dit is desktop-first zoals gevraagd) */
+
+  </style>
+</BaseLayout>

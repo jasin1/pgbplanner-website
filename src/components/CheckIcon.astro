@@ -1,0 +1,29 @@
+---
+// src/components/CheckIcon.astro
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className = "", size = 22 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+>
+  <!-- Cirkel -->
+  <circle cx="12" cy="12" r="11" stroke="#4BAA96" stroke-width="2" fill="none"
+  ></circle>
+  <!-- Vinkje (gecentreerd in de cirkel) -->
+  <path
+    d="M7 12.5L10.5 16L17 9"
+    stroke="#4BAA96"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+</svg>

@@ -1,0 +1,148 @@
+---
+export interface Props {
+  number?: number | string;
+  title: string;
+  description?: string;
+  connector?: boolean;
+  class?: string;
+}
+
+const {
+  number,
+  title,
+  description,
+  connector = false,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`stepcard ${className}`}>
+  {connector && <div class="stepcard__connector" aria-hidden="true" />}
+
+  <article class="stepcard__card" role="group" aria-label={title}>
+    <div class="stepcard__badge">
+      <div class="stepcard__iconwrap">
+        <slot name="icon">
+          {
+            typeof number !== "undefined" ? (
+              <span class="stepcard__number">{number}</span>
+            ) : (
+              <span class="stepcard__number" aria-hidden="true">
+                •
+              </span>
+            )
+          }
+        </slot>
+      </div>
+    </div>
+
+    <div class="stepcard__content">
+      <h3 class="stepcard__title">{title}</h3>
+      {description && <p class="stepcard__desc">{description}</p>}
+    </div>
+  </article>
+</div>
+
+<style>
+  .stepcard {
+    position: relative;
+  }
+
+  .stepcard__card {
+    display: flex;
+    gap: 1rem;
+    background: var(--color-white);
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .stepcard__connector {
+    position: absolute;
+    left: 3.25rem;
+    top: 4.5rem;
+    bottom: -1.5rem;
+    width: 1px;
+    background: var(--color-secondary);
+    pointer-events: none;
+  }
+
+  /* .stepcard_card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--color-white);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  } */
+
+  .stepcard_badge {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--pgb-accent) 12%, white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stepcard_number {
+    color: var(--color-secondary);
+  }
+
+  .stepcard__content {
+    min-width: 0;
+  }
+
+  .stepcard__title {
+    margin: 0;
+    color: var(--color-primary);
+  }
+
+  .stepcard_desc {
+    margin: 6px 0 0 0;
+    color: var(--color-black);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .stepcard__iconwrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--color-bg-icon);
+    border-radius: 12px;
+  }
+
+  /* Responsive details */
+  @media (max-width: 640px) {
+    .stepcard__card {
+      padding: 18px;
+      border-radius: 14px;
+    }
+    .stepcard__badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+    }
+    .stepcard__connector {
+      left: 3rem;
+    }
+    .stepcard__title {
+      font-size: 18px;
+    }
+    .stepcard__desc {
+      font-size: 15px;
+    }
+  }
+</style>
