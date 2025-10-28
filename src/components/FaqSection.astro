@@ -1,0 +1,48 @@
+---
+import FaqItem from "./FaqItem.astro";
+
+const faqs = [
+  {
+    question: "Wanneer komt PGB Planner beschikbaar?",
+    answer: "Begin 2026, eerst voor testers.",
+  },
+  { question: "Wat kost het?", answer: "Tijdens de testfase is het gratis." },
+  {
+    question: "Werkt het op mijn telefoon?",
+    answer: "Tijdens de testfase is het gratis.",
+  },
+  {
+    question: "Moet ik mijn huidige systeem opgeven?",
+    answer: "Tijdens de testfase is het gratis.",
+  },
+    {
+    question: "Is mijn data veilig?",
+    answer: "Tijdens de testfase is het gratis.",
+  },
+];
+---
+
+<section class="faq">
+  <h2>Veelgestelde Vragen</h2>
+  <div class="faq-list">
+    {
+      faqs.map((item) => (
+        <FaqItem question={item.question} answer={item.answer} />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq {
+    text-align: center;
+    background: var(--color-bg);
+  }
+
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+  }
+</style>

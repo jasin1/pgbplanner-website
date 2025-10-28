@@ -1,0 +1,194 @@
+---
+
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo" aria-label="PGB Planner home">
+        <span>PGB Planner</span></a
+      >
+      <p class="footer__tagline">
+        Overzicht en grip op je PGB,<br />zonder gedoe.
+      </p>
+    </div>
+
+    <div class="footer__contact">
+      <h3 class="footer__heading">Contact</h3>
+      <p class="footer__line">Vragen? Mail ons op</p>
+      <p class="footer__email">
+        <a href="mailto:contact@pgbplanner.nl">contact@pgbplanner.nl</a>
+      </p>
+      <p class="footer__line">Blijf op de hoogte van de lancering</p>
+      <a
+        href="#signup"
+        class="footer__btn"
+        aria-label="Meld je aan om op de hoogte te blijven"
+      >
+        Meld je aan
+      </a>
+      <p class="footer__note">Geen spam; uitschrijven kan altijd.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer navigatie">
+      <ul class="footer__links">
+        <li><a href="#over">Over</a></li>
+        <li><a href="#preview">Preview</a></li>
+        <li><a href="#how">Hoe het werkt</a></li>
+        <li><a href="#aanmelden">Meld je aan</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer__bar">
+    <p>© 2025 PGB Planner. Alle rechten voorbehouden.</p>
+    <ul class="footer__legal">
+      <li><a href="/privacy">Privacyverklaring</a></li>
+      <!-- <li><a href="/toegankelijkheid">Toegankelijkheid</a></li> -->
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  .footer__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--pgb-white);
+  }
+
+  .footer__tagline {
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .footer__heading {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--pgb-white);
+  }
+  .footer__line {
+    margin: 6px 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+  }
+  .footer__email a {
+    color: var(--pgb-white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .footer__email a:hover {
+    border-bottom-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer__btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--pgb-blue);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transition:
+      transform 0.05s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+  .footer__btn:hover {
+    background: #3468a2;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  }
+  .footer__btn:active {
+    transform: translateY(1px);
+  }
+
+  /* Links */
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .footer__links a {
+    color: var(--pgb-white);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer__links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Bottom bar */
+  .footer__bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10px 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .footer__legal {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer__legal a {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+  }
+  .footer__legal a:hover {
+    text-decoration: underline;
+  }
+
+  /* Focus visible for a11y */
+  .footer a:focus-visible,
+  .footer__btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  /* Responsive */
+  @media (max-width: 860px) {
+    .footer__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .footer__bar {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+  }
+</style>

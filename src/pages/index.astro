@@ -11,6 +11,8 @@ import PaperIcon from "../components/PaperIcon.astro";
 import StatsIcon from "../components/StatsIcon.astro";
 import CogIcon from "../components/CogIcon.astro";
 import StepCard from "../components/StepCard.astro";
+import SignupSection from "../components/SignupSection.astro";
+import FaqSection from "../components/FaqSection.astro";
 
 const dankje = Astro.url.searchParams.get("dankje") === "1";
 ---
@@ -208,71 +210,9 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         <p>Simpel, overzichtelijk en altijd up-to-date.</p>
       </div>
     </section>
-  <section class="pgb-signup">
-  <div class="pgb-signup__inner">
-    <div class="pgb-signup__copy">
-      <h2>Blijf op de hoogte<br>van PGB Planner</h2>
-      <p>
-        Binnenkort kun je alles rondom je PGB eenvoudig beheren.
-        Schrijf je in om een seintje te krijgen zodra we live gaan.
-      </p>
-    </div>
-
-    <form
-      class="pgb-signup__form"
-      method="post"
-      action="https://YOUR-KIT-FORM-URL"  
-      novalidate
-    >
-      <!-- Name -->
-      <label class="pgb-field">
-        <span class="pgb-label">Naam</span>
-        <input
-          type="text"
-          name="name"
-          id="pgb-name"
-          placeholder="Naam"
-          autocomplete="name"
-          required
-        />
-      </label>
-
-      <!-- Email -->
-      <label class="pgb-field">
-        <span class="pgb-label">Email</span>
-        <input
-          type="email"
-          name="email"
-          id="pgb-email"
-          placeholder="Email"
-          autocomplete="email"
-          required
-        />
-      </label>
-
-      <!-- PGB Type -->
-      <label class="pgb-field">
-        <span class="pgb-label">Welke PGB heb je?</span>
-        <select name="pgb_type" id="pgb-type" required>
-          <option value="" selected disabled>Welke PGB heb je?</option>
-          <option value="WLZ">WLZ</option>
-          <option value="WMO">WMO</option>
-          <option value="Jeugdwet">Jeugdwet</option>
-          <option value="Anders">Anders</option>
-        </select>
-      </label>
-
-      <!-- (optioneel) verborgen velden voor tags/redirects van je emailprovider -->
-      <!-- <input type="hidden" name="tags[]" value="prelaunch"> -->
-
-      <button class="pgb-btn" type="submit">Versturen</button>
-
-      <p class="pgb-small pgb-disclaimer">
-        We sturen alleen updates over de lancering. Uitschrijven kan altijd.
-      </p>
-    </form>
-  </div>
-</section>
+    <SignupSection/>
+    <FaqSection/>
+   
   </main>
   <style>
     .hero {
@@ -402,131 +342,6 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       color: var(--color-secondary);
     }
 
-    /*---------------- Form styles -----------------*/
-  /* ===== Layout ===== */
-  .pgb-signup {
-    background: #f6f5f2; /* lichte zandtint zoals je screenshot */
-    padding: 64px 24px;
-  }
-
-  .pgb-signup__inner {
-    max-width: 1120px;
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 48px;
-  }
-
-  .pgb-signup__copy {
-    flex: 1 1 55%;
-    color: #2c7c6e; /* groene heading tint */
-  }
-
-  .pgb-signup__copy h2 {
-    font-size: 48px;
-    line-height: 1.1;
-    letter-spacing: 0.2px;
-    margin: 0 0 16px;
-    font-weight: 800;
-    color: #3ea08f; /* iets lichter groen voor frisse look */
-  }
-
-  .pgb-signup__copy p {
-    max-width: 640px;
-    font-size: 20px;
-    line-height: 1.6;
-    color: #3a3f46; /* donkergrijs body */
-    margin: 0;
-  }
-
-  /* ===== Form Card ===== */
-  .pgb-signup__form {
-    flex: 0 0 520px; /* vaste breedte zoals in je design */
-    background: #ffffff;
-    border: 1px solid #e8e6e2;
-    border-radius: 12px;
-    padding: 20px;
-    display: grid;
-    gap: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-  }
-
-  .pgb-field {
-    display: grid;
-    gap: 6px;
-  }
-
-  .pgb-label {
-    position: absolute;
-    left: -9999px; /* visueel verborgen, wel toegankelijk */
-  }
-
-  .pgb-signup__form input,
-  .pgb-signup__form select {
-    width: 100%;
-    height: 48px;
-    padding: 0 14px;
-    border: 1px solid #d7d4cf;
-    border-radius: 8px;
-    font-size: 16px;
-    color: #222;
-    background: #fff;
-    outline: none;
-    transition: border-color 120ms ease, box-shadow 120ms ease;
-  }
-
-  .pgb-signup__form select {
-    appearance: none;
-    background-image:
-      linear-gradient(45deg, transparent 50%, #6b7280 50%),
-      linear-gradient(135deg, #6b7280 50%, transparent 50%),
-      linear-gradient(to right, transparent, transparent);
-    background-position:
-      calc(100% - 22px) 22px,
-      calc(100% - 16px) 22px,
-      0 0;
-    background-size: 6px 6px, 6px 6px, 100% 100%;
-    background-repeat: no-repeat;
-  }
-
-  .pgb-signup__form input::placeholder,
-  .pgb-signup__form select:invalid {
-    color: #9aa0a6;
-  }
-
-  .pgb-signup__form input:focus,
-  .pgb-signup__form select:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
-  }
-
-  .pgb-btn {
-    margin-top: 4px;
-    height: 46px;
-    border: none;
-    border-radius: 10px;
-    padding: 0 18px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    background: #3b6fb7; /* blauw zoals je button */
-    color: #fff;
-    transition: transform 120ms ease, filter 120ms ease;
-  }
-
-  .pgb-btn:hover { filter: brightness(1.05); }
-  .pgb-btn:active { transform: translateY(1px); }
-
-  .pgb-small {
-    font-size: 12.5px;
-    color: #6b7280;
-    margin: 0;
-    text-align: center;
-    padding-top: 6px;
-  }
-
-  /* (Responsiveness komt later; dit is desktop-first zoals gevraagd) */
-
+ 
   </style>
 </BaseLayout>

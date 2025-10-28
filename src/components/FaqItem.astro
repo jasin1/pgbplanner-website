@@ -1,0 +1,67 @@
+---
+import ArrowDown from '../components/ArrowDown.astro';
+const { question, answer } = Astro.props;
+---
+
+<details class="faq-item">
+  <summary>{question}
+    <ArrowDown class="arrow" size="24px"/>
+  </summary>
+  <div class="faq-content">
+    <p>{answer}</p>
+  </div>
+</details>
+
+<style>
+  .faq-item {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 0 20px;
+    border: 1px solid var(--color-form-border);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-black);
+    text-align: left;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-primary);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item .arrow{
+    width: 20px;
+    height: 20px;
+    color: var(--color-black);
+    transition: transform 0.25s ease;
+  }
+
+  .faq-tem[open] .arrow{
+    transform: rotate(180deg);
+  }
+
+  .faq-content{
+    border-top: 1px solid #eee;
+    padding: 16px 0 20px;
+    font-weight: 400;
+    color: var(--color-black);
+    line-height: 1.6;
+  }
+
+  .faq-tem[open]{
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  }
+
+
+</style>
