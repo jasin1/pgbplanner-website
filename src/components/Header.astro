@@ -1,14 +1,24 @@
 ---
-const nav = [
-  { label: "Over", href: "#over" },
-  { label: "Preview", href: "#preview" },
-  { label: "Hoe het werkt", href: "#hoe" },
-  { label: "FAQ", href: "#faq" },
+
+const currentPath = Astro.url.pathname;
+
+function getSectionLink(id:string){
+  return currentPath === '/' ? `#${id}` : `/#${id}`
+}
+
+type NavItem = {label: string; id: string}
+
+
+const nav: NavItem[] = [
+  { label: "Over", id: "over" },
+  { label: "Preview", id: "preview" },
+  { label: "Hoe het werkt", id: "hoe" },
+  { label: "FAQ", id: "faq" },
 ];
 ---
 
 <header class="site-header">
-  <div class="nav-wrapper">
+  <div class="container-large nav-wrapper">
     <a class="logo" href="/">
       <svg
         width="303"
@@ -91,19 +101,19 @@ const nav = [
         {
           nav.map((item) => (
             <li>
-              <a class="nav-link" href={item.href}>
+              <a class="nav-link" href={getSectionLink(item.id)}>
                 {item.label}
               </a>
             </li>
           ))
         }
         <li class="cta-mobile">
-          <a class="btn primary" href="#aanmelden">Aanmelden</a>
+          <a class="btn primary" href={getSectionLink('aanmelden')}>Aanmelden</a>
         </li>
       </ul>
     </nav>
     <!-- CTA voor desktop (rechts buiten het menu) -->
-    <a class="btn primary cta-desktop" href="#aanmelden">Aanmelden</a>
+    <a class="btn primary cta-desktop" href={getSectionLink('aanmelden')}>Aanmelden</a>
   </div>
 </header>
 <script is:inline>
@@ -120,15 +130,29 @@ const nav = [
     const a = e.target.closest("a");
     if (a && menu.classList.contains("open")) {
       menu.classList.remove("open");
-      btn.setAttribute("aria-expanded", "false");
+      btn?.setAttribute("aria-expanded", "false");
     }
   });
 
   // Active link highlight met IntersectionObserver
+  // Werkt nu voor zowel '#id' als '/#id'
   const sections = Array.from(document.querySelectorAll("section[id]"));
   const links = Array.from(document.querySelectorAll(".nav-link"));
 
-  const byId = (id) => links.find((a) => a.getAttribute("href") === `#${id}`);
+  // Haal het 'id' uit een anchor (werkt voor relatieve en absolute hrefs)
+  const hrefToId = (a) => {
+    try {
+      // Normaliseer href -> pak hash zonder '#'
+      const u = new URL(a.getAttribute("href"), window.location.href);
+      return (u.hash || "").slice(1);
+    } catch {
+      // fallback: directe '#id'
+      const raw = a.getAttribute("href") || "";
+      return raw.startsWith("#") ? raw.slice(1) : raw.replace("/#", "");
+    }
+  };
+
+  const byId = (id) => links.find((a) => hrefToId(a) === id);
 
   const io = new IntersectionObserver(
     (entries) => {
@@ -140,7 +164,7 @@ const nav = [
         }
       });
     },
-    { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 }
   );
 
   sections.forEach((s) => io.observe(s));
@@ -151,21 +175,19 @@ const nav = [
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--color-bg);
+    /* background: var(--color-bg); */
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     backdrop-filter: saturate(140%) blur(6px);
   }
 
   .site-header .nav-wrapper {
     height: var(--header-h, 72px);
-    max-width: none;
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: var(--gap, 24px);
-    /* border: 1px solid red; */
     width: 100%;
   }
 
@@ -231,6 +253,7 @@ const nav = [
     align-items: center;
     height: 44px;
     padding: 0 6px;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--c-text, #4b5563);
     text-decoration: none;
@@ -257,20 +280,16 @@ const nav = [
     align-items: center;
     height: 40px;
     padding: 0 16px;
-    border-radius: var(--radius, 12px);
+    /* border-radius: var(--radius, 12px); */
     background: var(--c-brand, #3b74b4);
     color: var(--c-brand-contrast, #fff);
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     box-shadow: var(--shadow-soft);
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease,
-      background-color 0.18s ease;
+
   }
   .btn.primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(59, 116, 180, 0.28);
+  background: var(--color-secondary);
   }
   .btn.primary:active {
     transform: translateY(0);

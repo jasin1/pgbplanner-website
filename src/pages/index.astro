@@ -13,6 +13,11 @@ import CogIcon from "../components/CogIcon.astro";
 import StepCard from "../components/StepCard.astro";
 import SignupSection from "../components/SignupSection.astro";
 import FaqSection from "../components/FaqSection.astro";
+import AlertIcon from "../components/AlertIcon.astro";
+import PrognoseIcon from "../components/PrognoseIcon.astro";
+import WorkersIcon from "../components/WorkersIcon.astro";
+import BudgetIcon from "../components/BudgetIcon.astro";
+import CalendarIcon from "../components/CalendarIcon.astro";
 
 const dankje = Astro.url.searchParams.get("dankje") === "1";
 ---
@@ -24,7 +29,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         <span class="font-color-primary">Binnenkort:</span><br />
         <span class="font-color-secondary">overzicht en grip op je PGB</span>
       </h1>
-      <p>
+      <p class="body-large">
         <span class="text-bold">PGB Planner</span> wordt jouw complete online omgeving
         voor budgetbeheer! Overzichtelijk, betrouwbaar en zonder stress.
       </p>
@@ -33,192 +38,233 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         <a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
       </div>
       <div class="hero-img-wrapper">
-        <img src="/public/hero-img-big.jpg" alt="" />
+        <picture>
+          <source srcset="/Dashboard-big.avif" type="image/avif" />
+          <source srcset="/Dashboard-big.webp" type="image/webp" />
+          <img src="/Dashboard-big.jpg" alt="PGB Planner Dashboard" />
+        </picture>
       </div>
     </div>
-    <section class="problem-section">
-      <div class="section-txt-block">
-        <h2>
-          Herkenbare<br />Problemen
-        </h2>
-        <p>
-          Iedereen met een PGB weet hoe lastig het kan zijn om het overzicht te
-          bewaren. Je probeert alles netjes bij te houden, maar de realiteit is
-          vaak rommelig.
-        </p>
-        <ul class="section-list-ul">
-          <li>
-            <CheckIcon class="check-icon" />
-            <span>
-              Je houdt alles bij in Excel of notities, maar het blijft
-              onoverzichtelijk
-            </span>
+    <section class="flex-center section-bg-color padding-bottom" id="over">
+      <div class="container problem-section">
+        <div class="section-txt-block">
+          <h2>Een PGB beheren is geen makkelijke taak</h2>
+          <p class="font-color-light-dark">
+            Wie een PGB beheert, weet hoe snel het overzicht verdwijnt.<br />
+            Je probeert netjes de administratie bij te houden, maar de praktijk is
+            vaak anders.
+          </p>
+          <ul class="section-list-ul">
+            <li>
+              <AlertIcon class="check-icon" />
+              <span class="font-medium">
+                Je gebruikt Excel of notities, maar mist het totaalplaatje.
+              </span>
+            </li>
+            <li>
+              <AlertIcon class="check-icon" />
+              <span class="font-medium">
+                Een kleine wijziging in uren of tarief? Alles herrekenen.
+              </span>
+            </li>
+            <li>
+              <AlertIcon class="check-icon" />
+              <span class="font-medium">
+                Je twijfelt of je berekeningen eigenlijk wel kloppen.
+              </span>
+            </li>
+            <li>
+              <AlertIcon class="check-icon" />
+              <span class="font-medium">
+                En ondertussen kost het uren die je liever aan zorg besteedt.
+              </span>
+            </li>
+          </ul>
+          <p>Het vraagt veel aandacht, tijd en energie, en dat mag simpeler.</p>
+        </div>
+        <div class="img-wrapper">
+          <img src="/problem-img-2.png" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="flex-center">
+      <div class="container section-features">
+        <div class="section-heading">
+          <h2 class="h2">Daarom bouw ik PGB Planner</h2>
+          <p class="body-large text-align-center">
+            Een praktische online omgeving die je helpt vooruit te kijken, het
+            overzicht te bewaren en binnen budget te blijven. Geen ingewikkelde
+            spreadsheets, maar een helder beeld van waar je staat, en wat er
+            gaat gebeuren.
+          </p>
+        </div>
+        <ul class="features-list">
+          <li class="feature">
+            <div class="IconWrap">
+              <PrognoseIcon />
+            </div>
+            <div>
+              <h3 class="h4-style">Maak prognoses en scenario’s</h3>
+              <p>
+                Zie wat er gebeurt als iemand meer of minder werkt, of een ander
+                tarief krijgt.
+              </p>
+            </div>
           </li>
-          <li>
-            <CheckIcon class="check-icon" />
-            <span>
-              Je moet steeds opnieuw rekenen bij veranderingen in uren of
-              tarieven
-            </span>
+          <li class="feature">
+            <div class="IconWrap">
+              <WorkersIcon />
+            </div>
+            <div>
+              <h3 class="h4-style">Bekijk kosten per medewerker</h3>
+              <p>
+                Begrijp waar het budget naartoe gaat en waar je kunt bijsturen.
+              </p>
+            </div>
           </li>
-          <li>
-            <CheckIcon class="check-icon" />
-            <span>
-              Je twijfelt of de berekeningen die je maakt wel kloppen
-            </span>
+          <li class="feature">
+            <div class="IconWrap">
+              <BudgetIcon />
+            </div>
+            <div>
+              <h3 class="h4-style">Houd controle over je jaarbudget</h3>
+              <p>
+                PGB Planner rekent automatisch mee, zodat jij rust houdt in de
+                cijfers.
+              </p>
+            </div>
           </li>
-          <li>
-            <CheckIcon class="check-icon" />
-            <span>
-              De administratie kost uren die je liever aan zorg besteedt.
-            </span>
+          <li class="feature">
+            <div class="IconWrap">
+              <CalendarIcon />
+            </div>
+            <div>
+              <h3 class="h4-style">Plan eenvoudig je zorgverleners in</h3>
+              <p>
+                Maak een overzichtelijke planning en zie direct hoe je budget
+                mee beweegt. Zo houd je grip op zowel de planning als de kosten.
+              </p>
+            </div>
           </li>
         </ul>
-        <p>Het kost energie, tijd en vaak ook gemoedsrust. Dat kan anders.</p>
-      </div>
-      <div class="img-wrapper">
-        <img src="/public/problem-img-2.png" alt="" />
       </div>
     </section>
-    <section class="section-features">
-      <div class="section-heading">
-        <h2 class="h2">Daarom bouw ik PGB Planner</h2>
-        <span class="sub-heading-big"
-          >Een online omgeving die je helpt vooruit te kijken en binnen budget
-          te blijven</span
-        >
-      </div>
-      <ul class="features-list">
-        <li class="feature">
-          <img src="/public/icon-prognose.png" alt="" />
-          <div>
-            <h3>Maak prognoses en scenario’s</h3>
-            <p>
-              Zie wat er gebeurt als iemand meer of minder werkt, of een ander
-              tarief krijgt.
-            </p>
+    <section class="flex-center section-bg-color padding-big">
+      <div class="container flex-row flex-row-between">
+        <div class="text-card">
+          <h2>Ontdek PGB Planner als<br /> één van de eersten</h2>
+          <p class="txt-w-60ch">
+            PGB Planner is in ontwikkeling. De eerste testversie verschijnt in <strong
+              >november 2025.</strong
+            > Als tester krijg je als eerste toegang en kun je helpen de tool nóg
+            beter te maken voor iedereen met een PGB.
+          </p>
+          <div class="btn-one-wrapper">
+            <a class="btn btn-primary cta-desktop" href="#aanmelden"
+              >Meld je aan als tester</a
+            >
           </div>
-        </li>
-        <li class="feature">
-          <img src="/public/icon-medewerkers.png" alt="" />
-          <div>
-            <h3>Bekijk kosten per medewerker</h3>
-            <p>
-              Begrijp waar het budget naartoe gaat en waar je kunt bijsturen.
-            </p>
-          </div>
-        </li>
-        <li class="feature">
-          <img src="/public/icon-budget.png" alt="" />
-          <div>
-            <h3>Houd controle over je jaarbudget</h3>
-            <p>
-              PGB Planner rekent automatisch mee, zodat jij rust houdt in de
-              cijfers.
-            </p>
-          </div>
-        </li>
-      </ul>
-      <div>
-        <p>
-          PGB Planner is in ontwikkeling. De eerste testversie verschijnt in <strong
-            >november 2025.</strong
-          > Daarna bouwen we stap voor stap verder, samen met gebruikers die vanaf
-          het begin willen meedenken en testen.
-        </p>
-      </div>
-      <div class="btn-one-wrapper">
-        <a class="btn btn-primary cta-desktop" href="#aanmelden">Aanmelden</a>
+        </div>
+        <div class="logo-in-wrapper">
+          <img src="/main-logo-v2.svg" alt="" />
+        </div>
       </div>
     </section>
-    <section>
-      <div class="section-heading">
-        <h2 class="h2">Een eerste blik op PGB Planner</h2>
-        <span class="sub-heading-big"
-          >Dit is een eerste ontwerp van de tool. De interface laat zien hoe
-          Overzichtelijk en praktisch PGB Planner straks wordt. Het ontwerp kan
-          nog veranderen, maar dit geeft alvast een goed beeld van wat je kunt
-          verwachten.</span
-        >
-      </div>
-      <img src="/public/Dashboard_full.jpg" alt="" />
-    </section>
-    <section>
-      <div class="section-heading">
-        <h2>Voor wie is PGB Planner bedoeld?</h2>
-      </div>
-      <div class="cards-wrapper">
-        <Card
-          title="Ouders of mantelzorgers met een PGB"
-          description="Die grip willen houden op hun budget en planning"
-        >
-          <ParentsIcon slot="icon" />
-        </Card>
-        <Card
-          title="Budgethouder die overzicht willen houden"
-          description="En hun administratie willen vereenvoudigen"
-        >
-          <HouderIcon slot="icon" />
-        </Card>
-        <Card
-          title="PGB Professionals die cliënten ondersteunen"
-          description="En hun beter willen helpen met budget beheer"
-        >
-          <ProsIcon slot="icon" />
-        </Card>
+    <section class="flex-center" id="preview">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="h2">Een eerste blik op PGB Planner</h2>
+          <span class="body-large text-align-center"
+            >Dit is een eerste ontwerp van de tool. De interface laat zien hoe
+            Overzichtelijk en praktisch PGB Planner straks wordt. Het ontwerp
+            kan nog veranderen, maar dit geeft alvast een goed beeld van wat je
+            kunt verwachten.</span
+          >
+        </div>
+        <div class="image-wrapper">
+          <img src="/Dashboard_full.jpg" alt="" />
+        </div>
       </div>
     </section>
-    <section class="section-center bg-light">
-      <div class="section-heading">
-        <h2 class="h2">Zo werkt het straks</h2>
+    <section class="flex-center">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Voor wie is PGB Planner bedoeld?</h2>
+        </div>
+        <div class="cards-wrapper">
+          <Card
+            title="Ouders of mantelzorgers met een PGB"
+            description="Die grip willen houden op hun budget en planning"
+          >
+            <ParentsIcon slot="icon" />
+          </Card>
+          <Card
+            title="Budgethouder die overzicht willen houden"
+            description="En hun administratie willen vereenvoudigen"
+          >
+            <HouderIcon slot="icon" />
+          </Card>
+          <Card
+            title="PGB Professionals die cliënten ondersteunen"
+            description="En hun beter willen helpen met budget beheer"
+          >
+            <ProsIcon slot="icon" />
+          </Card>
+        </div>
       </div>
-      <div class="howitworks__list">
-        <StepCard
-          title="Vul je basisgegevens en afspraken in"
-          description="Start met het invoeren van je PGB-informatie"
-        >
-          <PaperIcon
-            slot="icon"
-            class="icon"
-            style="color: var(--color-secondary);"
-          />
-        </StepCard>
+    </section>
+    <section class="flex-center section-bg-color" id="hoe">
+      <div class="container flex-colomn">
+        <div class="section-heading">
+          <h2 class="h2">Zo werkt het straks</h2>
+        </div>
+        <div class="howitworks__list">
+          <StepCard
+            title="Vul je basisgegevens en afspraken in"
+            description="Start met het invoeren van je PGB-informatie"
+          >
+            <PaperIcon
+              slot="icon"
+              class="icon"
+              style="color: var(--color-secondary);"
+            />
+          </StepCard>
 
-        <StepCard
-          title="Maak scenario’s met uren, tarieven en vakanties"
-          description="Stel verschillende situaties in om te vergelijken"
-        >
-          <CogIcon
-            slot="icon"
-            class="icon"
-            style="color: var(--color-secondary);"
-          />
-        </StepCard>
+          <StepCard
+            title="Maak scenario’s met uren, tarieven en vakanties"
+            description="Stel verschillende situaties in om te vergelijken"
+          >
+            <CogIcon
+              slot="icon"
+              class="icon"
+              style="color: var(--color-secondary);"
+            />
+          </StepCard>
 
-        <StepCard
-          title="Bekijk de prognose en stuur bij waar nodig"
-          description="Krijg direct inzicht en pas aan wanneer nodig"
-        >
-          <StatsIcon
-            slot="icon"
-            class="icon"
-            style="color: var(--color-secondary);"
-          />
-        </StepCard>
-      </div>
-      <div class="under_text">
-        <p>Simpel, overzichtelijk en altijd up-to-date.</p>
+          <StepCard
+            title="Bekijk de prognose en stuur bij waar nodig"
+            description="Krijg direct inzicht en pas aan wanneer nodig"
+          >
+            <StatsIcon
+              slot="icon"
+              class="icon"
+              style="color: var(--color-secondary);"
+            />
+          </StepCard>
+        </div>
+        <div class="under_text">
+          <p>Simpel, overzichtelijk en altijd up-to-date.</p>
+        </div>
       </div>
     </section>
-    <SignupSection/>
-    <FaqSection/>
-   
+    <SignupSection />
+    <FaqSection />
   </main>
   <style>
     .hero {
       background-color: var(--color-bg);
       width: 100%;
-      padding: 3rem 0rem;
+      padding: 4.5rem 0rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -232,6 +278,14 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
 
     .hero p {
       max-width: 680px;
+    }
+
+    .hero-img-wrapper {
+      width: 1200px;
+      box-shadow:
+        0 4px 6px -2px #1212170d,
+        0 10px 15px -3px #17141214;
+      border-radius: 0.75rem;
     }
 
     .text-bold {
@@ -248,7 +302,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      max-width: 40.5rem;
+      max-width: 35.5rem;
     }
 
     .section-sub-header {
@@ -276,20 +330,15 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     }
 
     .section-features {
-      background: var(--color-bg);
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
-      align-items: center;
-      text-align: center;
+      /* align-items: center; */
+      /* text-align: center; */
     }
 
     .alt-h2 {
       font-size: 1.5rem;
-    }
-
-    .sub-heading-big {
-      font-size: 1.25rem;
     }
 
     .section-heading {
@@ -303,7 +352,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
 
     .features-list {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 2rem;
       list-style: none;
       padding: 0;
@@ -319,12 +368,39 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     .feature {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 1rem;
       color: var(--color-black);
-      border: 1px solid var(--color-form-border);
+      /* border: 1px solid var(--color-form-border); */
       border-radius: 1rem;
-      padding: 2rem 1rem;
+      padding: 0rem 1rem;
+      text-align: start;
+      /* background: white; */
+    }
+
+    .feature div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .IconWrap {
+      /* background: var(--color-bg); */
+      color: var(--color-orange);
+      padding: 0.4rem;
+      border-radius: 0.5rem;
+      box-shadow:
+        0px -1px 1px rgba(237, 144, 8, 0.08),
+        0px 2px 3px 1px rgba(237, 144, 8, 0.28);
+    }
+
+    .text-card {
+      padding: 1.5rem 0rem;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .cards-wrapper {
@@ -342,6 +418,8 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       color: var(--color-secondary);
     }
 
- 
+    .logo-in-wrapper {
+      width: 400px;
+    }
   </style>
 </BaseLayout>
