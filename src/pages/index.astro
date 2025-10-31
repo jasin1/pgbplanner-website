@@ -48,12 +48,14 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     <section class="flex-center section-bg-color padding-bottom" id="over">
       <div class="container problem-section">
         <div class="section-txt-block">
-          <h2>Een PGB beheren is geen makkelijke taak</h2>
-          <p class="font-color-light-dark">
-            Wie een PGB beheert, weet hoe snel het overzicht verdwijnt.<br />
-            Je probeert netjes de administratie bij te houden, maar de praktijk is
-            vaak anders.
-          </p>
+          <div class="section-heading-small">
+            <h2>Een PGB beheren is geen makkelijke taak</h2>
+            <p class="">
+              Wie een PGB beheert, weet hoe snel het overzicht verdwijnt.<br />
+              Je probeert netjes de administratie bij te houden, maar de praktijk
+              is vaak anders.
+            </p>
+          </div>
           <ul class="section-list-ul">
             <li>
               <AlertIcon class="check-icon" />
@@ -149,8 +151,10 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         </ul>
       </div>
     </section>
-    <section class="flex-center section-bg-color padding-big">
-      <div class="container flex-row flex-row-between">
+    <section class="flex-center padding-bottom">
+      <div
+        class="container container-block flex-row flex-row-between border-soft"
+      >
         <div class="text-card">
           <h2>Ontdek PGB Planner als<br /> één van de eersten</h2>
           <p class="txt-w-60ch">
@@ -173,7 +177,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     <section class="flex-center" id="preview">
       <div class="container">
         <div class="section-heading">
-          <h2 class="h2">Een eerste blik op PGB Planner</h2>
+          <h2>Een eerste blik op PGB Planner</h2>
           <span class="body-large text-align-center"
             >Dit is een eerste ontwerp van de tool. De interface laat zien hoe
             Overzichtelijk en praktisch PGB Planner straks wordt. Het ontwerp
@@ -181,12 +185,16 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
             kunt verwachten.</span
           >
         </div>
-        <div class="image-wrapper">
-          <img src="/Dashboard_full.jpg" alt="" />
+        <div class="hero-img-wrapper border-soft">
+          <picture>
+            <source srcset="/Dashboard-big.avif" type="image/avif" />
+            <source srcset="/Dashboard-big.webp" type="image/webp" />
+            <img src="/Dashboard-big.jpg" alt="PGB Planner Dashboard" />
+          </picture>
         </div>
       </div>
     </section>
-    <section class="flex-center">
+    <section class="flex-center section-bg-color">
       <div class="container">
         <div class="section-heading">
           <h2>Voor wie is PGB Planner bedoeld?</h2>
@@ -194,34 +202,39 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         <div class="cards-wrapper">
           <Card
             title="Ouders of mantelzorgers met een PGB"
-            description="Die grip willen houden op hun budget en planning"
+            description="Die hun PGB zorgvuldig willen beheren, zonder te verdwalen in Excel-bestanden en losse papieren."
           >
             <ParentsIcon slot="icon" />
           </Card>
           <Card
-            title="Budgethouder die overzicht willen houden"
-            description="En hun administratie willen vereenvoudigen"
+            title="Budgethouders"
+            description="Die in één oogopslag willen zien waar ze staan met hun budget en niets meer willen vergeten."
           >
             <HouderIcon slot="icon" />
           </Card>
           <Card
-            title="PGB Professionals die cliënten ondersteunen"
-            description="En hun beter willen helpen met budget beheer"
+            title="PGB-professionals"
+            description="Die hun cliënten beter willen ondersteunen met duidelijke prognoses en minder administratieve rompslomp."
           >
             <ProsIcon slot="icon" />
           </Card>
         </div>
+        <div class="btn-one-wrapper flex-align-center">
+          <a class="btn btn-primary cta-desktop" href="#aanmelden"
+            >Meld je direct aan
+          </a>
+        </div>
       </div>
     </section>
-    <section class="flex-center section-bg-color" id="hoe">
+    <section class="flex-center section-bg-color padding-bottom" id="hoe">
       <div class="container flex-colomn">
         <div class="section-heading">
           <h2 class="h2">Zo werkt het straks</h2>
         </div>
         <div class="howitworks__list">
           <StepCard
-            title="Vul je basisgegevens en afspraken in"
-            description="Start met het invoeren van je PGB-informatie"
+            title="Vul je PGB-gegevens in"
+            description="Voer je budget, zorgverleners en hun tarieven in. Alles overzichtelijk bij elkaar, zonder losse spreadsheets."
           >
             <PaperIcon
               slot="icon"
@@ -231,8 +244,19 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
           </StepCard>
 
           <StepCard
-            title="Maak scenario’s met uren, tarieven en vakanties"
-            description="Stel verschillende situaties in om te vergelijken"
+            title="Plan en registreer uren"
+            description="Noteer gewerkte uren direct in de kalender. Zo weet je altijd precies wat er al gedeclareerd is en wat nog openstaat."
+          >
+            <CalendarIcon
+              slot="icon"
+              class="icon"
+              style="color: var(--color-secondary);"
+            />
+          </StepCard>
+
+          <StepCard
+            title="Bekijk je prognose"
+            description="Zie in één oogopslag hoe je uitgaven zich verhouden tot je budget, en pas snel iets aan als het nodig is."
           >
             <CogIcon
               slot="icon"
@@ -242,8 +266,8 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
           </StepCard>
 
           <StepCard
-            title="Bekijk de prognose en stuur bij waar nodig"
-            description="Krijg direct inzicht en pas aan wanneer nodig"
+            title="Houd overzicht het hele jaar"
+            description="PGB Planner laat je doorlopend zien waar je staat, zodat er geen verrassingen meer zijn aan het einde van het jaar."
           >
             <StatsIcon
               slot="icon"
@@ -252,7 +276,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
             />
           </StepCard>
         </div>
-        <div class="under_text">
+        <div class="under_text body-large font-medium">
           <p>Simpel, overzichtelijk en altijd up-to-date.</p>
         </div>
       </div>
@@ -345,9 +369,17 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
       /* max-width: 600px; */
+    }
+
+    .section-heading-small {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .features-list {
@@ -404,13 +436,15 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     }
 
     .cards-wrapper {
-      display: flex;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .howitworks__list {
       max-width: 720px;
-      margin: 0 auto;
+      margin-bottom: 1.5rem;
       display: grid;
       gap: 16px;
     }
@@ -419,7 +453,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     }
 
     .logo-in-wrapper {
-      width: 400px;
+      width: 360px;
     }
   </style>
 </BaseLayout>
