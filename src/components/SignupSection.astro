@@ -2,13 +2,18 @@
 
 ---
 
-<section class="container pgb-signup" id="aanmelden">
-  <div class="pgb-signup__inner">
+<section class="padding-big section-bg-color" id="aanmelden">
+  <div class="container pgb-signup__inner">
     <div class="pgb-signup__copy">
       <h2>Blijf op de hoogte<br />van PGB Planner</h2>
-      <p>
-        Binnenkort kun je alles rondom je PGB eenvoudig beheren. Schrijf je in
-        om een seintje te krijgen zodra we live gaan.
+      <p class="text-signup">
+        We bouwen momenteel aan een tool die het beheren van je PGB
+        overzichtelijker en makkelijker maakt. <br />Laat je e-mailadres achter
+        om op de hoogte te blijven, en geef aan of je wilt helpen testen zodra
+        de eerste versie klaar is.
+      </p>
+      <p class="text-ps">
+        *We sturen alleen updates over de lancering. Uitschrijven kan altijd.
       </p>
     </div>
 
@@ -56,153 +61,172 @@
         </select>
       </label>
 
+      <label class="pgb-checkbox">
+        <input
+          type="checkbox"
+          name="tester_optin"
+          id="pgb-tester"
+          value="yes"
+        />
+        <span class="pgb-checkbox__label">
+          Ik wil graag testen zodra de eerste versie klaar is
+        </span>
+      </label>
+
       <!-- (optioneel) verborgen velden voor tags/redirects van je emailprovider -->
       <!-- <input type="hidden" name="tags[]" value="prelaunch"> -->
 
       <button class="pgb-btn" type="submit">Versturen</button>
-
-      <p class="pgb-small pgb-disclaimer">
-        We sturen alleen updates over de lancering. Uitschrijven kan altijd.
-      </p>
     </form>
   </div>
 </section>
-
-
 <style>
-     /*---------------- Form styles -----------------*/
-    /* ===== Layout ===== */
-    .pgb-signup {
-      /* background: #f6f5f2; lichte zandtint zoals je screenshot */
-      padding: 64px 24px;
-    }
+  /*---------------- Form styles -----------------*/
+  /* ===== Layout ===== */
+  .pgb-signup {
+    /* background: #f6f5f2; lichte zandtint zoals je screenshot */
+    /* padding: 64px 24px; */
+  }
 
-    .pgb-signup__inner {
-      max-width: 100%;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 48px;
-    }
+  .pgb-signup__inner {
+    /* max-width: 100%; */
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
 
-    .pgb-signup__copy {
-      flex: 1 1 55%;
-      color: #2c7c6e; /* groene heading tint */
-    }
+  .pgb-signup__copy {
+    flex: 1 1 55%;
+  }
 
-    .pgb-signup__copy h2 {
-      font-size: 2.5rem;
-      line-height: 1.1;
-      letter-spacing: 0.2px;
-      margin: 0 0 16px;
-      font-weight: 800;
-      color: #3ea08f; /* iets lichter groen voor frisse look */
-    }
+  .pgb-signup__copy h2 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: 0.2px;
+    margin: 0 0 16px;
+    font-weight: 800;
+    color: var(--color-secondary); /* iets lichter groen voor frisse look */
+  }
 
-    .pgb-signup__copy p {
-      max-width: 640px;
-      font-size: 20px;
-      line-height: 1.6;
-      color: #3a3f46; /* donkergrijs body */
-      margin: 0;
-    }
+  .text-signup {
+    max-width: 600px;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-body-text); /* donkergrijs body */
+    margin-bottom: 1.8rem;
+  }
 
-    /* ===== Form Card ===== */
-    .pgb-signup__form {
-      flex: 0 0 520px; /* vaste breedte zoals in je design */
-      background: #ffffff;
-      border: 1px solid #e8e6e2;
-      border-radius: 12px;
-      padding: 20px;
-      display: grid;
-      gap: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-    }
+  /* ===== Form Card ===== */
+  .pgb-signup__form {
+    flex: 0 0 520px; /* vaste breedte zoals in je design */
+    background: #ffffff;
+    /* border: 1px solid var(--color-form-border); */
+    border-radius: 12px;
+    padding: 40px 20px;
+    display: grid;
+    gap: 16px;
+    box-shadow:
+      0 4px 6px -2px #1212170d,
+      0 10px 15px -3px #17141214;
+  }
 
-    .pgb-field {
-      display: grid;
-      gap: 6px;
-    }
+  .pgb-field {
+    display: grid;
+    gap: 6px;
+  }
 
-    .pgb-label {
-      position: absolute;
-      left: -9999px; /* visueel verborgen, wel toegankelijk */
-    }
+  .pgb-label {
+    position: absolute;
+    left: -9999px; /* visueel verborgen, wel toegankelijk */
+  }
 
-    .pgb-signup__form input,
-    .pgb-signup__form select {
-      width: 100%;
-      height: 48px;
-      padding: 0 14px;
-      border: 1px solid #d7d4cf;
-      border-radius: 8px;
-      font-size: 16px;
-      color: #222;
-      background: #fff;
-      outline: none;
-      transition:
-        border-color 120ms ease,
-        box-shadow 120ms ease;
-    }
+  .pgb-signup__form input,
+  .pgb-signup__form select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #d7d4cf;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #222;
+    background: #fff;
+    outline: none;
+    transition:
+      border-color 120ms ease,
+      box-shadow 120ms ease;
+  }
 
-    .pgb-signup__form select {
-      appearance: none;
-      background-image: linear-gradient(45deg, transparent 50%, #6b7280 50%),
-        linear-gradient(135deg, #6b7280 50%, transparent 50%),
-        linear-gradient(to right, transparent, transparent);
-      background-position:
-        calc(100% - 22px) 22px,
-        calc(100% - 16px) 22px,
-        0 0;
-      background-size:
-        6px 6px,
-        6px 6px,
-        100% 100%;
-      background-repeat: no-repeat;
-    }
+  .pgb-signup__form select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #6b7280 50%),
+      linear-gradient(135deg, #6b7280 50%, transparent 50%),
+      linear-gradient(to right, transparent, transparent);
+    background-position:
+      calc(100% - 22px) 22px,
+      calc(100% - 16px) 22px,
+      0 0;
+    background-size:
+      6px 6px,
+      6px 6px,
+      100% 100%;
+    background-repeat: no-repeat;
+  }
 
-    .pgb-signup__form input::placeholder,
-    .pgb-signup__form select:invalid {
-      color: #9aa0a6;
-    }
+  .pgb-signup__form input::placeholder,
+  .pgb-signup__form select:invalid {
+    color: #9aa0a6;
+  }
 
-    .pgb-signup__form input:focus,
-    .pgb-signup__form select:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-    }
+  .pgb-signup__form input:focus,
+  .pgb-signup__form select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
 
-    .pgb-btn {
-      margin-top: 4px;
-      height: 46px;
-      border: none;
-      border-radius: 10px;
-      padding: 0 18px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      background: #3b6fb7; /* blauw zoals je button */
-      color: #fff;
-      transition:
-        transform 120ms ease,
-        filter 120ms ease;
-    }
+  .pgb-btn {
+    margin-top: 4px;
+    height: 46px;
+    border: none;
+    border-radius: 10px;
+    padding: 0 18px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #3b6fb7; /* blauw zoals je button */
+    color: #fff;
+    transition:
+      transform 120ms ease,
+      filter 120ms ease;
+  }
 
-    .pgb-btn:hover {
-      filter: brightness(1.05);
-    }
-    .pgb-btn:active {
-      transform: translateY(1px);
-    }
+  .pgb-btn:hover {
+    filter: brightness(1.05);
+  }
+  .pgb-btn:active {
+    transform: translateY(1px);
+  }
 
-    .pgb-small {
-      font-size: 12.5px;
-      color: #6b7280;
-      margin: 0;
-      text-align: center;
-      padding-top: 6px;
-    }
+  .pgb-checkbox {
+    display: flex;
+    align-items: flex-start; /* label kan meerregelig zijn */
+    gap: 0.8rem; /* kleine ruimte tussen box en tekst */
+  }
 
-    /* (Responsiveness komt later; dit is desktop-first zoals gevraagd) */
+  .pgb-checkbox input[type="checkbox"] {
+    margin: 0; /* reset default browser margin */
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto; /* voorkom uitrekken */
+    /* optional: accent-color voor thema
+  accent-color: #1f6feb;
+  */
+  }
+
+  .pgb-checkbox__label {
+    line-height: 1.3;
+  }
+
+  /* (Responsiveness komt later; dit is desktop-first zoals gevraagd) */
 </style>

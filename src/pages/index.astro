@@ -115,6 +115,18 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
           </li>
           <li class="feature">
             <div class="IconWrap">
+              <CalendarIcon />
+            </div>
+            <div>
+              <h3 class="h4-style">Plan eenvoudig je zorgverleners in</h3>
+              <p>
+                Maak een overzichtelijke planning en zie direct hoe je budget
+                mee beweegt. Zo houd je grip op zowel de planning als de kosten.
+              </p>
+            </div>
+          </li>
+          <li class="feature">
+            <div class="IconWrap">
               <WorkersIcon />
             </div>
             <div>
@@ -133,18 +145,6 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
               <p>
                 PGB Planner rekent automatisch mee, zodat jij rust houdt in de
                 cijfers.
-              </p>
-            </div>
-          </li>
-          <li class="feature">
-            <div class="IconWrap">
-              <CalendarIcon />
-            </div>
-            <div>
-              <h3 class="h4-style">Plan eenvoudig je zorgverleners in</h3>
-              <p>
-                Maak een overzichtelijke planning en zie direct hoe je budget
-                mee beweegt. Zo houd je grip op zowel de planning als de kosten.
               </p>
             </div>
           </li>
@@ -281,8 +281,8 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         </div>
       </div>
     </section>
-    <SignupSection />
     <FaqSection />
+    <SignupSection />
   </main>
   <style>
     .hero {

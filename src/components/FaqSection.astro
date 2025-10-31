@@ -4,20 +4,38 @@ import FaqItem from "./FaqItem.astro";
 const faqs = [
   {
     question: "Wanneer komt PGB Planner beschikbaar?",
-    answer: "Begin 2026, eerst voor testers.",
-  },
-  { question: "Wat kost het?", answer: "Tijdens de testfase is het gratis." },
-  {
-    question: "Werkt het op mijn telefoon?",
-    answer: "Tijdens de testfase is het gratis.",
+    answer:
+      "De eerste testversie verschijnt in november 2025. In deze fase kunnen geïnteresseerden de basisfuncties uitproberen en feedback geven. Na de testperiode wordt de tool stap voor stap uitgebreid.",
   },
   {
-    question: "Moet ik mijn huidige systeem opgeven?",
-    answer: "Tijdens de testfase is het gratis.",
+    question: "Kan ik nu al meedoen of testen?",
+    answer:
+      "Ja. Via het formulier op deze pagina kun je aangeven dat je wilt meehelpen testen. Je krijgt dan een seintje zodra de testversie klaar is en hoort als eerste hoe je kunt meedoen.",
   },
-    {
-    question: "Is mijn data veilig?",
-    answer: "Tijdens de testfase is het gratis.",
+  {
+    question: "Is PGB Planner gratis?",
+    answer:
+      "De testfase is gratis. Zo kunnen we samen ontdekken wat goed werkt en waar gebruikers behoefte aan hebben. Betaalde versie komt pas later, zodra de tool volledig is uitgerold.",
+  },
+  {
+    question: "Moet ik iets installeren?",
+    answer:
+      "Nee, PGB Planner werkt volledig online in je browser. Je hoeft dus niets te downloaden of te installeren, alleen inloggen zodra de testversie live is.",
+  },
+  {
+    question: "Is mijn PGB-informatie veilig?",
+    answer:
+      "Ja. PGB Planner gebruikt een beveiligde verbinding (SSL) en bewaart gegevens op een veilige, Europese serveromgeving. Je houdt altijd zelf de controle over je data: je beslist zelf wat je invult en kunt alles verwijderen wanneer je wilt.",
+  },
+  {
+    question: "Voor wie is PGB Planner bedoeld?",
+    answer:
+      "Voor iedereen die een PGB beheert of ondersteunt: ouders, mantelzorgers, budgethouders en PGB-professionals. De tool helpt je om administratie, planning en budget in één helder overzicht te houden.",
+  },
+  {
+    question: "Wat als ik nog vragen heb?",
+    answer:
+      "Je kunt altijd een bericht sturen via het contactformulier onderaan deze pagina. We beantwoorden je vraag zo snel mogelijk, ook nu in de ontwikkelfase.",
   },
 ];
 ---
@@ -36,7 +54,11 @@ const faqs = [
 <style>
   .faq {
     text-align: center;
-    background: var(--color-bg);
+    /* background: var(--color-bg); */
+  }
+
+  .faq h2 {
+    margin-bottom: 1.5rem;
   }
 
   .faq-list {
