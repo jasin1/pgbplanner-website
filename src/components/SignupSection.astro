@@ -49,15 +49,24 @@
     <form
       class="pgb-signup__form"
       method="post"
-      action="https://YOUR-KIT-FORM-URL"
-      novalidate
+      action="https://app.kit.com/forms/8738389/subscriptions"
     >
-      <!-- Name -->
+      <!-- (optioneel) tag op elke inschrijving -->
+      <input type="hidden" name="tags[]" value="prelaunch" />
+
+      <!-- (optioneel) jouw eigen bedankt-pagina -->
+      <input
+        type="hidden"
+        name="redirect_url"
+        value="https://pgbplanner.nl/bedankt"
+      />
+
+      <!-- Voornaam (Kit: first_name) -->
       <label class="pgb-field">
         <span class="pgb-label">Naam</span>
         <input
           type="text"
-          name="name"
+          name="first_name"
           id="pgb-name"
           placeholder="Naam"
           autocomplete="name"
@@ -65,12 +74,12 @@
         />
       </label>
 
-      <!-- Email -->
+      <!-- Email (Kit: email_address) -->
       <label class="pgb-field">
         <span class="pgb-label">Email</span>
         <input
           type="email"
-          name="email"
+          name="email_address"
           id="pgb-email"
           placeholder="Email"
           autocomplete="email"
@@ -78,10 +87,10 @@
         />
       </label>
 
-      <!-- PGB Type -->
+      <!-- PGB Type → custom field in Kit: pgb_type -->
       <label class="pgb-field">
         <span class="pgb-label">Welke PGB heb je?</span>
-        <select name="pgb_type" id="pgb-type" required>
+        <select name="fields[pgb_type]" id="pgb-type" required>
           <option value="" selected disabled>Welke PGB heb je?</option>
           <option value="WLZ">WLZ</option>
           <option value="WMO">WMO</option>
@@ -90,10 +99,11 @@
         </select>
       </label>
 
+      <!-- Tester-opt-in → custom field in Kit: tester_optin (niet verplicht) -->
       <label class="pgb-checkbox">
         <input
           type="checkbox"
-          name="tester_optin"
+          name="fields[tester_optin]"
           id="pgb-tester"
           value="yes"
         />
@@ -102,12 +112,116 @@
         </span>
       </label>
 
-      <!-- (optioneel) verborgen velden voor tags/redirects van je emailprovider -->
-      <!-- <input type="hidden" name="tags[]" value="prelaunch"> -->
-
+      <div class="pgb-form-status" aria-live="polite"></div>
       <button class="pgb-btn" type="submit">Versturen</button>
     </form>
   </div>
+
+  <script is:inline>
+    (function () {
+      const form = document.querySelector(".pgb-signup__form");
+      if (!form) return;
+
+      const statusEl = form.querySelector(".pgb-form-status");
+      const submitBtn = form.querySelector(".pgb-btn");
+
+      function sameOrigin(url) {
+        try {
+          return new URL(url, location.href).origin === location.origin;
+        } catch {
+          return false;
+        }
+      }
+
+      // Als de action naar Kit gaat (cross-origin), geen fetch -> browser regelt redirect/bedankt.
+      if (!sameOrigin(form.action)) return;
+
+      function setStatus(msg, type = "info") {
+        if (!statusEl) return;
+        statusEl.textContent = msg || "";
+        statusEl.classList.remove("is-error", "is-success", "is-info");
+        statusEl.classList.add(
+          type === "error"
+            ? "is-error"
+            : type === "success"
+              ? "is-success"
+              : "is-info",
+        );
+      }
+
+      function createThanksNode(name) {
+        const wrap = document.createElement("div");
+        wrap.className = "pgb-thanks";
+        wrap.innerHTML = `
+        <h3>Bedankt${name ? `, ${String(name).split(" ")[0]}` : ""}!</h3>
+        <p>Je staat op de lijst. We sturen alleen updates over de lancering. Uitschrijven kan altijd.</p>
+        <p>Vragen? Mail ons op <a class="pgb-mail-link" href="mailto:info@pgbplanner.nl">info@pgbplanner.nl</a>.</p>
+      `;
+        return wrap;
+      }
+
+      async function handleSubmit(e) {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const original = submitBtn?.textContent;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Versturen…";
+        }
+        setStatus("");
+
+        const fd = new FormData(form);
+
+        try {
+          const res = await fetch(form.action, {
+            method: form.method || "POST",
+            body: fd,
+            headers: { Accept: "application/json" },
+          });
+
+          if (res.ok) {
+            // Probeer JSON, maar is optioneel
+            try {
+              await res.json();
+            } catch {}
+
+            const thanksNode = createThanksNode(fd.get("first_name"));
+            form.replaceWith(thanksNode);
+          } else {
+            let msg = "Er ging iets mis. Probeer later opnieuw of mail ons.";
+            try {
+              const data = await res.json();
+              if (data?.error || data?.message)
+                msg = data.error || data.message;
+            } catch {}
+            setStatus(msg, "error");
+          }
+        } catch {
+          setStatus(
+            "Geen verbinding. Controleer je internet en probeer opnieuw.",
+            "error",
+          );
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = original || "Versturen";
+          }
+        }
+      }
+
+      form.addEventListener("submit", handleSubmit);
+
+      // (optioneel) ?tester=1 vinkt checkbox automatisch aan
+      try {
+        const params = new URLSearchParams(location.search);
+        if (params.get("tester") === "1")
+          document
+            .getElementById("pgb-tester")
+            ?.setAttribute("checked", "true");
+      } catch {}
+    })();
+  </script>
 </section>
 <style>
   /*---------------- Form styles -----------------*/

@@ -293,6 +293,10 @@ h6 {
   padding: clamp(4rem, 8vw, 10rem) 0;
 }
 
+.margin-top-2{
+  margin-top: 2.5rem;
+}
+
 /*--------- Flex styling -----------*/
 
 .flex-colomn {
@@ -580,6 +584,7 @@ input:focus {
 
 .bedankt-txt-wrapper {
   max-width: 600px;
+  padding: 2.5rem;
 }
 
 .inline-link-wrapper {
