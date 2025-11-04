@@ -203,8 +203,6 @@ h6 {
   max-width: 60ch;
 }
 
-
-
 .text-ps {
   font-size: 1rem;
   font-style: italic;
@@ -266,7 +264,6 @@ h6 {
 
 .container-block {
   padding: 4rem 3rem;
-  /* background: #FAFBFC; */
   border-radius: 2rem;
   background-image: linear-gradient(
     to right bottom,
@@ -339,12 +336,22 @@ h6 {
 
 /* Breek de handmatige <br> weg op small screens */
 @media (max-width: 640px) {
-  .cta-block h2 br { display: none; }
-  .flex-center{
-    justify-content: flex-start;
+  .container-block {
+    padding-inline: 1rem; /* 👈 jouw “margins” links/rechts */
+    margin: 1rem 0; /* alleen verticaal */
+    box-sizing: border-box;
   }
-  .section-heading{
-    align-items: flex-start;
+  .cta-block {
+    margin-inline: 1rem;
+    width: auto;
+    box-sizing: border-box;
+  }
+
+  .cta-block h2 br {
+    display: none;
+  }
+  .flex-center {
+    justify-content: flex-start;
   }
 }
 
@@ -361,12 +368,16 @@ h6 {
     align-items: flex-start;
     max-width: 48ch; /* fijne leesbreedte */
   }
-  .cta-block .logo-in-wrapper { width: 360px; }
+  .cta-block .logo-in-wrapper {
+    width: 360px;
+  }
 }
 
 /* Knop: op mobiel mag 'ie prima full-width, desktop auto */
 @media (max-width: 640px) {
-  .cta-block .btn-one-wrapper .btn { width: 100%; }
+  .cta-block .btn-one-wrapper .btn {
+    width: 100%;
+  }
 }
 
 /*--------- Contact styling -----------*/
@@ -481,8 +492,6 @@ input:focus {
 
 /*--------- Responsive -----------*/
 
-
-
 /* <= 640px: kop kort, acties stapelen */
 @media (max-width: 640px) {
   .hero h1 {
@@ -551,12 +560,10 @@ input:focus {
     border-width: 1.5px;
   }
 
-  .text-align-center{
+  .text-align-center {
     text-align: left;
   }
 }
-
-
 
 /*-------------- Lees Meer --------------*/
 

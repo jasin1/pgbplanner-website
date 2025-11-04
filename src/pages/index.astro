@@ -152,9 +152,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       </div>
     </section>
     <section class="container padding-bottom">
-      <div
-        class="container container-block cta-block border-soft"
-      >
+      <div class="container container-block cta-block border-soft">
         <div class="text-card">
           <h2>Ontdek PGB Planner als<br /> één van de eersten</h2>
           <p class="txt-w-60ch">
@@ -281,7 +279,9 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         </div>
       </div>
     </section>
-    <FaqSection />
+    <div class="container">
+      <FaqSection />
+    </div>
     <SignupSection />
   </main>
   <style>
@@ -591,6 +591,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       .section-heading {
         margin-bottom: 1.5rem;
         padding-inline: 1rem;
+        align-items: flex-start;
       }
       .section-heading-small {
         gap: 0.75rem;
