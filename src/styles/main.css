@@ -14,7 +14,7 @@
   --color-bg: #f9f2ea;
   --color-bg-icon: #dbeeea;
   --color-black: #414040;
-  --color-body-text: #4B5563;
+  --color-body-text: #4b5563;
   --color-light-dark: #727880;
   --color-white: #ffffff;
   --color-alert: #e27a7a;
@@ -82,7 +82,7 @@ header {
 
 section {
   width: 100%;
-  padding: 8rem 0;
+  padding: clamp(3rem, 6vw, 8rem) 0;
 }
 
 a {
@@ -103,10 +103,9 @@ img {
   display: block;
   aspect-ratio: auto;
   width: 100%;
-  height: 100%;
+  height: auto;
   overflow: hidden;
-  object-fit: fill;
-  max-width: none;
+  object-fit: cover;
   border-radius: 0.75rem;
 }
 
@@ -135,20 +134,20 @@ h1 span {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4.5vw, 2.5rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--color-l-blue);
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
 }
@@ -166,7 +165,7 @@ h6 {
 }
 
 .h3-style {
-  font-size: 1.6rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
 }
@@ -208,7 +207,7 @@ h6 {
   text-align: center;
 }
 
-.text-ps{
+.text-ps {
   font-size: 1rem;
   font-style: italic;
   color: var(--color-light-dark);
@@ -224,7 +223,7 @@ h6 {
   color: var(--color-secondary);
 }
 
-.font-color-l-blue{
+.font-color-l-blue {
   color: var(--color-l-blue);
 }
 
@@ -250,11 +249,11 @@ h6 {
   background: var(--color-orange);
 }
 
-.border-normal{
+.border-normal {
   border: 1px solid var(--color-form-border);
 }
 
-.border-soft{
+.border-soft {
   border: 1px solid var(--color-border-soft);
 }
 
@@ -263,31 +262,40 @@ h6 {
 .container {
   width: 100%;
   max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: 1rem;
 }
 
-.container-block{
+.container-block {
   padding: 4rem 3rem;
   /* background: #FAFBFC; */
   border-radius: 2rem;
-  background-image: linear-gradient(to right bottom, rgb(249, 250, 251), rgb(255, 255, 255));
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  background-image: linear-gradient(
+    to right bottom,
+    rgb(249, 250, 251),
+    rgb(255, 255, 255)
+  );
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .container-large {
   width: 100%;
   max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1rem;
 }
 
 .section-bg-color {
   background: var(--color-bg);
 }
 
-.padding-bottom{
+.padding-bottom {
   padding: 2rem 0 6rem 0;
 }
 
-.padding-big{
-  padding: 10rem 0;
+.padding-big {
+  padding: clamp(4rem, 8vw, 10rem) 0;
 }
 
 /*--------- Flex styling -----------*/
@@ -311,13 +319,50 @@ h6 {
   gap: 1rem;
 }
 
-.flex-row{
+/* CTA-blok: standaard stacken op mobiel */
+.cta-block {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
 }
 
-.flex-row-between{
-  justify-content: space-between;
+/* Tekst netjes centreren op mobiel */
+.cta-block .text-card {
+  align-items: center;
+}
+
+/* Logo schaalt mee op mobiel */
+.cta-block .logo-in-wrapper {
+  width: min(60vw, 320px);
+  margin-inline: auto;
+}
+
+/* Breek de handmatige <br> weg op small screens */
+@media (max-width: 640px) {
+  .cta-block h2 br { display: none; }
+}
+
+/* Desktop: naast elkaar, ruimte ertussen */
+@media (min-width: 1024px) {
+  .cta-block {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    gap: 2rem;
+  }
+  .cta-block .text-card {
+    align-items: flex-start;
+    max-width: 48ch; /* fijne leesbreedte */
+  }
+  .cta-block .logo-in-wrapper { width: 360px; }
+}
+
+/* Knop: op mobiel mag 'ie prima full-width, desktop auto */
+@media (max-width: 640px) {
+  .cta-block .btn-one-wrapper .btn { width: 100%; }
 }
 
 /*--------- Contact styling -----------*/
@@ -432,6 +477,47 @@ input:focus {
 
 /*--------- Responsive -----------*/
 
+
+
+/* <= 640px: kop kort, acties stapelen */
+@media (max-width: 640px) {
+  .hero h1 {
+    margin-bottom: 0.75rem;
+  }
+  .buttons-wrapper {
+    display: flex;
+    flex-direction: row; /* naast elkaar */
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem; /* ruimte tussen de knoppen */
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .buttons-wrapper .btn {
+    flex: 1; /* beide even breed */
+    text-align: center;
+    white-space: nowrap; /* voorkomt dat tekst breekt */
+    padding-block: 0.75rem; /* iets hogere tapzone */
+  }
+}
+
+@media (min-width: 768px) {
+  .container,
+  .container-large,
+  .wrapper {
+    padding-inline: 2rem;
+  } /* tablet */
+}
+
+@media (min-width: 1024px) {
+  .container,
+  .container-large,
+  .wrapper {
+    padding-inline: 3rem;
+  } /* desktop ruimtelijker */
+}
+
 @media (max-width: 400px) {
   h1 {
     font-size: 2rem;
@@ -455,6 +541,14 @@ input:focus {
     border-radius: 9999px; /* optioneel: ronde knop */
   }
 }
+
+@media (max-width: 640px) {
+  .btn-secondary {
+    border-width: 1.5px;
+  }
+}
+
+
 
 /*-------------- Lees Meer --------------*/
 
@@ -483,9 +577,7 @@ input:focus {
 }
 
 /* Smooth scroll (met reduced-motion fallback) */
-html {
-  scroll-behavior: smooth;
-}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
