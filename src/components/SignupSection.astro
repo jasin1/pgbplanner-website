@@ -136,14 +136,14 @@
     letter-spacing: 0.2px;
     margin: 0 0 16px;
     font-weight: 800;
-    color: var(--color-secondary); 
+    color: var(--color-secondary);
   }
 
   .text-signup {
     max-width: 600px;
     font-size: 1.25rem;
     line-height: 1.6;
-    color: var(--color-body-text); 
+    color: var(--color-body-text);
     margin-bottom: 1.8rem;
   }
 
@@ -277,5 +277,87 @@
     height: 20px;
   }
 
-  /* (Responsiveness komt later; dit is desktop-first zoals gevraagd) */
+  /* ===== Responsive Styles ===== */
+
+  /* Tablet (max 1024px) */
+  @media (max-width: 1024px) {
+    .pgb-signup__inner {
+      gap: 32px;
+    }
+
+    .pgb-signup__form {
+      flex: 0 0 440px;
+      padding: 32px 24px;
+    }
+
+    .pgb-signup__copy h2 {
+      font-size: 2rem;
+    }
+
+    .text-signup {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* Tablet portrait / grote mobiel (max 768px) */
+  @media (max-width: 768px) {
+    .pgb-signup__inner {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .pgb-signup__copy {
+      flex: 1 1 auto;
+    }
+
+    .pgb-signup__form {
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .pgb-signup__copy h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  /* Mobiel (max 480px) */
+  @media (max-width: 480px) {
+    .pgb-signup__inner {
+      gap: 32px;
+    }
+
+    .pgb-signup__copy h2 {
+      font-size: 1.625rem;
+    }
+
+    .text-signup {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pgb-signup__form {
+      padding: 28px 20px;
+      gap: 14px;
+    }
+
+    .pgb-signup__form input,
+    .pgb-signup__form select {
+      height: 44px;
+      font-size: 16px; /* voorkomt zoom op iOS */
+    }
+
+    .pgb-btn {
+      height: 44px;
+      font-size: 15px;
+    }
+
+    .pgb-mail-link {
+      font-size: 0.9375rem;
+    }
+
+    .text-ps {
+      font-size: 0.875rem;
+    }
+  }
 </style>
