@@ -203,9 +203,7 @@ h6 {
   max-width: 60ch;
 }
 
-.text-align-center {
-  text-align: center;
-}
+
 
 .text-ps {
   font-size: 1rem;
@@ -342,6 +340,12 @@ h6 {
 /* Breek de handmatige <br> weg op small screens */
 @media (max-width: 640px) {
   .cta-block h2 br { display: none; }
+  .flex-center{
+    justify-content: flex-start;
+  }
+  .section-heading{
+    align-items: flex-start;
+  }
 }
 
 /* Desktop: naast elkaar, ruimte ertussen */
@@ -545,6 +549,10 @@ input:focus {
 @media (max-width: 640px) {
   .btn-secondary {
     border-width: 1.5px;
+  }
+
+  .text-align-center{
+    text-align: left;
   }
 }
 
