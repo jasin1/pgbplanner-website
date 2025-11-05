@@ -281,6 +281,13 @@ h6 {
   padding-inline: 1rem;
 }
 
+.container-small{
+    width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
 .section-bg-color {
   background: var(--color-bg);
 }
@@ -435,6 +442,17 @@ input:focus {
   border: none;
   box-shadow: none;
 }
+
+/*--------- Margins & buttons -----------*/
+
+.margin-btm-1{
+  margin-bottom: 1rem;
+}
+
+.margin-btm-2{
+  margin-bottom: 2rem;
+}
+
 
 /*--------- Buttons & Links -----------*/
 
