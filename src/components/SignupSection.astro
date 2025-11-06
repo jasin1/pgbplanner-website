@@ -52,7 +52,7 @@
       action="https://app.kit.com/forms/8738389/subscriptions"
     >
       <!-- (optioneel) tag op elke inschrijving -->
-      <input type="hidden" name="tags[]" value="prelaunch" />
+      <input type="hidden" name="tags[]" value="Waitlist" />
 
       <!-- (optioneel) jouw eigen bedankt-pagina -->
       <input
@@ -90,7 +90,7 @@
       <!-- PGB Type → custom field in Kit: pgb_type -->
       <label class="pgb-field">
         <span class="pgb-label">Welke PGB heb je?</span>
-        <select name="fields[pgb_type]" id="pgb-type" required>
+        <select name="fields[waitlist_pgb_type]" id="pgb-type" required>
           <option value="" selected disabled>Welke PGB heb je?</option>
           <option value="WLZ">WLZ</option>
           <option value="WMO">WMO</option>
@@ -103,7 +103,7 @@
       <label class="pgb-checkbox">
         <input
           type="checkbox"
-          name="fields[tester_optin]"
+          name="fields[waitlist_tester_optin]"
           id="pgb-tester"
           value="yes"
         />
