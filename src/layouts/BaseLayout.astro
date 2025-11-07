@@ -3,8 +3,17 @@ import "../../src/styles/main.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
-  Astro.props;
+const {
+  title = "PGB Planner",
+  description = "Welkom bij PGB Planner.",
+  ogImage = "/og.jpg", // per pagina overschrijfbaar
+} = Astro.props;
+
+const origin =
+  Astro.site?.toString().replace(/\/$/, "") || "https://www.pgbplanner.nl";
+const pathname = Astro.url?.pathname || "/";
+const canonical = origin + pathname;
+const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
 ---
 
 <html lang="nl">
@@ -13,10 +22,41 @@ const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
     <link rel="icon" type="image/svg+xml" href="/ico-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO: Title & Description -->
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&family=BBH+Sans+Hegarty&display=swap" rel="stylesheet">
     <meta name="description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph (Social Previews: Facebook, LinkedIn, WhatsApp, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PGB Planner" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absoluteOg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="PGB Planner – Voorbeeldafbeelding bij gedeelde link"
+    />
+
+    <!-- Twitter / X (doet geen kwaad, andere platforms negeren dit) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOg} />
+
+    <!-- (Optioneel maar netjes) Preconnect naar fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&family=BBH+Sans+Hegarty&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <Header />
@@ -27,4 +67,3 @@ const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
     <Footer />
   </body>
 </html>
-
