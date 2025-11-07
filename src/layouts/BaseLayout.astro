@@ -15,13 +15,11 @@ const { title = "PGB Planner", description = "Welkom bij PGB Planner." } =
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Kies hier exact de families die je gebruikt -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&family=BBH+Sans+Hegarty&display=swap" rel="stylesheet">
     <meta name="description" content={description} />
   </head>
   <body>
     <Header />
-    <!-- Skip link, eerst focusbaar element -->
     <a class="skip-link" href="#main">Direct naar inhoud</a>
     <main id="main">
       <slot />
