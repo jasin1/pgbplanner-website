@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "astro": "^5.12.8"
+  },
+  "devDependencies": {
+    "@astrojs/netlify": "^6.6.0"
   }
 }
