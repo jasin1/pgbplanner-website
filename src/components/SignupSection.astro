@@ -1,5 +1,5 @@
 ---
-
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
 <section class="padding-big section-bg-color" id="aanmelden">
@@ -47,6 +47,7 @@
     </div>
 
     <form
+      id="pgb-form"
       class="pgb-signup__form"
       method="post"
       action="https://app.kit.com/forms/8738389/subscriptions"
@@ -112,11 +113,18 @@
         </span>
       </label>
 
+      <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
+
       <div class="pgb-form-status" aria-live="polite"></div>
       <button class="pgb-btn" type="submit">Versturen</button>
     </form>
   </div>
 
+  <!-- Google's reCAPTCHA script -->
+  <script is:inline src="https://www.google.com/recaptcha/api.js" async defer
+  ></script>
+
+  <!-- Gecombineerde form handler met reCAPTCHA -->
   <script is:inline>
     (function () {
       const form = document.querySelector(".pgb-signup__form");
@@ -132,9 +140,6 @@
           return false;
         }
       }
-
-      // Als de action naar Kit gaat (cross-origin), geen fetch -> browser regelt redirect/bedankt.
-      if (!sameOrigin(form.action)) return;
 
       function setStatus(msg, type = "info") {
         if (!statusEl) return;
@@ -164,13 +169,67 @@
         e.preventDefault();
         if (!form.reportValidity()) return;
 
+        // ====== RECAPTCHA CHECK TOEGEVOEGD ======
+        const recaptcha = grecaptcha.getResponse();
+
+        if (!recaptcha) {
+          setStatus('Vink eerst het "Ik ben geen robot" vakje aan!', "error");
+          return;
+        }
+
         const original = submitBtn?.textContent;
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = "Versturen…";
+          submitBtn.textContent = "Verificatie…";
         }
         setStatus("");
 
+        // Verifieer reCAPTCHA eerst
+        try {
+          const verifyResponse = await fetch("/api/verify-recaptcha", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ recaptcha }),
+          });
+
+          const verifyResult = await verifyResponse.json();
+
+          if (!verifyResult.success) {
+            setStatus(
+              "reCAPTCHA verificatie mislukt. Probeer opnieuw.",
+              "error",
+            );
+            grecaptcha.reset();
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = original || "Versturen";
+            }
+            return;
+          }
+        } catch (err) {
+          setStatus("Verificatie mislukt. Probeer opnieuw.", "error");
+          grecaptcha.reset();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = original || "Versturen";
+          }
+          return;
+        }
+        // ====== EINDE RECAPTCHA CHECK ======
+
+        if (submitBtn) {
+          submitBtn.textContent = "Versturen…";
+        }
+
+        // Als het naar Kit gaat (cross-origin), gewoon submit
+        if (!sameOrigin(form.action)) {
+          form.submit();
+          return;
+        }
+
+        // Anders: fetch met custom handling
         const fd = new FormData(form);
 
         try {
@@ -181,7 +240,6 @@
           });
 
           if (res.ok) {
-            // Probeer JSON, maar is optioneel
             try {
               await res.json();
             } catch {}
