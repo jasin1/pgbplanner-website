@@ -57,6 +57,22 @@ const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&family=BBH+Sans+Hegarty&display=swap"
       rel="stylesheet"
     />
+    <>
+      <!-- Google tag (gtag.js) -->
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-16D80VC6VQ"></script>
+      <script>
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        function gtag() {
+          (window as any).dataLayer.push(arguments);
+        }
+        // @ts-ignore
+        gtag("js", new Date());
+        // @ts-ignore
+        gtag("config", "G-16D80VC6VQ");
+      </script>
+    </>
   </head>
   <body>
     <Header />
