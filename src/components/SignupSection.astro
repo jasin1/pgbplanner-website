@@ -1,4 +1,6 @@
 ---
+import InstaIcon from "./InstaIcon.astro";
+import FbIcon from "./FbIcon.astro";
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
@@ -44,6 +46,27 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       <p class="text-ps">
         *We sturen alleen updates over de lancering. Uitschrijven kan altijd.
       </p>
+      <div class="socials-wrapper">
+        <a
+          href="https://www.instagram.com/pgbplanner/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pgb-mail-link"
+        >
+          <InstaIcon />
+          <span>@pgbplanner</span>
+        </a>
+        <span>|</span>
+        <a
+          href="https://www.facebook.com/pgbplanner"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pgb-mail-link"
+        >
+          <FbIcon />
+          <span>PGB Planner</span>
+        </a>
+      </div>
     </div>
 
     <form
@@ -447,6 +470,12 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     flex-shrink: 0;
     width: 20px;
     height: 20px;
+  }
+
+  .socials-wrapper{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 
   /* ===== Responsive Styles ===== */
