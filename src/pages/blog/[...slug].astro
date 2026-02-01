@@ -1,0 +1,43 @@
+---
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog")).filter((p) => !p.data.draft);
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+// Haal de entry opnieuw op (safe & future-proof)
+const post = await getEntryBySlug("blog", slug);
+
+if (!post || post.data.draft) {
+  return Astro.redirect("/blog/");
+}
+
+const { Content } = await post.render();
+---
+
+<html lang="nl">
+  <head>
+    <title>{post.data.title} • PGB Planner</title>
+    <meta name="description" content={post.data.description} />
+  </head>
+  <body>
+    <main style="max-width: 720px; margin: 0 auto; padding: 24px;">
+      <a href="/blog/">← Terug naar blog</a>
+
+      <h1 style="margin-top: 16px;">{post.data.title}</h1>
+      <div style="opacity: 0.7; font-size: 14px; margin-bottom: 24px;">
+        {post.data.pubDate.toLocaleDateString("nl-NL")}
+      </div>
+
+      <article>
+        <Content />
+      </article>
+    </main>
+  </body>
+</html>
