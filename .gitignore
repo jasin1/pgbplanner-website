@@ -20,6 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Obsidian editor config
+src/content/blog/.obsidian/
+
 # jetbrains setting folder
 .idea/
 
