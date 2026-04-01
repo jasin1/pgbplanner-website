@@ -96,6 +96,10 @@ span,
 div {
   font-family: var(--font-primary);
   text-wrap: pretty;
+}
+
+p,
+li {
   font-size: 1rem;
 }
 
