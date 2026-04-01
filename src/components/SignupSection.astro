@@ -123,19 +123,6 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         </select>
       </label>
 
-      <!-- Tester-opt-in → custom field in Kit: tester_optin (niet verplicht) -->
-      <label class="pgb-checkbox">
-        <input
-          type="checkbox"
-          name="fields[waitlist_tester_optin]"
-          id="pgb-tester"
-          value="yes"
-        />
-        <span class="pgb-checkbox__label">
-          Ik wil graag testen zodra de eerste versie klaar is
-        </span>
-      </label>
-
       <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
 
       <div class="pgb-form-status" aria-live="polite"></div>
