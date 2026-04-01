@@ -279,15 +279,6 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       }
 
       form.addEventListener("submit", handleSubmit);
-
-      // (optioneel) ?tester=1 vinkt checkbox automatisch aan
-      try {
-        const params = new URLSearchParams(location.search);
-        if (params.get("tester") === "1")
-          document
-            .getElementById("pgb-tester")
-            ?.setAttribute("checked", "true");
-      } catch {}
     })();
   </script>
 </section>
