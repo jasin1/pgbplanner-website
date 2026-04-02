@@ -7,6 +7,7 @@ const {
   title = "PGB Planner",
   description = "Welkom bij PGB Planner.",
   ogImage = "/og.jpg", // per pagina overschrijfbaar
+  hideHeader = false,
 } = Astro.props;
 
 const origin =
@@ -75,7 +76,7 @@ const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
     </>
   </head>
   <body>
-    <Header />
+    {!hideHeader && <Header />}
     <a class="skip-link" href="#main">Direct naar inhoud</a>
     <main id="main">
       <slot />

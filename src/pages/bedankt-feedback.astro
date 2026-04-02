@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Dankjewel voor je feedback"
+  description="Je helpt hiermee om PGB Planner stap voor stap beter en duidelijker te maken."
+  hideHeader={true}
+>
+  <main>
+    <div class="feedback-wrapper">
+      <div class="feedback-logo-wrapper">
+        <img src="/main-logo-v2.svg" alt="PGB Planner" class="feedback-logo" />
+      </div>
+      <h1 class="font-color-l-blue">
+        Dankjewel voor je feedback
+      </h1>
+      <section class="bedankt-txt-wrapper">
+        <p>
+          Je helpt hiermee om PGB Planner stap voor stap beter en duidelijker te maken.<br />
+          Ik ga hier direct mee aan de slag.
+        </p>
+        <p>
+          <span class="inline-link-wrapper"
+            ><a class="inline-link" href="https://app.pgbplanner.nl/login">Ga verder in PGB Planner</a></span
+          >
+        </p>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .feedback-wrapper {
+    padding-top: 80px;
+    text-align: center;
+  }
+
+  .feedback-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+    margin-bottom: 24px;
+    overflow: visible;
+  }
+
+  .feedback-logo {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+</style>
