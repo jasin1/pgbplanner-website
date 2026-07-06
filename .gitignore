@@ -28,3 +28,4 @@ src/content/blog/.obsidian/
 
 # Local Netlify folder
 .netlify
+.obsidian/
