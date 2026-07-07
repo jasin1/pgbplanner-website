@@ -1,6 +1,6 @@
 # Homepage Copy Master — pgbplanner.nl
 
-**Status:** levend document, laatst bijgewerkt 4 juli 2026
+**Status:** levend document, laatst bijgewerkt 6 juli 2026
 **Doel:** één source of truth voor de homepage copy sprint, zodat niets tussen Claude, ChatGPT en implementatie door de mazen valt.
 
 ---
@@ -31,8 +31,8 @@ Website ombouwen van pre-launch wachtlijst-taal naar live product met trial-firs
 ## Sprintplanning
 
 **Vrijdag**
-1. Hero — ✅ bevroren
-2. Waarom naast SVB — ✅ status checken
+1. Hero — ✅ APPROVED
+2. Waarom naast SVB — ✅ APPROVED
 3. Taalbankje uit survey — ✅ verwerkt (zie boven)
 4. Brand voice v0.1 opzetten — ⬜ (bewust uitgesteld tot na de copy-sprint)
 
@@ -42,12 +42,14 @@ Website ombouwen van pre-launch wachtlijst-taal naar live product met trial-firs
 3. Voor wie — ✅
 4. Zo werkt het — ✅
 
-**Zondag**
-1. CTA's — ✅
-2. FAQ — ✅
-3. Meta descriptions — ⬜
-4. Footer — ⬜
-5. Blog-mechanisme afronden — ⬜
+**Zondag / maandag**
+1. CTA's — ✅ APPROVED
+2. FAQ — ✅ APPROVED
+3. Meta descriptions — ✅ APPROVED
+4. Footer — ✅ APPROVED
+5. Blog-mechanisme afronden — ⬜ (aparte taak, geen copy)
+
+**Copy-fase status: AFGEROND.** Alle homepage-copy staat op APPROVED. Volgende stap is implementatie vanuit deze master + de audit, geen nieuwe copy meer.
 
 **Maandag/dinsdag — deploy**
 - Header
@@ -217,10 +219,40 @@ Je kunt altijd een bericht sturen naar info@pgbplanner.nl. Ik beantwoord je vraa
 - Zevende vraag over "blijf op de hoogte" — bewust weggelaten, dubbelt met de secundaire CTA-regel die al op dezelfde pagina staat
 
 ### Meta descriptions
-**STATUS: TODO**
+**STATUS: APPROVED**
+
+**Page title** (browsertab + blauwe regel in Google): PGB Planner, weet het hele jaar of je uitkomt met je budget
+
+**Meta description:** Weet het hele jaar of je uitkomt met je PGB-budget. PGB Planner rekent je uitgaven en zorgverleners automatisch door, zodat je niet voor verrassingen komt te staan.
+
+**Open Graph:** og:title en og:description erven automatisch uit title en description (bevestigd via audit: `BaseLayout.astro` bouwt de OG- en Twitter-tags uit deze velden). Geen aparte OG-tekst nodig. og:image blijft voorlopig `/og.jpg`; een productgerichte deelafbeelding met de nieuwe belofte erop is geparkeerd (kleine winst, geen blocker).
+
+**Implementatie:** vervangt de bestaande pre-launch description op de homepage (`src/pages/index.astro`, regel 25), die nu nog "een praktische online tool in ontwikkeling ... Meld je aan voor updates" zegt. De zwakke default-description in `BaseLayout.astro` ("Welkom bij PGB Planner") telt alleen als een pagina geen eigen meegeeft; homepage geeft eigen title/description mee.
+**Eigenaarschap:** het schrijven is copy (deze sprint); het plaatsen valt tussen deze sprint en de technische SEO-taak — bij implementatie meenemen zodat het niet blijft liggen.
 
 ### Footer
-**STATUS: TODO**
+**STATUS: APPROVED**
+
+**Tagline:** Weet het hele jaar of je uitkomt met je budget
+
+**Footer-navigatie:** Over · Hoe het werkt · FAQ · Contact (geen "Meld je aan" meer)
+
+**Juridische links:**
+- Privacyverklaring → https://app.pgbplanner.nl/privacy
+- Algemene voorwaarden → https://app.pgbplanner.nl/voorwaarden
+
+Linken naar de bestaande app-pagina's als enige (canonieke) bron, geen losse website-kopieën — voorkomt versies die uit elkaar lopen bij juridische teksten.
+
+**Onderste balk:** © {huidig jaar} PGB Planner · KvK 99317230
+
+**Regels:**
+- Jaartal automatisch via Astro bij het renderen (`new Date().getFullYear()`), geen client-side JavaScript — dan nooit meer een verkeerd jaar (live stond "© 2025").
+- Geen "Inloggen" in de footer, die staat al permanent in de navbar — footer blijft rustig.
+- Oude tagline "Overzicht en grip op je PGB, zonder gedoe" vervalt (vage taal waar de sprint van weg is gestapt; consistent met hero/meta).
+- Contact-link sluit aan op wat al bestaat (contactformulier + e-mailadres) — bij implementatie exact aansluiten op de bestaande route/sectie, niets nieuws ontwerpen.
+
+### Trial-CTA doel-URL
+**Voor de CTA-taak (geen copy):** https://app.pgbplanner.nl/registreer — dit is de bestemming van de primaire "Probeer 21 dagen gratis"-knop. `app.pgbplanner.nl` wordt momenteel nergens in de website-repo genoemd (bevestigd via audit).
 
 ---
 
@@ -238,7 +270,13 @@ Positionering: Excel is de concurrent, SVB is complementair, vooruitkijken is de
 
 **Doel:** begrijpen hoe de homepage technisch in elkaar zit vóór implementatie. Geen wijzigingen.
 **Output:** homepage-structuur, copy-locaties, CTA-implementatie, blog-structuur, docs-overzicht, CLAUDE.md-review, meta tags-locatie.
-**Status:** ⬜ nog te draaien vandaag.
+**Status:** ✅ AFGEROND (6 juli 2026). Rapport: `docs/audit/website-readonly-audit-2026-07-06.md`.
+
+**Belangrijkste bevindingen voor de implementatie:**
+- Copy leeft grotendeels inline in `src/pages/index.astro`; FAQ in `FaqSection.astro`, signup in `SignupSection.astro`. Geen content collection voor homepage-copy.
+- Header en Footer zijn gedeeld via `BaseLayout.astro` over de héle site (ook blog en losse pagina's): een header/footer-wijziging raakt alles in één edit — laag risico technisch, hoge zichtbaarheid.
+- **Twee APPROVED-secties bestaan nog niet in code en moeten nieuw gebouwd worden, geen tekstvervanging:** "Waarom naast SVB" en het Vertrouwensblok. "Tekst-only" klopt dus niet helemaal; deze twee raken de paginastructuur.
+- Pre-launch-taal zit site-breed, niet alleen op de homepage: ook Header (2×), Footer, `SignupSection`, `FaqSection` (3 vragen), en op andere pagina's (`lees-meer.astro`, `bedankt.astro`, `bedankt-vragenlijst.astro`).
 
 ---
 
@@ -254,10 +292,28 @@ Notion-taak: *Growth → Marketing → Website conversie-optimalisatie ronde 2 (
 
 ---
 
+## Pre-deploy cleanup (geen copy, moet gebeurd zijn vóór verkeer)
+
+Voortgekomen uit de audit. Geen van deze zijn copy-beslissingen, maar wel dingen die op orde moeten zijn voordat er verkeer naar de site gaat:
+
+1. **Losse website-privacypagina (`/privacy`) intrekken.** Bevat de GA4-mismatch (zegt "geen analytics", terwijl GA4 draait). Bewust beslissen: redirect naar de app-privacy, of verwijderen als er zeker geen externe links/indexatie naartoe zijn. Niet zomaar hard verwijderen.
+2. **GA4 op de website vervangen door EU-PostHog** (zoals de app al gebruikt). Dan is meten overal gelijk en gedekt door één privacybron, en waarschijnlijk geen cookiebanner nodig — beter voor conversie dan GA4 + banner. (Juridische "mag zonder banner"-check zelf bevestigen; geen jurist.)
+3. **Placeholder-blogpost terug naar draft.** `2026-02-rdah` (Lorem ipsum + "dude" in titel) staat op `draft: false` en is publiek bereikbaar via URL. Zet op `draft: true`.
+4. **Pre-launch-taal opruimen op andere pagina's:** `lees-meer.astro`, `bedankt.astro`, `bedankt-vragenlijst.astro`.
+5. **`CLAUDE.md` committen** (stond untracked — inmiddels meegecommit in de wip-commit op `feat/blog`, controleren dat het blijft).
+
+## Geparkeerd — app-repo (geen blocker voor de website)
+
+- **Voorwaarden 5.4/5.5 verduidelijken:** beschrijven nu een directe eerste iDEAL-betaling bij aanmelden, wat botst met het trial-model (geen kaart vooraf). Waarschijnlijk correct bedoeld als betaalmechaniek ná de trial bij het actief starten van een abonnement — herformuleren zodra de Mollie-flow is nagelopen. (5.6 is al gefixt: 21 dagen, geen automatische overgang.)
+- **Kit-tag** van "Waitlist" naar nieuwsbrief/updates, wanneer de secundaire signup wordt omgezet.
+- Kleine overschatting in voorwaarden/privacy over in-app export en self-service accountverwijdering (is nu contact-via-mail).
+
 ## Open vragen / nog te beslissen
 
-- [ ] "Waarom naast SVB" — is dit al af of gaat dit vandaag verder?
-- [ ] Verdere secties van vandaag (Probleem/Excel, Vertrouwensblok, Voor wie, Zo werkt het) — schrijven in deze chat.
+- [x] "Waarom naast SVB" — afgerond, APPROVED.
+- [x] Secties Probleem/Excel, Vertrouwensblok, Voor wie, Zo werkt het — afgerond, APPROVED.
+- [x] Meta descriptions en Footer — afgerond, APPROVED.
+- [ ] Redirect vs. verwijderen van de losse website-`/privacy` — beslissen in de cleanup-fase.
 
 ---
 
@@ -299,3 +355,4 @@ Notion-taak: *Growth → Marketing → Website conversie-optimalisatie ronde 2 (
 ## Logboek (kort, per update)
 
 - **4 juli 2026:** doc aangemaakt. Hero en taalbankje bevroren vanuit eerdere sessie. Sprintplanning en meetlatten overgenomen. STATUS-labels (TODO/DRAFT/APPROVED) en besluitlogboek toegevoegd na feedback ChatGPT. "Waarom naast SVB" afgerond en op APPROVED gezet, na drie correctierondes: mechanisme ontbrak → mechanisme op verkeerde plek (invoerhandeling i.p.v. beslissing) → slotzin gescherpt met concreet anker en vooraf/achteraf-contrast. "Probleem/Excel" afgerond en op APPROVED gezet, met expliciete voorwaarden-check (geen verantwoordelijkheidsverschuiving, geen correctheidsgarantie). "Vertrouwensblok" afgerond en op APPROVED gezet, bewust compact gehouden; persoonlijke foto en uitgebreid ontstaansverhaal geparkeerd voor toekomstige "over mij"-pagina. "Voor wie" afgerond en op APPROVED gezet, gebaseerd op live site-screenshot: professionals-kaart verwijderd, drie survey-segmenten (ouder/eigen PGB/familie) vervangen "Budgethouders" en "PGB-professionals". "Zo werkt het" afgerond en op APPROVED gezet, gebaseerd op live site-screenshot: van vier naar drie stappen, "prognose" geschrapt, einde-jaar-framing verwijderd. "CTA's" afgerond en op APPROVED gezet, inclusief navbar-herziening (inloggen toegevoegd als tekstlink, "blijf op de hoogte" naar secundair). "FAQ" volledig afgerond en op APPROVED gezet (6 vragen), gebaseerd op live site-tekst met 70/30-aanpak; belangrijke feitelijke correctie ontdekt en hersteld (accountverwijdering is niet self-service). Resterend: meta descriptions, footer.
+- **6 juli 2026:** Read-only audit gedraaid en opgeslagen (`docs/audit/website-readonly-audit-2026-07-06.md`). Meta descriptions en Footer afgerond en op APPROVED gezet — **copy-fase daarmee volledig afgerond.** Meta: title + description sluiten aan op de hero, OG erft mee. Footer: tagline = compacte echo van de hero (niet "rust en overzicht", bewust vastgehouden aan "uitkomen"), jaartal via Astro-render, KvK 99317230, juridische links naar de canonieke app-pagina's (`app.pgbplanner.nl/privacy` en `/voorwaarden`), geen Inloggen in footer. Trial-CTA doel-URL vastgelegd: `app.pgbplanner.nl/registreer`. Pre-deploy cleanup-lijst toegevoegd (GA4→PostHog, losse privacypagina, placeholder-blog naar draft, pre-launch-taal op overige pagina's). App-repo fix uitgevoerd: voorwaarden art. 5.6 gecorrigeerd (14→21 dagen, geen automatische overgang); 5.4/5.5 bewust geparkeerd. Stale checklist- en open-vragen-regels bijgetrokken. Git: los blog/docs/infra-werk geparkeerd en gepusht op `feat/blog`; homepage-werk gaat op dezelfde branch verder (bewust geen nieuwe branch — de eerdere copy-commits stonden al op `feat/blog`).
