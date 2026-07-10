@@ -129,6 +129,7 @@ const nav: NavItem[] = [
   btn?.addEventListener("click", () => {
     const open = menu.classList.toggle("open");
     btn.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
   });
 
   // Sluit menu na klik op link (mobiel)
@@ -137,6 +138,7 @@ const nav: NavItem[] = [
     if (a && menu.classList.contains("open")) {
       menu.classList.remove("open");
       btn?.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
     }
   });
 
@@ -382,7 +384,9 @@ const nav: NavItem[] = [
       left: 0;
       right: 0;
       top: var(--header-h, 72px);
+      min-height: calc(100dvh - var(--header-h, 72px));
       display: grid;
+      align-content: center;
       gap: 8px;
       padding: 16px;
       background: var(--c-bg, #fff);
@@ -393,6 +397,11 @@ const nav: NavItem[] = [
       transition:
         transform 0.2s ease,
         opacity 0.2s ease;
+    }
+
+    /* extra ruimte tussen de twee actieknoppen (los van de algemene menu-gap) */
+    .cta-mobile + .cta-mobile {
+      margin-top: 8px;
     }
 
     /* open state vanuit je script */
