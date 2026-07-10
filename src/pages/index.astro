@@ -31,8 +31,8 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       </p>
       <div class="buttons-wrapper">
         <a href="https://app.pgbplanner.nl/registreer" class="btn btn-primary">Probeer 21 dagen gratis</a>
-        <a href="/vragenlijst" class="btn btn-secondary">Geef jouw input</a>
       </div>
+      <p class="hero-price-line">Daarna €20 per maand · Maandelijks opzegbaar</p>
       <div class="hero-img-wrapper">
         <picture>
           <source
@@ -51,15 +51,20 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
           />
           <img
             src="/Dashboard-1200w.jpg"
-            srcset="/Dashboard-400w.jpg 400w, 
-              /Dashboard-800w.jpg 800w, 
-              /Dashboard-1200w.jpg 1200w, 
+            srcset="/Dashboard-400w.jpg 400w,
+              /Dashboard-800w.jpg 800w,
+              /Dashboard-1200w.jpg 1200w,
               /Dashboard-1600w.jpg 1600w"
-            sizes="(max-width: 640px) 400px, 
-             (max-width: 1024px) 800px, 
-             (max-width: 1536px) 1200px, 
+            sizes="(max-width: 640px) 400px,
+             (max-width: 1024px) 800px,
+             (max-width: 1536px) 1200px,
              1600px"
-            alt="PGB Planner Dashboard"
+            width="1600"
+            height="821"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            alt="Dashboard van PGB Planner met budgetstatus, uitgaven en vooruitblik"
           />
         </picture>
       </div>
@@ -160,13 +165,46 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     <section class="flex-center" id="preview">
       <div class="container">
         <div class="section-heading">
-          <h2>Een eerste blik op PGB Planner</h2>
+          <h2>Zie vooraf of je uitkomt</h2>
+          <p class="body-large text-align-center">
+            Met Vooruitblik zie je wat je huidige planning betekent voor de
+            rest van het jaar. Probeer andere uren, tarieven of
+            werkgeverslasten uit en zie direct of je uitkomt met je budget,
+            zonder iets aan je bestaande planning te veranderen.
+          </p>
         </div>
         <div class="hero-img-wrapper border-soft">
           <picture>
-            <source srcset="/Dashboard-big.avif" type="image/avif" />
-            <source srcset="/Dashboard-big.webp" type="image/webp" />
-            <img src="/Dashboard-big.jpg" alt="PGB Planner Dashboard" />
+            <source
+              srcset="/Vooruitblik-400w.avif 400w,
+                /Vooruitblik-800w.avif 800w,
+                /Vooruitblik-1200w.avif 1200w,
+                /Vooruitblik-1600w.avif 1600w"
+              type="image/avif"
+            />
+            <source
+              srcset="/Vooruitblik-400w.webp 400w,
+                /Vooruitblik-800w.webp 800w,
+                /Vooruitblik-1200w.webp 1200w,
+                /Vooruitblik-1600w.webp 1600w"
+              type="image/webp"
+            />
+            <img
+              src="/Vooruitblik-1200w.jpg"
+              srcset="/Vooruitblik-400w.jpg 400w,
+                /Vooruitblik-800w.jpg 800w,
+                /Vooruitblik-1200w.jpg 1200w,
+                /Vooruitblik-1600w.jpg 1600w"
+              sizes="(max-width: 640px) 400px,
+               (max-width: 1024px) 800px,
+               (max-width: 1536px) 1200px,
+               1600px"
+              width="1600"
+              height="821"
+              loading="lazy"
+              decoding="async"
+              alt="Vooruitblik in PGB Planner met medewerkers, geplande kosten en verwacht resterend budget"
+            />
           </picture>
         </div>
       </div>
@@ -295,6 +333,22 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
 
     .text-bold {
       font-weight: bold;
+    }
+
+    .hero-price-line {
+      font-size: 1rem;
+      color: var(--color-body-text);
+      margin-top: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Buttons-wrapper's global bottom margin is now owned by .hero-price-line above */
+    .hero .buttons-wrapper {
+      margin-bottom: 0;
+    }
+
+    .hero .btn-primary {
+      font-size: 1.25rem;
     }
 
     .problem-section {
@@ -500,6 +554,15 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     @media (max-width: 640px) {
       .hero {
         padding: 3rem 1rem;
+      }
+
+      .hero-price-line {
+        margin-bottom: 2rem;
+      }
+
+      /* Legacy two-button flex:1 stretch no longer wanted for the single remaining hero CTA */
+      .hero .buttons-wrapper .btn {
+        flex: none;
       }
     }
   </style>
