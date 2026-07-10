@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout
+  title="Blog • PGB Planner"
+  description="Uitleg en achtergrond over PGB en administratie."
+>
+  <section style="max-width: 720px; margin: 0 auto; padding: 24px;">
+    <h1>Blog</h1>
+
+    {posts.length === 0 ? (
+      <p>Er zijn nog geen artikelen gepubliceerd.</p>
+    ) : (
+      <ul>
+        {posts.map((post) => (
+          <li style="margin: 24px 0;">
+            <a href={`/blog/${post.slug}/`}>
+              <strong>{post.data.title}</strong>
+            </a>
+            <div style="opacity: 0.7; font-size: 14px;">
+              {post.data.pubDate.toLocaleDateString("nl-NL")}
+            </div>
+            <p>{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+

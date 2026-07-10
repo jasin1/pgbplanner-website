@@ -1,0 +1,29 @@
+---
+type Props = {
+  title: string;
+  pubDate: Date;
+};
+
+const { title, pubDate } = Astro.props;
+---
+
+<section class="blog-post">
+  <a href="/blog/" class="blog-post__backlink"> ← Terug </a>
+
+  <header class="blog-post__header">
+    <h1 class="blog-post__title">{title}</h1>
+    <div class="blog-post__meta">
+      {
+        pubDate.toLocaleDateString("nl-NL", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      }
+    </div>
+  </header>
+
+  <article class="article-content">
+    <slot />
+  </article>
+</section>

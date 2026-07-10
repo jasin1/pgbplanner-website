@@ -11,8 +11,8 @@ type NavItem = {label: string; id: string}
 
 const nav: NavItem[] = [
   { label: "Over", id: "over" },
-  { label: "Preview", id: "preview" },
   { label: "Hoe het werkt", id: "hoe" },
+  { label: "Bekijk de app", id: "preview" },
   { label: "FAQ", id: "faq" },
 ];
 ---
@@ -108,12 +108,18 @@ const nav: NavItem[] = [
           ))
         }
         <li class="cta-mobile">
-          <a class="btn primary" href={getSectionLink('aanmelden')}>Blijf op de hoogte</a>
+          <a class="btn btn-secondary" href="https://app.pgbplanner.nl/login">Inloggen</a>
+        </li>
+        <li class="cta-mobile">
+          <a class="btn primary" href="https://app.pgbplanner.nl/registreer">Probeer 21 dagen gratis</a>
         </li>
       </ul>
     </nav>
-    <!-- CTA voor desktop (rechts buiten het menu) -->
-    <a class="btn primary cta-desktop" href={getSectionLink('aanmelden')}>Blijf op de hoogte</a>
+    <!-- CTA's voor desktop (rechts buiten het menu) -->
+    <div class="cta-desktop-wrapper">
+      <a class="btn btn-secondary" href="https://app.pgbplanner.nl/login">Inloggen</a>
+      <a class="btn primary cta-desktop" href="https://app.pgbplanner.nl/registreer">Probeer 21 dagen gratis</a>
+    </div>
   </div>
 </header>
 <script is:inline>
@@ -243,8 +249,11 @@ const nav: NavItem[] = [
     padding: 0;
   }
 
-  .cta-desktop {
+  .cta-desktop-wrapper {
     justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   /* Links */
@@ -343,8 +352,8 @@ const nav: NavItem[] = [
 
   /* Mobile layout */
   @media (max-width: 768px) {
-    .nav-wrapper .cta-desktop {
-      display: none !important; /* verberg de rechter CTA op mobiel */
+    .nav-wrapper .cta-desktop-wrapper {
+      display: none !important; /* verberg de rechter CTA's op mobiel */
     }
     /* Toon CTA binnen het menu alléén wanneer het menu open is */
     .menu .cta-mobile {

@@ -1,0 +1,29 @@
+---
+// @ts-nocheck
+import { getCollection, getEntryBySlug } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPostLayout from "../../components/blog/BlogPostLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog")).filter((p) => !p.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const post = await getEntryBySlug("blog" as any, slug);
+
+if (!post || post.data?.draft) {
+  return Astro.redirect("/blog/");
+}
+
+const { Content } = await post.render();
+---
+
+<BaseLayout title={`${post.data.title} • PGB Planner`} description={post.data.description}>
+  <BlogPostLayout title={post.data.title} pubDate={post.data.pubDate}>
+    <Content />
+  </BlogPostLayout>
+</BaseLayout>
