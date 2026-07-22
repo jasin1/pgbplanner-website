@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 
 const currentPath = Astro.url.pathname;
 
@@ -6,8 +7,7 @@ function getSectionLink(id:string){
   return currentPath === '/' ? `#${id}` : `/#${id}`
 }
 
-type NavItem = {label: string; id: string}
-
+type NavItem = { label: string; id: string; href?: never } | { label: string; href: string; id?: never };
 
 const nav: NavItem[] = [
   { label: "Over", id: "over" },
@@ -16,6 +16,18 @@ const nav: NavItem[] = [
   { label: "FAQ", id: "faq" },
   { label: "Contact", id: "contact" },
 ];
+
+const publishedPostCount = (await getCollection("blog", ({ data }) => !data.draft)).length;
+
+if (publishedPostCount >= 4) {
+  const contactIndex = nav.findIndex((item) => item.label === "Contact");
+  const blogItem: NavItem = { label: "Blog", href: "/blog" };
+  if (contactIndex === -1) {
+    nav.push(blogItem);
+  } else {
+    nav.splice(contactIndex, 0, blogItem);
+  }
+}
 ---
 
 <header class="site-header">
@@ -102,7 +114,7 @@ const nav: NavItem[] = [
         {
           nav.map((item) => (
             <li>
-              <a class="nav-link" href={getSectionLink(item.id)}>
+              <a class="nav-link" href={item.href ?? getSectionLink(item.id)}>
                 {item.label}
               </a>
             </li>
