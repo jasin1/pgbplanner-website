@@ -12,6 +12,7 @@ import StatsIcon from "../components/StatsIcon.astro";
 import StepCard from "../components/StepCard.astro";
 import SignupSection from "../components/SignupSection.astro";
 import FaqSection from "../components/FaqSection.astro";
+import LatestArticlesSection from "../components/blog/LatestArticlesSection.astro";
 import CalendarIcon from "../components/CalendarIcon.astro";
 
 const dankje = Astro.url.searchParams.get("dankje") === "1";
@@ -286,6 +287,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
     <div class="container">
       <FaqSection />
     </div>
+    <LatestArticlesSection />
     <SignupSection />
   </main>
   <style>
