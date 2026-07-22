@@ -31,6 +31,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
       </p>
       <div class="buttons-wrapper">
         <a href="https://app.pgbplanner.nl/registreer" class="btn btn-primary">Probeer 21 dagen gratis</a>
+        <a href="#contact" class="btn btn-secondary">Blijf op de hoogte</a>
       </div>
       <p class="hero-price-line">Daarna €20 per maand · Maandelijks opzegbaar</p>
       <div class="hero-img-wrapper">
@@ -560,9 +561,15 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         margin-bottom: 2rem;
       }
 
-      /* Legacy two-button flex:1 stretch no longer wanted for the single remaining hero CTA */
+      /* Stack the two hero CTAs vertically on mobile, primary on top */
+      .hero .buttons-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .hero .buttons-wrapper .btn {
         flex: none;
+        width: 100%;
       }
     }
   </style>

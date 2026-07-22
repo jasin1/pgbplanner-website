@@ -4,12 +4,12 @@ import FbIcon from "./FbIcon.astro";
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 ---
 
-<section class="padding-big section-bg-color" id="aanmelden">
+<section class="padding-big section-bg-color" id="contact">
   <div class="container pgb-signup__inner">
     <div class="pgb-signup__copy">
-      <h2>Nog niet klaar om te starten?</h2>
+      <h2>Een vraag? Laat gerust van je horen.</h2>
       <p class="text-signup">
-        Blijf op de hoogte van nieuwe ontwikkelingen en artikelen.
+        Stuur een bericht over PGB Planner. Wil je alleen op de hoogte blijven van nieuwe ontwikkelingen en artikelen? Dat kan ook.
       </p>
       <div>
         <a
@@ -41,7 +41,7 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         </a>
       </div>
       <p class="text-ps">
-        *We sturen alleen updates over nieuwe ontwikkelingen en artikelen. Uitschrijven kan altijd.
+        Je ontvangt alleen updates als je het vakje aanvinkt. Uitschrijven kan altijd.
       </p>
       <div class="socials-wrapper">
         <a
@@ -66,58 +66,62 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
       </div>
     </div>
 
-    <form
-      id="pgb-form"
-      class="pgb-signup__form"
-      method="post"
-      action="https://app.kit.com/forms/8738389/subscriptions"
-    >
-      <!-- (optioneel) tag op elke inschrijving -->
-      <input type="hidden" name="tags[]" value="Waitlist" />
-
-      <!-- (optioneel) jouw eigen bedankt-pagina -->
-      <input
-        type="hidden"
-        name="redirect_url"
-        value="https://pgbplanner.nl/bedankt"
-      />
-
-      <!-- Voornaam (Kit: first_name) -->
+    <form id="pgb-form" class="pgb-signup__form">
       <label class="pgb-field">
         <span class="pgb-label">Naam</span>
         <input
           type="text"
-          name="first_name"
+          name="name"
           id="pgb-name"
           placeholder="Naam"
           autocomplete="name"
+          maxlength="200"
           required
         />
       </label>
 
-      <!-- Email (Kit: email_address) -->
       <label class="pgb-field">
         <span class="pgb-label">Email</span>
         <input
           type="email"
-          name="email_address"
+          name="email"
           id="pgb-email"
           placeholder="Email"
           autocomplete="email"
+          maxlength="254"
           required
         />
       </label>
 
-      <!-- PGB Type → custom field in Kit: pgb_type -->
       <label class="pgb-field">
-        <span class="pgb-label">Welke PGB heb je?</span>
-        <select name="fields[waitlist_pgb_type]" id="pgb-type" required>
-          <option value="" selected disabled>Welke PGB heb je?</option>
-          <option value="WLZ">WLZ</option>
-          <option value="WMO">WMO</option>
+        <span class="pgb-label">Welke PGB heb je? (optioneel)</span>
+        <select name="pgbType" id="pgb-type">
+          <option value="" selected>Welke PGB heb je? (optioneel)</option>
+          <option value="Wlz">Wlz</option>
+          <option value="Wmo">Wmo</option>
           <option value="Jeugdwet">Jeugdwet</option>
-          <option value="Anders">Anders</option>
+          <option value="Zvw">Zvw</option>
+          <option value="Meerdere">Meerdere</option>
+          <option value="Weet ik niet">Weet ik niet</option>
         </select>
+      </label>
+
+      <label class="pgb-field">
+        <span class="pgb-label">Bericht (optioneel)</span>
+        <textarea
+          name="message"
+          id="pgb-message"
+          rows="5"
+          placeholder="Stel gerust je vraag"
+          maxlength="2000"
+        ></textarea>
+      </label>
+
+      <label class="pgb-checkbox">
+        <input type="checkbox" name="subscribeToUpdates" id="pgb-updates" />
+        <span class="pgb-checkbox__label"
+          >Houd me op de hoogte van nieuwe ontwikkelingen en artikelen</span
+        >
       </label>
 
       <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
@@ -131,7 +135,7 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   <script is:inline src="https://www.google.com/recaptcha/api.js" async defer
   ></script>
 
-  <!-- Gecombineerde form handler met reCAPTCHA -->
+  <!-- Form handler: valideert client-side, verifieert reCAPTCHA en verstuurt server-side via /api/contact -->
   <script is:inline>
     (function () {
       const form = document.querySelector(".pgb-signup__form");
@@ -139,14 +143,17 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
 
       const statusEl = form.querySelector(".pgb-form-status");
       const submitBtn = form.querySelector(".pgb-btn");
+      const nameInput = form.querySelector("#pgb-name");
+      const emailInput = form.querySelector("#pgb-email");
+      const pgbSelect = form.querySelector("#pgb-type");
+      const messageInput = form.querySelector("#pgb-message");
+      const updatesCheckbox = form.querySelector("#pgb-updates");
 
-      function sameOrigin(url) {
-        try {
-          return new URL(url, location.href).origin === location.origin;
-        } catch {
-          return false;
-        }
-      }
+      const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const GENERIC_FAILURE =
+        "Versturen is niet gelukt. Probeer het opnieuw of mail naar info@pgbplanner.nl";
+
+      let isSubmitting = false;
 
       function setStatus(msg, type = "info") {
         if (!statusEl) return;
@@ -161,116 +168,122 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
         );
       }
 
-      function createThanksNode(name) {
+      function getFormValues() {
+        return {
+          name: nameInput ? nameInput.value.trim() : "",
+          email: emailInput ? emailInput.value.trim() : "",
+          pgbType: pgbSelect && pgbSelect.value ? pgbSelect.value : null,
+          message: messageInput ? messageInput.value : "",
+          subscribeToUpdates: !!(updatesCheckbox && updatesCheckbox.checked),
+        };
+      }
+
+      function validate(values) {
+        if (!values.name) return "Vul je naam in";
+        if (!EMAIL_PATTERN.test(values.email))
+          return "Vul een geldig e-mailadres in";
+        if (!(values.message.trim().length > 0 || values.subscribeToUpdates))
+          return "Schrijf een bericht of vink aan dat je op de hoogte wilt blijven";
+        return null;
+      }
+
+      function showSuccess(values) {
+        const hasMessage = values.message.trim().length > 0;
+        const hasUpdates = values.subscribeToUpdates === true;
+
+        let body;
+        if (hasMessage && hasUpdates) {
+          body =
+            "Bedankt voor je bericht. Ik reageer meestal binnen één werkdag en houd je op de hoogte.";
+        } else if (hasMessage) {
+          body =
+            "Bedankt voor je bericht. Ik reageer meestal binnen één werkdag.";
+        } else {
+          body = "Je staat op de lijst. Ik houd je op de hoogte.";
+        }
+
         const wrap = document.createElement("div");
         wrap.className = "pgb-thanks";
-        wrap.innerHTML = `
-        <h3>Bedankt${name ? `, ${String(name).split(" ")[0]}` : ""}!</h3>
-        <p>Je staat op de lijst. We sturen alleen updates over de lancering. Uitschrijven kan altijd.</p>
-        <p>Vragen? Mail ons op <a class="pgb-mail-link" href="mailto:info@pgbplanner.nl">info@pgbplanner.nl</a>.</p>
-      `;
-        return wrap;
+        wrap.setAttribute("role", "status");
+
+        const heading = document.createElement("h3");
+        heading.textContent = "Verstuurd!";
+
+        const paragraph = document.createElement("p");
+        paragraph.textContent = body;
+
+        wrap.append(heading, paragraph);
+        form.replaceWith(wrap);
       }
 
       async function handleSubmit(e) {
         e.preventDefault();
-        if (!form.reportValidity()) return;
+        if (isSubmitting) return;
 
-        // ====== RECAPTCHA CHECK TOEGEVOEGD ======
-        const recaptcha = grecaptcha.getResponse();
+        const values = getFormValues();
+        const validationError = validate(values);
+        if (validationError) {
+          setStatus(validationError, "error");
+          return;
+        }
 
-        if (!recaptcha) {
+        const recaptchaToken =
+          window.grecaptcha && typeof grecaptcha.getResponse === "function"
+            ? grecaptcha.getResponse()
+            : "";
+
+        if (!recaptchaToken) {
           setStatus('Vink eerst het "Ik ben geen robot" vakje aan!', "error");
           return;
         }
 
-        const original = submitBtn?.textContent;
+        isSubmitting = true;
+        const originalLabel = submitBtn ? submitBtn.textContent : "";
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = "Verificatie…";
+          submitBtn.textContent = "Versturen…";
         }
         setStatus("");
 
-        // Verifieer reCAPTCHA eerst
         try {
-          const verifyResponse = await fetch("/api/verify-recaptcha", {
+          const res = await fetch("/api/contact", {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ recaptcha }),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...values, recaptchaToken }),
           });
 
-          const verifyResult = await verifyResponse.json();
+          let data = null;
+          try {
+            data = await res.json();
+          } catch {}
 
-          if (!verifyResult.success) {
-            setStatus(
-              "reCAPTCHA verificatie mislukt. Probeer opnieuw.",
-              "error",
-            );
-            grecaptcha.reset();
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = original || "Versturen";
-            }
+          if (res.ok && data && data.success) {
+            showSuccess(values);
             return;
           }
-        } catch (err) {
-          setStatus("Verificatie mislukt. Probeer opnieuw.", "error");
-          grecaptcha.reset();
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = original || "Versturen";
-          }
-          return;
-        }
-        // ====== EINDE RECAPTCHA CHECK ======
 
-        if (submitBtn) {
-          submitBtn.textContent = "Versturen…";
-        }
-
-        // Als het naar Kit gaat (cross-origin), gewoon submit
-        if (!sameOrigin(form.action)) {
-          form.submit();
-          return;
-        }
-
-        // Anders: fetch met custom handling
-        const fd = new FormData(form);
-
-        try {
-          const res = await fetch(form.action, {
-            method: form.method || "POST",
-            body: fd,
-            headers: { Accept: "application/json" },
-          });
-
-          if (res.ok) {
-            try {
-              await res.json();
-            } catch {}
-
-            const thanksNode = createThanksNode(fd.get("first_name"));
-            form.replaceWith(thanksNode);
+          if (data && data.reason === "recaptcha") {
+            setStatus(
+              "reCAPTCHA-verificatie mislukt. Probeer opnieuw.",
+              "error",
+            );
           } else {
-            let msg = "Er ging iets mis. Probeer later opnieuw of mail ons.";
-            try {
-              const data = await res.json();
-              if (data?.error || data?.message)
-                msg = data.error || data.message;
-            } catch {}
-            setStatus(msg, "error");
+            setStatus(GENERIC_FAILURE, "error");
+          }
+
+          if (window.grecaptcha && typeof grecaptcha.reset === "function") {
+            grecaptcha.reset();
           }
         } catch {
-          setStatus(
-            "Geen verbinding. Controleer je internet en probeer opnieuw.",
-            "error",
-          );
+          setStatus(GENERIC_FAILURE, "error");
+          if (window.grecaptcha && typeof grecaptcha.reset === "function") {
+            grecaptcha.reset();
+          }
         } finally {
+          isSubmitting = false;
           if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.textContent = original || "Versturen";
+            submitBtn.textContent = originalLabel || "Versturen";
           }
         }
       }
@@ -342,12 +355,13 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   }
 
   .pgb-signup__form input,
-  .pgb-signup__form select {
+  .pgb-signup__form select,
+  .pgb-signup__form textarea {
     width: 100%;
-    height: 48px;
     padding: 0 14px;
     border: 1px solid #d7d4cf;
     border-radius: 8px;
+    font-family: inherit;
     font-size: 16px;
     color: #222;
     background: #fff;
@@ -355,6 +369,16 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     transition:
       border-color 120ms ease,
       box-shadow 120ms ease;
+  }
+
+  .pgb-signup__form input,
+  .pgb-signup__form select {
+    height: 48px;
+  }
+
+  .pgb-signup__form textarea {
+    min-height: 140px;
+    padding-block: 12px;
   }
 
   .pgb-signup__form select {
@@ -374,12 +398,14 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   }
 
   .pgb-signup__form input::placeholder,
+  .pgb-signup__form textarea::placeholder,
   .pgb-signup__form select:invalid {
     color: #9aa0a6;
   }
 
   .pgb-signup__form input:focus,
-  .pgb-signup__form select:focus {
+  .pgb-signup__form select:focus,
+  .pgb-signup__form textarea:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
@@ -451,6 +477,19 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
+  }
+
+  /* ===== Form feedback states ===== */
+  :global(.pgb-thanks h3) {
+    color: var(--color-secondary);
+  }
+
+  .pgb-form-status.is-success {
+    color: var(--color-secondary);
+  }
+
+  .pgb-form-status.is-error {
+    color: #d45a5a;
   }
 
   /* ===== Responsive Styles ===== */
