@@ -19,7 +19,12 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout title={`${post.data.title} • PGB Planner`} description={post.data.description}>
+<BaseLayout
+  title={`${post.data.title} • PGB Planner`}
+  description={post.data.description}
+  ogType="article"
+  ogImage={post.data.image}
+>
   <BlogPostLayout title={post.data.title} pubDate={post.data.pubDate}>
     <Content />
   </BlogPostLayout>

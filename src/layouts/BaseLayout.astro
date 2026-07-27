@@ -7,6 +7,8 @@ const {
   title = "PGB Planner",
   description = "Welkom bij PGB Planner.",
   ogImage = "/og.jpg", // per pagina overschrijfbaar
+  ogType = "website",
+  noindex = false,
   hideHeader = false,
 } = Astro.props;
 
@@ -28,11 +30,13 @@ const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph (Social Previews: Facebook, LinkedIn, WhatsApp, etc.) -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="PGB Planner" />
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:title" content={title} />
