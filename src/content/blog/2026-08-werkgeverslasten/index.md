@@ -6,6 +6,7 @@ slug: werkgeverslasten-pgb-berekenen
 draft: false
 heroAlt: "Keukentafel met papieren, een rekenmachine en een notitieboek"
 image: /og/werkgeverslasten.jpg
+teaser: "Sinds januari gaat er ongeveer 20 procent extra van je budget af voor zorgverleners in loondienst. Wat dat betekent voor je jaar, en wat de compensatie wel en niet dekt."
 ---
 
 ![Keukentafel met papieren, een rekenmachine en een notitieboek](./hero.jpg)

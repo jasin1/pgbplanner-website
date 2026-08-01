@@ -4,6 +4,9 @@ description: ""
 pubDate: ""
 draft: true
 heroAlt: ""
+# Optioneel: korte tekst voor de homepage, gericht op iemand die de site al kent.
+# Laat het veld weg om automatisch terug te vallen op description.
+# teaser: "..."
 ---
 
 # 

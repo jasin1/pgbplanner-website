@@ -1,12 +1,13 @@
 ---
 export const prerender = true;
 
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPostLayout from "../../components/blog/BlogPostLayout.astro";
+import { getPublishedPosts } from "../../lib/blog";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const posts = await getPublishedPosts();
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },

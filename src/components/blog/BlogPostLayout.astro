@@ -1,14 +1,19 @@
 ---
+import { isBlogIndexThresholdMet } from "../../lib/blog";
+
 type Props = {
   title: string;
   pubDate: Date;
 };
 
 const { title, pubDate } = Astro.props;
+const showBacklink = await isBlogIndexThresholdMet();
 ---
 
 <section class="blog-post">
-  <a href="/blog/" class="blog-post__backlink"> ← Terug </a>
+  {showBacklink && (
+    <a href="/blog/" class="blog-post__backlink"> ← Terug </a>
+  )}
 
   <header class="blog-post__header">
     <h1 class="blog-post__title">{title}</h1>
