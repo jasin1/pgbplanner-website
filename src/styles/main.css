@@ -682,6 +682,14 @@ section[id] {
   color: var(--color-body-text);
 }
 
+/* Rustiger schaal op brede schermen (>=1024px, bestaande desktop-breakpoint) */
+@media (min-width: 1024px) {
+  .article-content {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+}
+
 /* Spacing tussen blocks */
 .article-content > * + * {
   margin-top: 1.25rem;
@@ -697,6 +705,22 @@ section[id] {
 
 .article-content h2 {
   color: var(--color-l-blue); /* sluit aan bij je h2 */
+}
+
+/* Kop-schaal op brede schermen: minder zwaar tegenover de bodytekst */
+@media (min-width: 1024px) {
+  .article-content h2,
+  .article-content h3 {
+    margin-top: 2.5rem;
+  }
+
+  .article-content h2 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .article-content h3 {
+    font-size: 1.3125rem; /* 21px */
+  }
 }
 
 .article-content h3 {
@@ -742,6 +766,40 @@ section[id] {
 .article-content blockquote p {
   margin: 0;
   font-style: italic;
+}
+
+/* Samenvatting-blok ("In het kort") */
+.article-content .samenvatting {
+  margin: 2rem 0;
+  padding: 1.25rem 1.25rem;
+  background: var(--color-form-body);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius);
+}
+
+.article-content .samenvatting > * + * {
+  margin-top: 0.75rem;
+}
+
+/* Bronnenlijst: scanbaar, geen bullets */
+.article-content .bronnen {
+  list-style: none;
+  padding-left: 0;
+}
+
+.article-content .bronnen li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.article-content .bronnen li + li {
+  margin-top: 1rem;
+}
+
+.article-content .bronnen span {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
 }
 
 /* Afbeeldingen in markdown */
