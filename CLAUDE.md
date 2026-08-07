@@ -79,6 +79,8 @@ src/
 - No jargon unless the audience uses it daily (PGB, SVB, zorgkantoor are fine)
 - Blog posts use Markdown in `src/content/blog/[slug]/index.md`
 - Blog schema requires: title, description, pubDate, draft (default: true — set `draft: false` to publish)
+- Read `docs/marketing/editorial-guide.md` before any blog or content work. It is the leading source for editorial principles, tone, sourcing and factchecking.
+- `docs/marketing/blog-product-cta-spec.md` governs how PGB Planner appears commercially inside an article.
 
 ## External services & env vars
 

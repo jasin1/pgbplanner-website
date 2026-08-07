@@ -29,3 +29,6 @@ src/content/blog/.obsidian/
 # Local Netlify folder
 .netlify
 .obsidian/
+
+# Source material that may contain personal/medical data of third parties
+docs/marketing/seo/
