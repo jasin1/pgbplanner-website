@@ -5,12 +5,15 @@ import Footer from "../components/Footer.astro";
 
 const {
   title = "PGB Planner",
+  titleTag,
   description = "Welkom bij PGB Planner.",
   ogImage = "/og.jpg", // per pagina overschrijfbaar
   ogType = "website",
   noindex = false,
   hideHeader = false,
 } = Astro.props;
+
+const documentTitle = titleTag ?? title;
 
 const origin =
   Astro.site?.toString().replace(/\/$/, "") || "https://www.pgbplanner.nl";
@@ -27,7 +30,7 @@ const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO: Title & Description -->
-    <title>{title}</title>
+    <title>{documentTitle}</title>
     <meta name="description" content={description} />
 
     {noindex && <meta name="robots" content="noindex, follow" />}

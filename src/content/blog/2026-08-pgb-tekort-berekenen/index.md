@@ -1,0 +1,152 @@
+---
+title: "Je pgb raakt eerder op dan verwacht: zo bereken je hoeveel je tekortkomt"
+titleTag: "PGB-tekort berekenen: hoeveel kom je precies tekort"
+description: "Je pgb-budget lijkt bijna op terwijl er nog een flink deel van het jaar voor je ligt. Zo bereken je of dat gevoel klopt en hoeveel je naar verwachting tekortkomt."
+pubDate: 2026-08-10
+draft: false
+slug: pgb-tekort-berekenen
+heroAlt: "Vrouw aan een tafel met een laptop, een opengeslagen agenda en notitieboeken naast zich"
+image: /og/pgb-tekort-berekenen.jpg
+teaser: "Je pgb gaat sneller op dan verwacht, maar dat betekent niet automatisch dat je tekortkomt. Zo reken je uit hoeveel je naar verwachting nog nodig hebt tot het einde van je budgetjaar."
+---
+
+![Vrouw aan een tafel met een laptop, een opengeslagen agenda en notitieboeken naast zich](./hero.jpg)
+
+Je kijkt hoeveel er nog van je pgb over is en merkt dat het sneller opgaat dan je had verwacht. Betekent dat ook dat je straks tekortkomt? Dat kun je uit het bedrag dat nog over is niet zomaar afleiden, en dus blijft de vraag hangen.
+
+Ik heb jarenlang de pgb-administratie van mijn moeder gedaan, en bouwde daarna PGB Planner. Bij ons dreigde zelden een echt tekort, maar de berekening ken ik goed, en vooral hoe makkelijk je er met een logisch lijkende rekensom naast zit.
+
+Want een pgb dat sneller opgaat dan verwacht, betekent niet automatisch dat je tekortkomt. En als er wel een tekort dreigt, geeft een snelle rekensom niet altijd het juiste beeld. Hieronder reken je uit wat je naar verwachting nog nodig hebt en hoeveel ruimte of tekort er overblijft.
+
+## Wat er nog over is, zegt niet of je uitkomt
+
+Je resterende budget, het bedrag dat volgens je overzicht nog beschikbaar is, laat zien waar je op dat moment staat.
+
+Maar het beantwoordt niet de vraag of je aan het eind van je budgetjaar uitkomt. Daarvoor moet je weten wat de zorg in de resterende maanden naar verwachting nog gaat kosten. Het SVB-portaal legt vast wat er al is gebeurd. Wat dat betekent voor de maanden die nog komen, moet je zelf vooruitrekenen.
+
+Je ziet dat je budget sneller opgaat dan je had verwacht, maar niet wat dat straks betekent, of wat er onderweg nog verandert. Je kijkt naar wat achter je ligt, terwijl je eigenlijk gewoon wilt weten: kom ik hiermee uit?
+
+## Waarom je gemiddelde niet het hele verhaal vertelt
+
+Je begint bij het bedrag dat je wel kunt controleren: wat er volgens je actuele overzicht nog van je budget over is. Wat je daarna doet, is uitrekenen wat daar tot het eind van je budgetjaar nog vanaf gaat.
+
+Die eerste rekensom is simpel. Je kijkt wat je tot nu toe hebt uitgegeven en deelt dat door het aantal maanden dat voorbij is. Zo krijg je een gemiddeld bedrag per maand, en daarmee kun je een snelle schatting maken voor de rest van het jaar.
+
+**De snelle rekensom**
+
+<pre class="calculation-block">wat je tot nu toe uitgaf  ÷  maanden die voorbij zijn  =  gemiddelde maandkosten
+gemiddelde maandkosten  ×  maanden die nog komen      =  geschatte kosten tot het eind
+wat er nog over is  −  geschatte kosten tot het eind  =  verwachte ruimte of tekort</pre>
+
+Dat is een prima eerste controle, en meestal de rekensom waar je vanzelf op uitkomt. Alleen zegt zo'n gemiddelde pas iets als je terugkijkt naar de maanden waar het uit is opgebouwd.
+
+Daar kunnen namelijk uitschieters tussen zitten. Een periode waarin een zorgverlener wegviel en je het tijdelijk met een duurdere invaller hebt opgelost. Een maand waarin je meer zorg hebt ingekocht dan normaal. Of een maand waarin een nabetaling of correctie over een eerdere periode werd verwerkt.
+
+Die kosten zijn echt geweest, maar ze komen niet elke maand terug. Toch tellen ze wel mee in je gemiddelde, en trekken ze het omhoog. Je rekent dan verder met een maandbedrag dat hoger is dan wat een gewone maand je kost.
+
+En andersom kunnen de maanden die nog komen juist duurder zijn dan wat achter je ligt. Een tarief dat halverwege het jaar omhoog ging. Een zorgverlener die meer uren is gaan werken. Een verandering in wat er per uur van je budget af gaat. Dat zie je niet terug in een gemiddelde over het verleden, want zulke veranderingen werken alleen vooruit.
+
+Het rekent dus kosten mee die niet meer terugkomen, en het mist kosten die er nog bij komen.
+
+Je kunt dat gemiddelde corrigeren. Je begint bij hetzelfde bedrag, maar bouwt eerst een maandbedrag op dat dichter bij de werkelijkheid ligt.
+
+**De gecorrigeerde schatting**
+
+<pre class="calculation-block">een gewone maand tot nu toe  +/−  wat er vanaf nu verandert  =  je maandkosten vanaf nu
+
+wat er nog over is
+  min  je maandkosten vanaf nu  ×  maanden die nog komen
+  min  eenmalige kosten die je nog verwacht
+= de ruimte of het tekort dat je verwacht</pre>
+
+Wat een gewone maand kost, vind je door die uitschieters uit je overzicht te halen. Wat overblijft ligt dichter bij een normale maand dan het gemiddelde waar je mee begon.
+
+Een verwachting blijft het, geen vaststaand bedrag, maar je rekent wel met een getal dat bij jouw situatie past.
+
+Nog één ding om in de gaten te houden. Heb je een zorgverlener met een arbeidsovereenkomst, dan betaal je [werkgeverslasten](/blog/werkgeverslasten-pgb-berekenen/) die bovenop het afgesproken brutoloon komen en ook uit je budget worden betaald. Reken je alleen met het brutoloon, dan reken je te laag. In de bestedingen op je budgetoverzicht zitten die kosten al.
+
+## Zo ziet dat eruit
+
+Stel dat je vandaag naar je budget kijkt en er nog vijf maanden voor je liggen.
+
+In dit voorbeeld heb je 48.000 euro voor dit jaar. In de zeven maanden die achter je liggen is daar 28.000 euro van afgegaan. Er is dus nog 20.000 euro over.
+
+De snelle rekensom stelt gerust. 28.000 gedeeld door zeven is 4.000 euro per maand. Vijf maanden keer 4.000 euro is precies 20.000 euro. Je komt uit.
+
+Maar kijk je terug naar die zeven maanden, dan zitten er twee uitschieters tussen. Je vaste zorgverlener viel een tijd weg, en de tijdelijke vervanging kostte meer. En er is een nabetaling over een eerdere maand verwerkt. Samen 2.100 euro.
+
+Deze kosten horen niet bij een gewone maand. Haal je ze eruit, dan is er in die zeven maanden 25.900 euro afgegaan aan de zorg die wel regelmatig terugkomt. Een gewone maand kwam daarmee op ongeveer 3.700 euro uit.
+
+Daar staat iets tegenover dat vooruit werkt. Het uurtarief van je vaste zorgverlener is onlangs omhoog gegaan, en dat kost vanaf nu 250 euro per maand extra. De maanden die nog komen kosten dus naar verwachting 3.950 euro.
+
+En er komt nog één eenmalige uitgave aan. Later dit jaar heb je voor een korte periode extra zorg nodig, en die schat je op 1.500 euro.
+
+**Dan wordt de rekensom:**
+
+<pre class="calculation-block">3.700  +  250  =  3.950 euro per maand vanaf nu
+
+3.950  ×  5 maanden  =  19.750
+19.750  +  1.500 eenmalig  =  21.250 euro nodig
+
+20.000 beschikbaar  −  21.250 nodig  =  ongeveer 1.250 euro tekort</pre>
+
+De snelle rekensom zei dat je precies uitkwam. Reken je door met wat je nu weet, dan kom je ongeveer 1.250 euro tekort. Dat is het soort verschil dat je liever ziet terwijl er nog vijf maanden voor je liggen dan pas aan het einde van het jaar.
+
+Wat je nu hebt is een verwachting, geen zekerheid. Uitval en onverwachte vervanging laten zich niet voorspellen, en dat is de marge die eromheen zit. Maar je weet wel welke posten die marge veroorzaken, en dat is iets anders dan een onbestemd gevoel.
+
+De vijf maanden in dit voorbeeld zijn willekeurig. Dezelfde berekening werkt op elk moment in je budgetjaar, of je nu in maart kijkt of in oktober.
+
+## De maand waarin je zorgverlener op vakantie gaat
+
+Er is één periode waarin de rekensom anders kan uitpakken dan je verwacht, en dat is de vakantie van je vaste zorgverlener.
+
+Je denkt dan al snel aan wat de vervanging gaat kosten. Maar of die kosten er helemaal bovenop komen of een deel van je normale kosten vervangen, hangt af van wat er in de tussentijd met het loon van je vaste zorgverlener gebeurt. Dat verschilt per zorgovereenkomst en staat in de afspraken die je hebt gemaakt.
+
+Dat maakt in je berekening een merkbaar verschil. Pak daarom je eigen zorgovereenkomst erbij in plaats van af te gaan op hoe het vorig jaar liep. Daar vind je terug wat in jouw situatie geldt.
+
+Je berekening verandert bovendien zodra er iets in je planning verandert. Een ander tarief, andere uren of een zorgverlener erbij werkt door in alle maanden die nog komen, en dan begin je weer bij het terugrekenen van een gewone maand. Dat hoef je niet uit te stellen tot het krap wordt. Juist eerder in het jaar laat vooruitkijken zien wat een verandering betekent voor de rest van je budget.
+
+<div class="product-cta">
+  <h3 class="product-cta__title">De omweg via je gemiddelde is niet nodig</h3>
+  <p class="product-cta__text">PGB Planner rekent vooruit met je eigen zorgverleners, uren en tarieven. Geen gewone maand terugrekenen uit je overzicht, geen uitschieters eruit vissen. En je kunt een tariefverhoging of extra uren doorrekenen zonder dat er iets aan je echte gegevens verandert.</p>
+  <a class="btn btn-primary product-cta__button" href="https://app.pgbplanner.nl/registreer">Probeer PGB Planner 21 dagen gratis →</a>
+</div>
+
+## Wat je uitkomst betekent
+
+**Je komt uit.** Dan ben je klaar, en dan was het gevoel een gevoel. Dat scheelt je de rest van het jaar een hoop ruis in je hoofd.
+
+**Het wordt krap.** Je uitkomst ligt dicht bij nul en kan nog beide kanten op. Dan is het nuttigste wat je hebt niet het bedrag, maar dat je weet welke posten het verschil gaan maken. Die houd je de rest van het jaar in de gaten.
+
+**Er dreigt een tekort.** Dan is de volgende vraag waar het vandaan komt, want dat bepaalt wat je eraan kunt doen.
+
+Het kan zijn dat er helemaal geen tekort is, maar dat je aannames niet kloppen met wat er werkelijk is verwerkt. Dat is het eerste wat je controleert.
+
+Het kan zijn dat je meer zorg bent gaan gebruiken dan aan het begin van het jaar. Dan gaat het gesprek dat je gaat voeren over je zorgvraag.
+
+Of je uren zijn gelijk gebleven en dezelfde zorg is duurder geworden. Dat is iets anders, en het leidt naar een ander gesprek.
+
+Welke mogelijkheden er daarna zijn, hangt af van het soort pgb dat je hebt en van jouw situatie. Dat wordt beoordeeld door de instantie die jouw pgb uitvoert, en daar vind je ook de officiële informatie die bij jouw regeling hoort. Wat je hier meeneemt is het bedrag en de richting, zodat je dat gesprek ingaat met een onderbouwing in plaats van een vermoeden.
+
+## Tot slot
+
+Het gevoel dat je pgb sneller opgaat dan verwacht, blijft hangen zolang je er geen getal onder hebt. Je weet nu hoe je van dat gevoel naar een onderbouwde verwachting komt, met een marge eromheen en met een idee van waar een tekort vandaan zou komen.
+
+Daarmee is het probleem nog niet opgelost. Maar je hebt wel een veel duidelijker beeld van waar je staat, en je hebt nog tijd om er iets aan te doen.
+
+Wil je dit niet elke keer met de hand doen, dan kun je [PGB Planner 21 dagen gratis proberen](https://app.pgbplanner.nl/registreer).
+
+---
+
+## Bronnen
+
+<ul class="bronnen">
+  <li>
+    <a href="https://www.svb.nl/nl/pgb/zorgovereenkomsten/belangrijke-informatie-per-zorgovereenkomst" target="_blank" rel="noopener">Belangrijke informatie per zorgovereenkomst</a>
+    <span>Sociale Verzekeringsbank, werkgeverslasten en doorbetaling tijdens vakantie.</span>
+  </li>
+  <li>
+    <a href="https://www.svb.nl/nl/pgb/declareren-en-betalen/minimumloon-en-vakantiegeld" target="_blank" rel="noopener">Minimumloon en vakantiegeld</a>
+    <span>Sociale Verzekeringsbank.</span>
+  </li>
+</ul>

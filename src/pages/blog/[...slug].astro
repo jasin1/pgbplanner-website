@@ -22,6 +22,7 @@ const { Content } = await post.render();
 
 <BaseLayout
   title={`${post.data.title} • PGB Planner`}
+  titleTag={post.data.titleTag ? `${post.data.titleTag} • PGB Planner` : undefined}
   description={post.data.description}
   ogType="article"
   ogImage={post.data.image}

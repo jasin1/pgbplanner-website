@@ -781,6 +781,33 @@ section[id] {
   margin-top: 0.75rem;
 }
 
+/* Product-CTA-blok: visueel duidelijk gescheiden van redactionele tekst */
+.article-content .product-cta {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(59, 115, 180, 0.08);
+  border-radius: var(--radius);
+}
+
+.article-content .product-cta > * + * {
+  margin-top: 1rem;
+}
+
+.article-content .product-cta__title {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.article-content .product-cta__text {
+  margin: 0;
+}
+
+.article-content .product-cta .btn {
+  color: var(--color-white);
+  text-decoration: none;
+  display: inline-block;
+}
+
 /* Bronnenlijst: scanbaar, geen bullets */
 .article-content .bronnen {
   list-style: none;
@@ -821,6 +848,22 @@ section[id] {
   padding: 0.15em 0.35em;
   border-radius: 0.35rem;
   background: rgba(0, 0, 0, 0.05);
+}
+
+/* Rekenblokken: onderdeel van het artikel, geen terminalvenster */
+.article-content .calculation-block {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--color-form-body);
+  color: var(--color-body-text);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius);
+  font-family: var(--font-primary);
+  font-size: 0.95em;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+  overflow-x: auto;
 }
 
 .blog-post {

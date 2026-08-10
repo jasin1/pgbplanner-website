@@ -2,8 +2,21 @@
 import { getPublishedPosts } from "../../lib/blog";
 
 const allPosts = await getPublishedPosts();
-const posts = allPosts.slice(0, 3);
+const posts = allPosts.slice(0, 4);
 const featuredPost = allPosts.length === 1 ? allPosts[0] : null;
+
+const heroImageModules = import.meta.glob<{ default: { src: string; width: number; height: number } }>(
+  "../../content/blog/*/hero.{jpg,jpeg,png}",
+  { eager: true }
+);
+
+function getHeroImageSrc(postId: string) {
+  const folder = postId.replace(/\/index\.md$/, "");
+  const match = Object.entries(heroImageModules).find(([path]) =>
+    path.includes(`/content/blog/${folder}/hero.`)
+  );
+  return match?.[1]?.default?.src;
+}
 ---
 
 {allPosts.length > 0 && (
@@ -17,10 +30,10 @@ const featuredPost = allPosts.length === 1 ? allPosts[0] : null;
         <div class="latest-articles__featured">
           <span class="latest-articles__featured-label">Blog</span>
           <h3 class="latest-articles__featured-title">{featuredPost.data.title}</h3>
-          {featuredPost.data.image && (
+          {getHeroImageSrc(featuredPost.id) && (
             <img
               class="latest-articles__featured-image"
-              src={featuredPost.data.image}
+              src={getHeroImageSrc(featuredPost.id)}
               alt={featuredPost.data.heroAlt ?? ""}
             />
           )}
@@ -36,21 +49,29 @@ const featuredPost = allPosts.length === 1 ? allPosts[0] : null;
         </div>
       ) : (
         <div class="latest-articles__grid">
-          {posts.map((post) => (
-            <a class="latest-articles__card" href={`/blog/${post.slug}/`}>
-              <div class="latest-articles__date">
-                {post.data.pubDate.toLocaleDateString("nl-NL", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </div>
-              <h3 class="latest-articles__title">{post.data.title}</h3>
-              <p class="latest-articles__description">
-                {post.data.teaser ?? post.data.description}
-              </p>
-            </a>
-          ))}
+          {posts.map((post) => {
+            const heroSrc = getHeroImageSrc(post.id);
+            return (
+              <a class="latest-articles__card" href={`/blog/${post.slug}/`}>
+                {heroSrc && (
+                  <img class="latest-articles__card-image" src={heroSrc} alt={post.data.heroAlt ?? ""} />
+                )}
+                <div class="latest-articles__card-body">
+                  <div class="latest-articles__date">
+                    {post.data.pubDate.toLocaleDateString("nl-NL", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </div>
+                  <h3 class="latest-articles__title">{post.data.title}</h3>
+                  <p class="latest-articles__description">
+                    {post.data.teaser ?? post.data.description}
+                  </p>
+                </div>
+              </a>
+            );
+          })}
         </div>
       )}
     </div>
@@ -92,7 +113,8 @@ const featuredPost = allPosts.length === 1 ? allPosts[0] : null;
     grid-area: image;
     display: block;
     width: 100%;
-    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: 0.75rem;
   }
 
@@ -139,14 +161,27 @@ const featuredPost = allPosts.length === 1 ? allPosts[0] : null;
   .latest-articles__card {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    padding: 2rem;
     border-radius: var(--radius);
     background: var(--color-white);
     box-shadow: var(--shadow-soft);
     text-decoration: none;
     color: inherit;
     transition: box-shadow 0.2s ease;
+    overflow: hidden;
+  }
+
+  .latest-articles__card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .latest-articles__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem;
   }
 
   .latest-articles__card:hover {
