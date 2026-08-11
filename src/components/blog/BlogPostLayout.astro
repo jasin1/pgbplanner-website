@@ -1,13 +1,37 @@
 ---
 import { isBlogIndexThresholdMet } from "../../lib/blog";
+import Calendar from "./icons/Calendar.astro";
+import Clock from "./icons/Clock.astro";
+import Mail from "./icons/Mail.astro";
+import Link from "./icons/Link.astro";
+import Facebook from "./icons/Facebook.astro";
+import Whatsapp from "./icons/Whatsapp.astro";
 
 type Props = {
   title: string;
   pubDate: Date;
+  slug: string;
+  readingTime: number;
 };
 
-const { title, pubDate } = Astro.props;
+const { title, pubDate, slug, readingTime } = Astro.props;
 const showBacklink = await isBlogIndexThresholdMet();
+
+const origin =
+  Astro.site?.toString().replace(/\/$/, "") || "https://www.pgbplanner.nl";
+const canonicalUrl = `${origin}/blog/${slug}/`;
+const encodedUrl = encodeURIComponent(canonicalUrl);
+const encodedTitle = encodeURIComponent(title);
+
+const mailHref = `mailto:?subject=${encodedTitle}&body=${encodedUrl}`;
+const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+const whatsappHref = `https://wa.me/?text=${encodeURIComponent(`${title} ${canonicalUrl}`)}`;
+
+const formattedDate = pubDate.toLocaleDateString("nl-NL", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
 ---
 
 <section class="blog-post">
@@ -18,17 +42,77 @@ const showBacklink = await isBlogIndexThresholdMet();
   <header class="blog-post__header">
     <h1 class="blog-post__title">{title}</h1>
     <div class="blog-post__meta">
-      {
-        pubDate.toLocaleDateString("nl-NL", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })
-      }
+      <span class="blog-post__meta-item"><Calendar size={16} /> {formattedDate}</span>
+      <span class="blog-post__meta-item"><Clock size={16} /> Leestijd: {readingTime} min</span>
+      <div class="blog-post__share blog-post__share--top">
+        <span class="blog-post__share-label">Deel artikel:</span>
+        <a href={mailHref} data-article={slug} data-position="top" data-channel="mail" aria-label="Deel via e-mail">
+          <Mail size={18} />
+        </a>
+        <span class="blog-post__copy">
+          <button type="button" data-copy-url={canonicalUrl} data-article={slug} data-position="top" data-channel="link" aria-label="Kopieer link">
+            <Link size={18} />
+          </button>
+          <span class="blog-post__copy-tooltip" aria-live="polite"></span>
+        </span>
+        <a href={facebookHref} target="_blank" rel="noopener" data-article={slug} data-position="top" data-channel="facebook" aria-label="Deel op Facebook">
+          <Facebook size={18} />
+        </a>
+        <a href={whatsappHref} target="_blank" rel="noopener" data-article={slug} data-position="top" data-channel="whatsapp" aria-label="Deel via WhatsApp">
+          <Whatsapp size={18} />
+        </a>
+      </div>
     </div>
   </header>
 
   <article class="article-content">
     <slot />
   </article>
+
+  <div class="blog-post__share blog-post__share--bottom">
+    <span class="blog-post__share-label">Deel artikel:</span>
+    <a href={mailHref} data-article={slug} data-position="bottom" data-channel="mail" aria-label="Deel via e-mail">
+      <Mail size={18} />
+    </a>
+    <span class="blog-post__copy">
+      <button type="button" data-copy-url={canonicalUrl} data-article={slug} data-position="bottom" data-channel="link" aria-label="Kopieer link">
+        <Link size={18} />
+      </button>
+      <span class="blog-post__copy-tooltip" aria-live="polite"></span>
+    </span>
+    <a href={facebookHref} target="_blank" rel="noopener" data-article={slug} data-position="bottom" data-channel="facebook" aria-label="Deel op Facebook">
+      <Facebook size={18} />
+    </a>
+    <a href={whatsappHref} target="_blank" rel="noopener" data-article={slug} data-position="bottom" data-channel="whatsapp" aria-label="Deel via WhatsApp">
+      <Whatsapp size={18} />
+    </a>
+  </div>
 </section>
+
+<script>
+  const CONFIRM_TEXT = "Link gekopieerd";
+  const CONFIRM_DURATION = 2000;
+
+  document.querySelectorAll<HTMLButtonElement>("button[data-copy-url]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const url = button.dataset.copyUrl;
+      if (!url) return;
+
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch {
+        return;
+      }
+
+      const tooltip = button.parentElement?.querySelector<HTMLElement>(".blog-post__copy-tooltip");
+      if (!tooltip) return;
+
+      tooltip.textContent = CONFIRM_TEXT;
+      tooltip.classList.add("is-visible");
+      window.setTimeout(() => {
+        tooltip.classList.remove("is-visible");
+        tooltip.textContent = "";
+      }, CONFIRM_DURATION);
+    });
+  });
+</script>

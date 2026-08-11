@@ -81,6 +81,7 @@ src/
 - Blog schema requires: title, description, pubDate, draft (default: true — set `draft: false` to publish)
 - Read `docs/marketing/editorial-guide.md` before any blog or content work. It is the leading source for editorial principles, tone, sourcing and factchecking.
 - `docs/marketing/blog-product-cta-spec.md` governs how PGB Planner appears commercially inside an article.
+- Read `docs/marketing/blog-content-blocks.md` before adding or editing any in-article content block.
 
 ## External services & env vars
 

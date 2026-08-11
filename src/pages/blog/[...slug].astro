@@ -4,7 +4,7 @@ export const prerender = true;
 import { type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPostLayout from "../../components/blog/BlogPostLayout.astro";
-import { getPublishedPosts } from "../../lib/blog";
+import { getPublishedPosts, leestijd } from "../../lib/blog";
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
@@ -27,7 +27,12 @@ const { Content } = await post.render();
   ogType="article"
   ogImage={post.data.image}
 >
-  <BlogPostLayout title={post.data.title} pubDate={post.data.pubDate}>
+  <BlogPostLayout
+    title={post.data.title}
+    pubDate={post.data.pubDate}
+    slug={post.slug}
+    readingTime={leestijd(post.body)}
+  >
     <Content />
   </BlogPostLayout>
 </BaseLayout>

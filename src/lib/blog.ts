@@ -13,3 +13,18 @@ export async function getPublishedPosts() {
 export async function isBlogIndexThresholdMet() {
   return (await getPublishedPosts()).length >= BLOG_INDEX_THRESHOLD;
 }
+
+export function leestijd(body: string): number {
+  const tekst = body
+    .replace(/^---[\s\S]*?---/, '')
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[#>*_`]/g, ' ');
+
+  return Math.max(
+    1,
+    Math.ceil(tekst.trim().split(/\s+/).length / 200)
+  );
+}

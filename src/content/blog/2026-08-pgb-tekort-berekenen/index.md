@@ -34,9 +34,11 @@ Die eerste rekensom is simpel. Je kijkt wat je tot nu toe hebt uitgegeven en dee
 
 **De snelle rekensom**
 
-<pre class="calculation-block">wat je tot nu toe uitgaf  ÷  maanden die voorbij zijn  =  gemiddelde maandkosten
-gemiddelde maandkosten  ×  maanden die nog komen      =  geschatte kosten tot het eind
-wat er nog over is  −  geschatte kosten tot het eind  =  verwachte ruimte of tekort</pre>
+<div class="callout callout--calc">
+  <p>wat je tot nu toe uitgaf ÷ maanden die voorbij zijn = gemiddelde maandkosten<br>
+  gemiddelde maandkosten × maanden die nog komen = geschatte kosten tot het eind<br>
+  wat er nog over is − geschatte kosten tot het eind = verwachte ruimte of tekort</p>
+</div>
 
 Dat is een prima eerste controle, en meestal de rekensom waar je vanzelf op uitkomt. Alleen zegt zo'n gemiddelde pas iets als je terugkijkt naar de maanden waar het uit is opgebouwd.
 
@@ -52,12 +54,13 @@ Je kunt dat gemiddelde corrigeren. Je begint bij hetzelfde bedrag, maar bouwt ee
 
 **De gecorrigeerde schatting**
 
-<pre class="calculation-block">een gewone maand tot nu toe  +/−  wat er vanaf nu verandert  =  je maandkosten vanaf nu
-
-wat er nog over is
-  min  je maandkosten vanaf nu  ×  maanden die nog komen
-  min  eenmalige kosten die je nog verwacht
-= de ruimte of het tekort dat je verwacht</pre>
+<div class="callout callout--calc">
+  <p>een gewone maand tot nu toe +/− wat er vanaf nu verandert = je maandkosten vanaf nu</p>
+  <p>wat er nog over is<br>
+  min je maandkosten vanaf nu × maanden die nog komen<br>
+  min eenmalige kosten die je nog verwacht<br>
+  = de ruimte of het tekort dat je verwacht</p>
+</div>
 
 Wat een gewone maand kost, vind je door die uitschieters uit je overzicht te halen. Wat overblijft ligt dichter bij een normale maand dan het gemiddelde waar je mee begon.
 
@@ -83,12 +86,12 @@ En er komt nog één eenmalige uitgave aan. Later dit jaar heb je voor een korte
 
 **Dan wordt de rekensom:**
 
-<pre class="calculation-block">3.700  +  250  =  3.950 euro per maand vanaf nu
-
-3.950  ×  5 maanden  =  19.750
-19.750  +  1.500 eenmalig  =  21.250 euro nodig
-
-20.000 beschikbaar  −  21.250 nodig  =  ongeveer 1.250 euro tekort</pre>
+<div class="callout callout--calc">
+  <p>3.700 + 250 = 3.950 euro per maand vanaf nu</p>
+  <p>3.950 × 5 maanden = 19.750<br>
+  19.750 + 1.500 eenmalig = 21.250 euro nodig</p>
+  <p>20.000 beschikbaar − 21.250 nodig = ongeveer 1.250 euro tekort</p>
+</div>
 
 De snelle rekensom zei dat je precies uitkwam. Reken je door met wat je nu weet, dan kom je ongeveer 1.250 euro tekort. Dat is het soort verschil dat je liever ziet terwijl er nog vijf maanden voor je liggen dan pas aan het einde van het jaar.
 
@@ -109,7 +112,7 @@ Je berekening verandert bovendien zodra er iets in je planning verandert. Een an
 <div class="product-cta">
   <h3 class="product-cta__title">De omweg via je gemiddelde is niet nodig</h3>
   <p class="product-cta__text">PGB Planner rekent vooruit met je eigen zorgverleners, uren en tarieven. Geen gewone maand terugrekenen uit je overzicht, geen uitschieters eruit vissen. En je kunt een tariefverhoging of extra uren doorrekenen zonder dat er iets aan je echte gegevens verandert.</p>
-  <a class="btn btn-primary product-cta__button" href="https://app.pgbplanner.nl/registreer">Probeer PGB Planner 21 dagen gratis →</a>
+  <a class="btn btn-primary product-cta__button" href="https://app.pgbplanner.nl/registreer" data-article="pgb-tekort-berekenen" data-position="cta" data-channel="product">Probeer 21 dagen gratis <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18.5 12L4.99997 12"></path><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6"></path></svg></a>
 </div>
 
 ## Wat je uitkomst betekent

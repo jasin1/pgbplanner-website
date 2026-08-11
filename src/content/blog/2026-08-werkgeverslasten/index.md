@@ -21,7 +21,7 @@ De uitkomst blijft niet kloppen met wat er van je budget af gaat.
 
 Je rekent niet verkeerd. Tot en met 2025 was jouw berekening precies goed. Sinds 1 januari 2026 klopt hij niet meer, en dat ligt niet aan jou.
 
-<aside class="samenvatting">
+<aside class="callout">
 
 **In het kort**
 
