@@ -678,7 +678,7 @@ section[id] {
 .article-content {
   /* max-width: 60ch; */
   margin-inline: auto;
-  font-size: 1.0625rem; /* net iets groter voor leesbaarheid */
+  font-size: 18px;
   line-height: 1.75;
   color: var(--color-body-text);
 }
@@ -686,9 +686,13 @@ section[id] {
 /* Rustiger schaal op brede schermen (>=1024px, bestaande desktop-breakpoint) */
 @media (min-width: 1024px) {
   .article-content {
-    font-size: 18px;
     line-height: 1.7;
   }
+}
+
+.article-content p,
+.article-content li {
+  font-size: inherit;
 }
 
 /* Spacing tussen blocks */
@@ -894,7 +898,7 @@ section[id] {
 
 .blog-post__meta {
   margin-top: 0.75rem;
-  font-size: 0.875rem;
+  font-size: 16px;
   color: var(--color-meta-muted);
   display: flex;
   flex-wrap: wrap;
@@ -936,7 +940,7 @@ section[id] {
 }
 
 .blog-post__share-label {
-  font-size: 0.875rem;
+  font-size: 16px;
 }
 
 .blog-post__share a,
