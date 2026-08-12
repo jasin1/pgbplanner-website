@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^5.12.8"
+    "astro": "^5.12.8",
+    "posthog-js": "^1.416.0"
   },
   "devDependencies": {
     "@astrojs/netlify": "^6.6.0"

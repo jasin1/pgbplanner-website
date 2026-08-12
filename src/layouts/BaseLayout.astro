@@ -20,6 +20,17 @@ const origin =
 const pathname = Astro.url?.pathname || "/";
 const canonical = origin + pathname;
 const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
+
+let pageType: "homepage" | "blog" | "other" = "other";
+let pageSlug = pathname;
+
+if (pathname === "/") {
+  pageType = "homepage";
+  pageSlug = "home";
+} else if (pathname.startsWith("/blog/")) {
+  pageType = "blog";
+  pageSlug = pathname.replace(/^\/blog\//, "").replace(/\/$/, "");
+}
 ---
 
 <html lang="nl">
@@ -82,12 +93,27 @@ const absoluteOg = ogImage.startsWith("http") ? ogImage : `${origin}${ogImage}`;
       </script>
     </>
   </head>
-  <body>
+  <body data-page-type={pageType} data-page-slug={pageSlug}>
     {!hideHeader && <Header />}
     <a class="skip-link" href="#main">Direct naar inhoud</a>
     <main id="main">
       <slot />
     </main>
     <Footer />
+    <script>
+      import {
+        ensureFirstTouch,
+        applyUtmsToRegistrationLinks,
+        initPostHog,
+        bindRegistrationCtaTracking,
+        bindShareTracking,
+      } from "../lib/analytics";
+
+      ensureFirstTouch();
+      applyUtmsToRegistrationLinks();
+      initPostHog();
+      bindRegistrationCtaTracking();
+      bindShareTracking();
+    </script>
   </body>
 </html>

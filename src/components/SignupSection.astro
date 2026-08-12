@@ -131,6 +131,11 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
     </form>
   </div>
 
+  <script>
+    import { trackContactFormSubmitted } from "../lib/analytics";
+    window.__pgbTrackContactFormSubmitted = trackContactFormSubmitted;
+  </script>
+
   <!-- Google's reCAPTCHA script -->
   <script is:inline src="https://www.google.com/recaptcha/api.js" async defer
   ></script>
@@ -200,6 +205,10 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
             "Bedankt voor je bericht. Ik reageer meestal binnen één werkdag.";
         } else {
           body = "Je staat op de lijst. Ik houd je op de hoogte.";
+        }
+
+        if (typeof window.__pgbTrackContactFormSubmitted === "function") {
+          window.__pgbTrackContactFormSubmitted();
         }
 
         const wrap = document.createElement("div");

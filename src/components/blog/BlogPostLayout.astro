@@ -46,19 +46,19 @@ const formattedDate = pubDate.toLocaleDateString("nl-NL", {
       <span class="blog-post__meta-item"><Clock size={16} /> Leestijd: {readingTime} min</span>
       <div class="blog-post__share blog-post__share--top">
         <span class="blog-post__share-label">Deel artikel:</span>
-        <a href={mailHref} data-article={slug} data-position="top" data-channel="mail" aria-label="Deel via e-mail">
+        <a href={mailHref} data-article={slug} data-position="header" data-channel="mail" aria-label="Deel via e-mail">
           <Mail size={18} />
         </a>
         <span class="blog-post__copy">
-          <button type="button" data-copy-url={canonicalUrl} data-article={slug} data-position="top" data-channel="link" aria-label="Kopieer link">
+          <button type="button" data-copy-url={canonicalUrl} data-article={slug} data-position="header" data-channel="link" aria-label="Kopieer link">
             <Link size={18} />
           </button>
           <span class="blog-post__copy-tooltip" aria-live="polite"></span>
         </span>
-        <a href={facebookHref} target="_blank" rel="noopener" data-article={slug} data-position="top" data-channel="facebook" aria-label="Deel op Facebook">
+        <a href={facebookHref} target="_blank" rel="noopener" data-article={slug} data-position="header" data-channel="facebook" aria-label="Deel op Facebook">
           <Facebook size={18} />
         </a>
-        <a href={whatsappHref} target="_blank" rel="noopener" data-article={slug} data-position="top" data-channel="whatsapp" aria-label="Deel via WhatsApp">
+        <a href={whatsappHref} target="_blank" rel="noopener" data-article={slug} data-position="header" data-channel="whatsapp" aria-label="Deel via WhatsApp">
           <Whatsapp size={18} />
         </a>
       </div>

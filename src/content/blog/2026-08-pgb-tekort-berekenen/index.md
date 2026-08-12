@@ -112,7 +112,7 @@ Je berekening verandert bovendien zodra er iets in je planning verandert. Een an
 <div class="product-cta">
   <h3 class="product-cta__title">De omweg via je gemiddelde is niet nodig</h3>
   <p class="product-cta__text">PGB Planner rekent vooruit met je eigen zorgverleners, uren en tarieven. Geen gewone maand terugrekenen uit je overzicht, geen uitschieters eruit vissen. En je kunt een tariefverhoging of extra uren doorrekenen zonder dat er iets aan je echte gegevens verandert.</p>
-  <a class="btn btn-primary product-cta__button" href="https://app.pgbplanner.nl/registreer" data-article="pgb-tekort-berekenen" data-position="cta" data-channel="product">Probeer 21 dagen gratis <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18.5 12L4.99997 12"></path><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6"></path></svg></a>
+  <a class="btn btn-primary product-cta__button" href="https://app.pgbplanner.nl/registreer" data-article="pgb-tekort-berekenen" data-position="inline">Probeer 21 dagen gratis <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18.5 12L4.99997 12"></path><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6"></path></svg></a>
 </div>
 
 ## Wat je uitkomst betekent
@@ -137,7 +137,7 @@ Het gevoel dat je pgb sneller opgaat dan verwacht, blijft hangen zolang je er ge
 
 Daarmee is het probleem nog niet opgelost. Maar je hebt wel een veel duidelijker beeld van waar je staat, en je hebt nog tijd om er iets aan te doen.
 
-Wil je dit niet elke keer met de hand doen, dan kun je [PGB Planner 21 dagen gratis proberen](https://app.pgbplanner.nl/registreer).
+Wil je dit niet elke keer met de hand doen, dan kun je <a href="https://app.pgbplanner.nl/registreer" data-position="bottom">PGB Planner 21 dagen gratis proberen</a>.
 
 ---
 
