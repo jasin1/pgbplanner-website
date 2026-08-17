@@ -6,5 +6,9 @@ export default defineConfig({
   site: 'https://www.pgbplanner.nl',
   output: 'server',
   adapter: netlify(),
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/vragenlijst'),
+    }),
+  ],
 });
