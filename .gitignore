@@ -32,3 +32,9 @@ src/content/blog/.obsidian/
 
 # Source material that may contain personal/medical data of third parties
 docs/marketing/seo/
+
+# Superseded article drafts
+docs/marketing/artikelen/archive/
+
+# Local review screenshots
+screenshots/
