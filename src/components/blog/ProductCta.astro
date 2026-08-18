@@ -1,0 +1,26 @@
+---
+interface Props {
+  heading: string;
+  body: string;
+  buttonText: string;
+  href: string;
+  article: string;
+  position: string;
+}
+
+const { heading, body, buttonText, href, article, position } = Astro.props;
+---
+
+<div class="product-cta">
+  <h3 class="product-cta__title">{heading}</h3>
+  <p class="product-cta__text">{body}</p>
+  <a
+    class="btn btn-primary product-cta__button"
+    href={href}
+    data-article={article}
+    data-position={position}
+  >
+    {buttonText}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18.5 12L4.99997 12"></path><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6"></path></svg>
+  </a>
+</div>

@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.6",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.12.8",
     "posthog-js": "^1.416.0"
