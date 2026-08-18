@@ -66,12 +66,16 @@ De redactionele inhoud wordt per artikel bewust geschreven.
 
 ### Technische voorwaarde
 
-Het per artikel zelf kiezen van de plek in de lopende tekst vereist een keuze die bij de bouw gemaakt moet worden:
+Besloten op 18 augustus 2026: artikelen worden `.mdx`, zodat het blok als
+component op de inhoudelijk juiste plek in de lopende tekst staat.
 
-- artikelen omzetten naar `.mdx`, zodat het blok als component middenin de tekst geplaatst kan worden; of
-- het blok positioneren via frontmatter, bijvoorbeeld met een veld dat aangeeft na welke tussenkop het verschijnt.
+Astro ondersteunt `.mdx` naast bestaande `.md` bestanden, dus omzetting
+gebeurt per artikel en niet in één keer.
 
-Dit is een open vraag, geen genomen besluit. Leg de keuze vast op het moment dat de component gebouwd wordt.
+Positionering via frontmatter is bewust afgewezen: die koppelt de plek aan
+een tussenkoptekst en breekt stil zodra een kop wordt herschreven. Sectie 4
+stelt dat plaatsing inhoudelijk is, en in mdx zet de auteur het blok
+letterlijk op die plek.
 
 ---
 
@@ -169,6 +173,16 @@ Een specifieke landingpage wordt pas opnieuw beoordeeld wanneer:
 - meerdere artikelen aantoonbaar dezelfde productintentie opleveren;
 - er genoeg verkeer is om de extra funnelstap zinvol te testen;
 - de homepage aantoonbaar onvoldoende aansluit op de klikintentie.
+
+Besloten op 18 augustus 2026: een CTA in een artikel linkt naar de
+homepage, niet direct naar registratie. Directe links naar registratie
+horen op de homepage zelf thuis, niet in een artikel. Dit houdt de stap
+van artikel naar product zichtbaar als aparte, meetbare stap in de
+funnel (zie sectie 9).
+
+Artikel 2 (pgb-tekort-berekenen) wijkt hier momenteel van af: de bestaande
+CTA linkt direct naar `app.pgbplanner.nl/registreer`. Dit wordt apart
+gecorrigeerd, los van deze specificatie.
 
 ---
 
