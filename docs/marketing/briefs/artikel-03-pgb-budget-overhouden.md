@@ -47,18 +47,23 @@ december te veel overhoudt.
 "We hebben budgetverhoging gekregen, heel goed, maar nu moeten we het ook
 goed benutten en niet te veel overhouden aan het eind van het jaar."
 
+Afwijking bij publicatie: het artikel opent niet met de budgetverhoging. De
+haakzin beschrijft de aanleiding van de schrijver om over dit onderwerp na
+te denken, niet de aanleiding van de lezer om ernaar te zoeken. Wie zoekt op
+pgb budget overhouden heeft vaak geen verhoging gehad. De verhoging staat nu
+als een van de mogelijke aanleidingen in de openingsalinea.
+
 ## 5. Claimlijst
 
 | Claim | Status | Nuance of beperking | Bron | Houdbaar tot |
 |---|---|---|---|---|
 | Budget dat aan het eind van het jaar overblijft vervalt en gaat niet mee naar het volgende jaar | geldend | geldt voor Wlz | pgb.nl/alles-over-het-pgb/aanvragen-van-een-pgb/pgb-aanvragen-bij-het-zorgkantoor/ | 1 jan 2027 |
 | Het verantwoordingsvrije bedrag is 1,5% van het totale pgb, minimaal 250 en maximaal 1250 euro per jaar | geldend | bij een pgb over een deel van het jaar naar rato verlaagd | vgz-zorgkantoren.nl/consumenten/pgb/verantwoordingsvrij-bedrag | 1 jan 2027 |
-| Het verantwoordingsvrije bedrag kan alleen worden uitbetaald als er nog voldoende budget over is | geldend | er moet ook daadwerkelijk een zorgverlener uit het pgb betaald zijn | idem | 1 jan 2027 |
-| Zorgkantoren adviseren het pas aan het einde van het jaar op te nemen, als zeker is dat je uitkomt | geldend | advies, geen verplichting | idem | 1 jan 2027 |
-| Het verantwoordingsvrije bedrag is niet bedoeld om de pgb-beheerder te betalen | geldend | | idem | 1 jan 2027 |
+| Het verantwoordingsvrije bedrag is bedoeld voor kleine uitgaven die niet vanuit het pgb betaald kunnen worden, zoals telefoonkosten, postzegels of een presentje voor een zorgverlener | geldend | Zilveren Kruis noemt ook kosten voor het voeren van de budgetadministratie en het gebruiken van het bedrag voor zorg wanneer het budget niet toereikend is | vgz-zorgkantoren.nl/consumenten/pgb/verantwoordingsvrij-bedrag; zilverenkruis.nl/zorgkantoor/klanten/pgb/verantwoordingsvrij-bedrag | 1 jan 2027 |
+| Het verantwoordingsvrije bedrag kan in het budgetjaar zelf worden opgevraagd, in één keer of in delen | geldend | opnemen kan totdat de subsidievaststelling over dat jaar is afgegeven | zilverenkruis.nl/zorgkantoor/klanten/pgb/verantwoordingsvrij-bedrag | 1 jan 2027 |
+| Uitbetaling gebeurt alleen als er in het budgetjaar al zorg uit het budget is betaald | geldend | | svb.nl/nl/pgb/declareren-en-betalen/verantwoordingsvrij-bedrag | 1 jan 2027 |
+| Zorgkantoren adviseren het pas aan het einde van het jaar op te nemen, als zeker is dat je uitkomt | geldend | dit is een advies van het zorgkantoor, geen voorwaarde | vgz-zorgkantoren.nl/consumenten/pgb/verantwoordingsvrij-bedrag | 1 jan 2027 |
 | Bij een toeslag of meerzorg wordt verwacht dat het hele budget aan zorg wordt besteed | geldend | zorgkantoorspecifiek, controleer je eigen zorgkantoor | menziszorgkantoor.nl/persoonsgebonden-budget-pgb/belangrijke-onderwerpen/jaarovergang | 1 jan 2027 |
-| Opnemen kan tot de subsidievaststelling over het jaar is afgegeven | geldend | | idem | 1 jan 2027 |
-| SVB stuurt eens per kwartaal een budgetoverzicht, ook zichtbaar in het PGB Portaal | geldend | toont uitgaven tot nu toe, niet wat er nog aan komt | vgz-zorgkantoren.nl/consumenten/pgb/budget-bewaken-en-vaststellen | 1 jan 2027 |
 | Sinds 1 januari 2025 stelt het zorgkantoor het Wlz-budget vast op basis van een gesprek over de zorgvraag, in plaats van een automatisch basisbedrag | geldend | beschrijft alleen het vaststellingsmoment; dit artikel legt geen verband met onderbesteding en doet geen uitspraak over de bevoegdheden van het zorgkantoor | rijksoverheid.nl/onderwerpen/persoonsgebonden-budget-pgb/persoonsgebonden-budget-op-maat | 1 jan 2027 |
 
 De laatste claim krijgt maximaal twee zinnen, laat in het artikel, om de
@@ -67,7 +72,18 @@ vastgesteld gebeurt in het gesprek met het zorgkantoor over je zorgvraag,
 en daar schrijven we apart over. Geen juridische uitleg, geen CIZ, geen
 bevoegdheidsvraag, geen geruststelling.
 
-## 6. Buiten scope
+## 6. Uitgangspunt rekenvoorbeeld
+
+- Moment in het jaar: 1 oktober, nog drie maanden te gaan.
+- Jaarbudget: 70.000 euro (Wlz-pgb). Illustratief rond bedrag, geen claim.
+  Gekozen omdat 1,5 procent ervan met 1.050 euro duidelijk tussen het
+  minimum van 250 en het maximum van 1.250 euro valt.
+- Situatie: op basis van de verwachte zorgkosten blijft er aan het einde
+  van het jaar 4.000 euro ruimte over. De vraag is waar die ruimte voor is:
+  het verantwoordingsvrije bedrag, zorg die mogelijk nog nodig is, of
+  budget dat waarschijnlijk werkelijk ongebruikt blijft.
+
+## 7. Buiten scope
 
 - Wmo en Jeugdwet. Daar bepaalt de gemeente de regels.
 - Terugvordering en tekortkomen. Dat is artikel 2.
@@ -77,7 +93,7 @@ bevoegdheidsvraag, geen geruststelling.
   CIZ, instemming van de budgethouder. Eigen artikel, gepland rond de
   beschikkingsronde in december.
 
-## 7. CTA
+## 8. CTA
 
 - CTA: ja
 - Vervolgprobleem: land ik in december op de marge die ik wil
@@ -96,7 +112,7 @@ Copy, letterlijk over te nemen door Claude Code:
 
 Spec: docs/marketing/blog-product-cta-spec.md
 
-## 8. Interne links
+## 9. Interne links
 
 - Naar artikel 2 (pgb tekort zorgkantoor) als spiegelbeeld: tekortkomen en
   overhouden zijn dezelfde berekening met een ander teken. URL invullen.
