@@ -11,7 +11,7 @@ const heroImageModules = import.meta.glob<{ default: { src: string; width: numbe
 );
 
 function getHeroImageSrc(postId: string) {
-  const folder = postId.replace(/\/index\.md$/, "");
+  const folder = postId.replace(/\/index\.mdx?$/, "");
   const match = Object.entries(heroImageModules).find(([path]) =>
     path.includes(`/content/blog/${folder}/hero.`)
   );
