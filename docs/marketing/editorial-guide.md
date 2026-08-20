@@ -401,6 +401,12 @@ De haakzin komt niet uit onderzoek en niet uit een model. Hij komt uit eigen erv
 
 Een artikel zonder haakzin mist het enige deel dat niet te reproduceren is.
 
+De haakzin is niet hetzelfde als geloofsbrieven. Een vaste alinea die per
+artikel op dezelfde plek uitlegt waarom de schrijver dit weet, wordt een
+formule en leest als een verplicht contentblok. Laat ervaring blijken uit de
+haakzin en uit concrete observaties in de tekst, niet uit een terugkerende
+introductie.
+
 ---
 
 ## Toon
@@ -434,10 +440,12 @@ Een artikel mag lang zijn als het onderwerp dat nodig heeft, maar iedere sectie 
 Voorkeur:
 - concrete bedragen boven vage omschrijvingen;
 - concrete voorbeelden boven abstracte uitleg;
-- één duidelijke claim of gedachte per alinea;
 - zelfstandig leesbare passages;
 - logische tussenkoppen;
 - alleen relevante zijpaden.
+
+Een tussenkop draagt de bewering, niet alleen het onderwerp. "Wat
+overblijft, vervalt" zegt meer dan "Wat er met je restbudget gebeurt".
 
 Gebruik realistische rekenvoorbeelden. Een onrealistisch bedrag of tarief beschadigt vertrouwen.
 
@@ -464,6 +472,36 @@ Structureer bijvoorbeeld op:
 - relevante situatie.
 
 De lezer moet zo snel mogelijk kunnen bepalen welk deel voor hem relevant is.
+
+---
+
+## Structuur van het artikel
+
+### Alinea's
+
+Een alinea draagt één gedachte en telt in de regel drie tot vijf zinnen. Een
+losse zin als alinea is een accent en werkt alleen als het zeldzaam is. Vier
+korte alinea's achter elkaar lezen als een opsomming waar de bullets uit
+zijn gehaald.
+
+Witruimte rond een berekening of een callout heeft functie. Witruimte
+midden in een redenering breekt hem.
+
+### Opbouw
+
+De inleiding is geen inhoudsopgave. Kondig niet aan wat de lezer gaat
+lezen, maar zet het probleem neer waarvoor hij kwam.
+
+Elk feit staat één keer. Staat dezelfde mededeling meerdere keren voor de
+eerste tussenkop, dan is de inleiding te vol.
+
+Een sectie eindigt met een zin die de volgende sectie nodig maakt.
+
+### Volgorde
+
+De volgorde volgt de lezer, niet de brief. Het kader komt voor het detail,
+het detail voor de berekening. De brief legt vast wat er in het artikel
+staat, niet in welke volgorde.
 
 ---
 
@@ -495,6 +533,22 @@ De bruikbare tegenstelling is:
 - versus eigen inzicht, planning en vooruitblik.
 
 PGB Planner blijft aanvullend.
+
+---
+
+## Niet aanzetten tot uitgeven
+
+PGB Planner spoort nooit aan tot uitgeven. Een pgb is een plafond voor zorg
+die nodig is, geen bedrag dat opgemaakt moet worden. Content laat zien wat
+de stand is en wat de opties zijn, en laat de beslissing bij de budgethouder.
+
+Niet gebruiken: formuleringen die ongebruikt budget als verloren geld
+neerzetten, of die aanzetten tot extra zorginkoop om verval te voorkomen.
+Ook niet impliciet, bijvoorbeeld door te vragen wat de lezer met een
+restant gaat doen.
+
+Wordt structurele ruimte zichtbaar, dan verwijst de tekst naar het gesprek
+met het zorgkantoor. Geen advies, geen stellingname.
 
 ---
 

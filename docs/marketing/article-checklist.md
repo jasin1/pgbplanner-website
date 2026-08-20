@@ -39,36 +39,47 @@ blog-product-cta-spec.md.
 8. Bij een claim met status "geldend beleid met betwiste grondslag": wordt
    het beleid benoemd, wordt benoemd dat de grondslag betwist is, en wordt
    geen partij gekozen?
-9. Is elk getal herkenbaar als officieel geregistreerd, wettelijk
-   vastgesteld of door ons gerekend? Zie lexicon, berekend versus volgens
-   SVB.
-10. Staat er een getal, percentage of datum in die nergens in de claimlijst
-    staat?
+9. Is elk feitelijk getal (regel, grens, wettelijk bedrag, percentage,
+   datum) herkenbaar als officieel geregistreerd, wettelijk vastgesteld of
+   door ons gerekend? Zie lexicon, berekend versus volgens SVB.
+10. Staat er een feitelijk getal, percentage of datum in die nergens in de
+    claimlijst staat? Een illustratief getal in een rekenvoorbeeld hoort
+    hier niet toe, zolang het duidelijk als voorbeeld is gepresenteerd,
+    intern consistent is en geen nieuwe feitelijke claim suggereert.
+11. Is er een voorwaarde, beperking of uitzondering toegevoegd of
+    aangescherpt die niet in de claimlijst staat? Dit ging mis in artikel
+    3, waar het artikel strenger werd dan de bron.
 
 ## C. Redactie
 
-11. Wordt het doelgroeplexicon gevolgd, en zijn de te vermijden woorden
+12. Wordt het doelgroeplexicon gevolgd, en zijn de te vermijden woorden
     afwezig?
-12. Blijft de verhouding SVB, zorgkantoor en PGB Planner correct: toekennen,
+13. Blijft de verhouding SVB, zorgkantoor en PGB Planner correct: toekennen,
     uitbetalen, vooruitrekenen? Geen enkele formulering waarin PGB Planner
     een instantie vervangt of overtreft.
-13. Wordt Vooruitblik alleen gebruikt nadat is uitgelegd wat het doet?
-14. Wordt "zorgverlener" gebruikt, en zijn woorden die loondienst
+14. Wordt Vooruitblik alleen gebruikt nadat is uitgelegd wat het doet?
+15. Wordt "zorgverlener" gebruikt, en zijn woorden die loondienst
     veronderstellen beperkt tot passages die daar expliciet over gaan?
-15. Voldoet het aan de stijlregels uit de editorial guide? Niet herhalen wat
+16. Voldoet het aan de stijlregels uit de editorial guide? Niet herhalen wat
     daar staat, alleen toetsen.
+17. Leest het artikel als één stuk, of als losse secties achter elkaar?
+    Zie 'Structuur van het artikel' in de editorial guide. Niet herhalen
+    wat daar staat, alleen toetsen.
+18. Staat er een feit meer dan één keer? Zie 'Structuur van het artikel',
+    Opbouw, in de editorial guide. Niet herhalen wat daar staat, alleen
+    toetsen.
 
 ## D. Techniek
 
-16. Komt het definitieve primary keyword uit de brief terug in titel, in de
+19. Komt het definitieve primary keyword uit de brief terug in titel, in de
     eerste alinea en in minstens één tussenkop, zonder geforceerde
     herhaling?
-17. Klopt de slug met de brief?
-18. Staan de interne links uit de brief erin, in beide richtingen waar de
+20. Klopt de slug met de brief?
+21. Staan de interne links uit de brief erin, in beide richtingen waar de
     brief dat vraagt?
-19. Staat de CTA op het inhoudelijke moment dat de brief noemt, met het
+22. Staat de CTA op het inhoudelijke moment dat de brief noemt, met het
     vervolgprobleem uit de brief, en volgens de CTA-spec?
-20. Zijn titel en meta description aanwezig, en beloven ze niet meer dan de
+23. Zijn titel en meta description aanwezig, en beloven ze niet meer dan de
     belofte uit de brief?
 
 ---

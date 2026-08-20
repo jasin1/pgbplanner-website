@@ -56,6 +56,13 @@ artikelenlijst tenzij bewust gewijzigd.
 Factcheck gebeurt hier, niet bij de controle. Elke feitelijke claim die het
 artikel maakt staat in deze lijst met bron.
 
+Deze lijst dekt feitelijke claims: regels, grenzen, wettelijke bedragen,
+percentages en data die als werkelijkheid worden gepresenteerd. Een
+illustratief getal in een rekenvoorbeeld hoort hier niet in, zolang het
+duidelijk als voorbeeld is gepresenteerd, intern consistent is en geen
+nieuwe feitelijke claim suggereert. Zie sectie 6, Uitgangspunt
+rekenvoorbeeld.
+
 | Claim | Status | Nuance of beperking | Bron (URL) | Houdbaar tot |
 |---|---|---|---|---|
 |  |  |  |  |  |
@@ -68,12 +75,21 @@ toepassing en alles wat de claim beperkt. Wat daar staat moet in het
 artikel terugkomen. Beperkt een nuance de claim wezenlijk, dan hoort de
 claim niet in de belofte.
 
-## 6. Buiten scope
+## 6. Uitgangspunt rekenvoorbeeld
+
+- Moment in het jaar:
+- Orde van grootte van het budget:
+- Situatie die het voorbeeld illustreert:
+
+Zonder dit moet de schrijver het scenario zelf verzinnen, wat bij artikel 3
+een voorbeeld opleverde dat het verkeerde probleem illustreerde.
+
+## 7. Buiten scope
 
 Wat dit artikel niet behandelt, en waarom. Verwijs waar mogelijk naar het
 artikel dat het wel behandelt.
 
-## 7. CTA
+## 8. CTA
 
 - CTA ja of nee:
 - Vervolgprobleem dat de lezer op dit punt heeft:
@@ -92,7 +108,7 @@ Code niet zelf introduceert.
 
 Spec: docs/marketing/blog-product-cta-spec.md
 
-## 8. Interne links
+## 9. Interne links
 
 - Vanuit dit artikel naar:
 - Naar dit artikel vanuit:

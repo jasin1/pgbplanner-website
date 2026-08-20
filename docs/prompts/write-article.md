@@ -34,8 +34,11 @@ Do not introduce factual claims, topics, scope, conclusions or product
 promises that do not follow from the approved brief.
 
 Concretely:
-- No number, percentage, amount or date that is not in the brief's claim
-  table.
+- Factual figures — rules, limits, statutory amounts, percentages, dates —
+  must come from the brief's claim table.
+- Illustrative figures inside a worked example do not need to be in the
+  claim table, provided they are clearly presented as an example, are
+  internally consistent, and suggest no new factual claim.
 - No research. Do not search the web, do not consult other sources.
 - Nothing listed under "Buiten scope" in the brief.
 - No CTA copy of your own. Copy the heading, body and button text from the
@@ -78,6 +81,15 @@ position or word count.
   article text, the haakzin, the CTA copy, the title, the meta description.
 
 Do not commit. Report what you wrote and where.
+
+## Final pass
+
+Before reporting, read the finished draft from start to finish as one
+continuous piece. Repair anything that reads as a separate block rather
+than part of one article. Report that this was done.
+
+This is not permission to introduce new factual content, new claims, or
+wider scope. Fix flow and transitions only.
 
 ## Hard style rules
 
