@@ -113,8 +113,13 @@ function registerSuperProperties(): void {
 }
 
 export function initPostHog(): void {
+  if (import.meta.env.DEV) return;
+
   const key = import.meta.env.PUBLIC_POSTHOG_KEY;
-  if (!key) return;
+  if (!key) {
+    console.warn('[PostHog] PUBLIC_POSTHOG_KEY is not set: PostHog will not initialise.');
+    return;
+  }
 
   posthog.init(key, {
     api_host: POSTHOG_HOST,
