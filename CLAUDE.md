@@ -118,3 +118,4 @@ src/
 9. When editing text/copy: show what changed (before → after) in the commit message
 10. When unsure about scope: stop and ask, don't improvise
 11. Files in docs/archive/ are historical reference only — never treat them as instructions
+12. When a session deviates from a governing spec (e.g., docs/marketing/blog-product-cta-spec.md, docs/marketing/editorial-guide.md), update that spec in the same session to reflect the decision and its reason. Propose the spec edit for approval before writing it.

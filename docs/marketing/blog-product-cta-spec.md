@@ -123,9 +123,11 @@ Het productblok mag deze overgang expliciet maken.
 
 ---
 
-## 6. Niet ieder artikel krijgt automatisch een CTA
+## 6. Elk artikel krijgt een CTA, maar nooit automatisch
 
-Gebruik een product-CTA alleen wanneer er een geloofwaardige productaansluiting is.
+Besloten op 12 augustus 2026: de default is een product-CTA per artikel.
+Dat betekent niet dat het blok automatisch verschijnt. De auteur plaatst
+hem bewust, met copy die voor dat specifieke artikel is geschreven.
 
 Goede kandidaten zijn artikelen over bijvoorbeeld:
 - budgetimpact;
@@ -137,13 +139,13 @@ Goede kandidaten zijn artikelen over bijvoorbeeld:
 - vervanging;
 - financiële vooruitblik.
 
-Een artikel dat alleen een procedurele of administratieve vraag beantwoordt hoeft niet kunstmatig naar PGB Planner te buigen.
+Een artikel dat alleen een procedurele of administratieve vraag beantwoordt hoeft niet kunstmatig naar PGB Planner te buigen. Het weglaten van de CTA blijft een legitieme uitkomst wanneer PGB Planner het vervolgprobleem niet aantoonbaar oplost. Leg die keuze en de reden vast in de brief van dat artikel.
 
 De vraag is steeds:
 
 > Lost PGB Planner werkelijk het vervolgprobleem op dat dit artikel bij de lezer zichtbaar maakt?
 
-Zo niet, dan geen inline productblok.
+Zo niet, dan geen inline productblok. Leg in de brief vast waarom.
 
 ---
 
@@ -244,11 +246,16 @@ De CTA-copy:
 - vermijdt overdreven beloftes;
 - gebruikt geen angst als verkoopdruk.
 
+Onderstaand voorbeeld illustreert de toon en structuur. Het is geen vaste
+tekst: kop, body en knoptekst worden per artikel opnieuw geschreven.
+
 ### Goed
 
 > **Wat betekent dit voor je budget tot het einde van het jaar?**  
 > Een hoger bedrag per uur werkt iedere maand door. Met PGB Planner kun je werkgeverslasten meenemen in je planning en vooruitkijken naar wat je huidige situatie voor de rest van het jaar betekent.  
-> **Bekijk PGB Planner →**
+> **Bekijk PGB Planner**
+
+(De component rendert de pijl als SVG; de knoptekst zelf bevat geen pijlteken.)
 
 ### Minder goed
 
@@ -268,7 +275,7 @@ De component is:
 - niet automatisch geïnjecteerd op iedere blogpagina.
 
 De auteur kiest per artikel:
-- of de CTA wordt gebruikt;
+- of de CTA wordt gebruikt, en zo niet: waarom niet, vastgelegd in de brief van dat artikel;
 - waar hij staat;
 - welke kop wordt gebruikt;
 - welke tekst wordt gebruikt;
