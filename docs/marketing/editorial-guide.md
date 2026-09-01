@@ -645,3 +645,18 @@ Gebruik het niet als:
 - automatische contentstrategie.
 
 Actuele claims uit dit onderzoek moeten opnieuw worden geverifieerd voordat ze in publicaties worden gebruikt.
+
+
+## Een artikel is pas af als het gedeeld is
+
+Publiceren is niet hetzelfde als distribueren.
+
+Een artikel telt pas als afgerond wanneer:
+- het gedeeld is in de drie grote FB-groepen en op LinkedIn;
+- elke post een eigen invalshoek heeft en niet enkel een link is;
+- elke post een eigen utm_content heeft;
+- elke post als regel in het postregister staat, ingevuld op het moment van posten.
+
+Frequentie telt per groep, niet per artikel. Een groep ziet in één ronde
+maximaal één post. Herhaald delen van eerdere artikelen is toegestaan en
+gewenst, mits met een nieuwe post en een nieuwe invalshoek.
