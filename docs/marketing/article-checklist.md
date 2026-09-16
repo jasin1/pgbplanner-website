@@ -28,6 +28,9 @@ blog-product-cta-spec.md.
    voorbeeld navolgbaar zonder externe bron?
 5. Beantwoordt het artikel de zoekvraag achter het definitieve keyword, of
    beantwoordt het een aangrenzende vraag?
+5a. Het concept blijft binnen de invalshoek uit sectie 2: procedure die
+    SVB, Per Saldo of het zorgkantoor al beschrijft, staat er hooguit kort
+    in, met verwijzing.
 
 ## B. Feiten
 
@@ -49,6 +52,9 @@ blog-product-cta-spec.md.
 11. Is er een voorwaarde, beperking of uitzondering toegevoegd of
     aangescherpt die niet in de claimlijst staat? Dit ging mis in artikel
     3, waar het artikel strenger werd dan de bron.
+11a. Geen cijfer met status "nog onbekend" wordt als werkelijk bedrag
+     gepresenteerd. Het artikel legt de methode uit en noemt wanneer het
+     cijfer bekend wordt.
 
 ## C. Redactie
 

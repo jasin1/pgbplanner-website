@@ -25,6 +25,7 @@ een lastige factcheck weegt zwaarder dan snelheid.
 - Status: concept | goedgekeurd
 - Datum goedkeuring:
 - Controledatum:
+- Rondes tot goedkeuring: (invullen bij publicatie; een ronde is elk moment waarop het concept wordt teruggestuurd)
 
 ## 2. Keyword en SERP-oordeel
 
@@ -35,6 +36,11 @@ een lastige factcheck weegt zwaarder dan snelheid.
 Wat staat er nu op pagina 1, en wat doen die pagina's inhoudelijk?
 
 Welk gat vullen wij dat daar niet wordt gevuld?
+
+Institutioneel terrein: wat publiceren SVB, Per Saldo en zorgkantoren
+zelf over dit onderwerp? Dit artikel gaat over wat dat voor de lezer
+persoonlijk betekent, niet over de procedure. Procedure die zij al
+beschrijven wordt hooguit kort genoemd, met een verwijzing.
 
 Afsluitende regel: hierop schrijven we, niet op [naastgelegen variant].
 
@@ -50,6 +56,9 @@ strekking wezenlijk beperkt.
 
 Letterlijk uitgeschreven, uit geleefde ervaring. Overnemen uit de
 artikelenlijst tenzij bewust gewijzigd.
+
+De haakzin beschrijft de aanleiding van de lezer om te zoeken, niet de
+aanleiding van de schrijver om over het onderwerp na te denken.
 
 ## 5. Claimlijst
 
@@ -74,6 +83,19 @@ De nuancekolom is voor uitzonderingen, regionale verschillen, betwiste
 toepassing en alles wat de claim beperkt. Wat daar staat moet in het
 artikel terugkomen. Beperkt een nuance de claim wezenlijk, dan hoort de
 claim niet in de belofte.
+
+### Wachtende cijfers
+
+Cijfers die het artikel nodig heeft maar die nog niet gepubliceerd zijn.
+Het artikel draagt op de methode, niet op het cijfer. Een wachtend cijfer
+staat in de claimlijst met status "nog onbekend" en wordt in het artikel
+niet als werkelijk bedrag gepresenteerd.
+
+| Cijfer | Verwacht wanneer | Waar het verschijnt | Hoe het artikel het tot dan draagt |
+|---|---|---|---|
+|  |  |  |  |
+
+De vroegste verwachte datum in deze tabel bepaalt de controledatum in de kop.
 
 ## 6. Uitgangspunt rekenvoorbeeld
 
