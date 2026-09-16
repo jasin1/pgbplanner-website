@@ -52,6 +52,11 @@ De belofte bevat geen claim die in de claimlijst hieronder een andere
 status heeft dan "geldend", en geen claim waarvan de nuancekolom de
 strekking wezenlijk beperkt.
 
+### Ongewenste conclusies
+
+Welke conclusie of welk gedrag mag de tekst niet uitnodigen, ook als elke
+zin feitelijk klopt? Eén regel per conclusie, met waarom die niet klopt.
+
 ## 4. Haakzin
 
 Letterlijk uitgeschreven, uit geleefde ervaring. Overnemen uit de

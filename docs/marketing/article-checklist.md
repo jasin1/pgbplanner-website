@@ -31,6 +31,8 @@ blog-product-cta-spec.md.
 5a. Het concept blijft binnen de invalshoek uit sectie 2: procedure die
     SVB, Per Saldo of het zorgkantoor al beschrijft, staat er hooguit kort
     in, met verwijzing.
+5b. Nodigt het concept ergens uit tot een conclusie die in de brief onder
+    "Ongewenste conclusies" staat, ook als de zinnen afzonderlijk kloppen?
 
 ## B. Feiten
 
