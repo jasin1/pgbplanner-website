@@ -1,0 +1,136 @@
+---
+import { formatArticleDate } from "../../lib/blog";
+
+interface Props {
+  href: string;
+  heroSrc?: string;
+  heroAlt: string;
+  pubDate: Date;
+  title: string;
+  teaser: string;
+  label?: string;
+  buttonText?: string;
+}
+
+const {
+  href,
+  heroSrc,
+  heroAlt,
+  pubDate,
+  title,
+  teaser,
+  label = "Blog",
+  buttonText = "Lees meer",
+} = Astro.props;
+---
+
+<a class="blog-featured" href={href}>
+  <div class="blog-featured__meta">
+    <span class="blog-featured__label">{label}</span>
+    <span class="blog-featured__meta-separator" aria-hidden="true">&middot;</span>
+    <time class="blog-featured__date" datetime={pubDate.toISOString()}>{formatArticleDate(pubDate)}</time>
+  </div>
+  <h2 class="blog-featured__title">{title}</h2>
+  {heroSrc && (
+    <img class="blog-featured__image" src={heroSrc} alt={heroAlt} loading="eager" decoding="async" />
+  )}
+  <p class="blog-featured__teaser">{teaser}</p>
+  <span class="btn btn-primary blog-featured__button">
+    {buttonText}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18.5 12L4.99997 12"></path><path d="M13 18C13 18 19 13.5811 19 12C19 10.4188 13 6 13 6"></path></svg>
+  </span>
+</a>
+
+<style>
+  .blog-featured {
+    display: grid;
+    grid-template-areas:
+      "image"
+      "label"
+      "title"
+      "teaser"
+      "button";
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-featured__meta {
+    grid-area: label;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .blog-featured__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary);
+  }
+
+  .blog-featured__meta-separator {
+    color: var(--color-light-dark);
+  }
+
+  .blog-featured__date {
+    font-size: 0.875rem;
+    color: var(--color-light-dark);
+  }
+
+  .blog-featured__title {
+    grid-area: title;
+    color: var(--color-l-blue);
+  }
+
+  .blog-featured__image {
+    grid-area: image;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 0.75rem;
+  }
+
+  .blog-featured__teaser {
+    grid-area: teaser;
+    color: var(--color-body-text);
+  }
+
+  .blog-featured__button {
+    grid-area: button;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .blog-featured:hover .blog-featured__button {
+    background: var(--color-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .blog-featured {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr auto 1fr auto;
+      grid-template-areas:
+        "image label"
+        "image title"
+        "image ."
+        "image teaser"
+        "image ."
+        "image button";
+      column-gap: 2rem;
+      row-gap: 0.5rem;
+    }
+
+    .blog-featured__image {
+      align-self: center;
+    }
+
+    .blog-featured__button {
+      align-self: center;
+    }
+  }
+</style>

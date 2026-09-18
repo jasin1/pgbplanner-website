@@ -28,3 +28,24 @@ export function leestijd(body: string): number {
     Math.ceil(tekst.trim().split(/\s+/).length / 200)
   );
 }
+
+const heroImageModules = import.meta.glob<{ default: { src: string; width: number; height: number } }>(
+  "../content/blog/*/hero.{jpg,jpeg,png}",
+  { eager: true }
+);
+
+export function getHeroImageSrc(postId: string): string | undefined {
+  const folder = postId.replace(/\/index\.mdx?$/, "");
+  const match = Object.entries(heroImageModules).find(([path]) =>
+    path.includes(`/content/blog/${folder}/hero.`)
+  );
+  return match?.[1]?.default?.src;
+}
+
+export function formatArticleDate(pubDate: Date): string {
+  return pubDate.toLocaleDateString("nl-NL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}

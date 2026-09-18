@@ -1,0 +1,91 @@
+---
+import { formatArticleDate } from "../../lib/blog";
+
+interface Props {
+  href: string;
+  heroSrc?: string;
+  heroAlt: string;
+  pubDate: Date;
+  title: string;
+  teaser: string;
+  headingLevel?: "h2" | "h3";
+}
+
+const {
+  href,
+  heroSrc,
+  heroAlt,
+  pubDate,
+  title,
+  teaser,
+  headingLevel = "h3",
+} = Astro.props;
+
+const Heading = headingLevel;
+---
+
+<a class="blog-card" href={href}>
+  {heroSrc && (
+    <img class="blog-card__image" src={heroSrc} alt={heroAlt} loading="lazy" decoding="async" />
+  )}
+  <div class="blog-card__body">
+    <time class="blog-card__date" datetime={pubDate.toISOString()}>{formatArticleDate(pubDate)}</time>
+    <Heading class="blog-card__title h3-style">{title}</Heading>
+    <p class="blog-card__description">{teaser}</p>
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius);
+    background: var(--color-white);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease;
+    overflow: hidden;
+  }
+
+  .blog-card:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(23, 20, 18, 0.12),
+      0 4px 6px -2px rgba(18, 18, 23, 0.08);
+  }
+
+  .blog-card__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .blog-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem;
+  }
+
+  .blog-card__date {
+    font-size: 0.875rem;
+    color: var(--color-light-dark);
+  }
+
+  /*
+    .h3-style (main.css) sets the font-size/line-height/letter-spacing so the
+    title looks identical whether the tag is an h2 (blog index) or h3
+    (homepage). This class only adds what .h3-style doesn't: color and
+    long-word wrapping, so it overrides the global h2/h3 tag styles without
+    !important.
+  */
+  .blog-card__title {
+    color: var(--color-l-blue);
+    overflow-wrap: break-word;
+  }
+
+  .blog-card__description {
+    color: var(--color-body-text);
+  }
+</style>

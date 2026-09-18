@@ -2,35 +2,66 @@
 export const prerender = true;
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getPublishedPosts } from "../../lib/blog";
+import { getPublishedPosts, getHeroImageSrc } from "../../lib/blog";
+import FeaturedArticleCard from "../../components/blog/FeaturedArticleCard.astro";
+import BlogCard from "../../components/blog/BlogCard.astro";
 
 const posts = await getPublishedPosts();
+const [featured, ...rest] = posts;
 ---
 
 <BaseLayout
   title="Blog • PGB Planner"
   description="Uitleg en achtergrond over PGB en administratie."
 >
-  <section style="max-width: 720px; margin: 0 auto; padding: 24px;">
-    <h1>Blog</h1>
+  <section class="flex-center blog-index">
+    <div class="container">
+      <h1 class="visually-hidden">Blog</h1>
 
-    {posts.length === 0 ? (
-      <p>Er zijn nog geen artikelen gepubliceerd.</p>
-    ) : (
-      <ul>
-        {posts.map((post) => (
-          <li style="margin: 24px 0;">
-            <a href={`/blog/${post.slug}/`}>
-              <strong>{post.data.title}</strong>
-            </a>
-            <div style="opacity: 0.7; font-size: 14px;">
-              {post.data.pubDate.toLocaleDateString("nl-NL")}
+      {posts.length === 0 ? (
+        <p>Er zijn nog geen artikelen gepubliceerd.</p>
+      ) : (
+        <>
+          <FeaturedArticleCard
+            href={`/blog/${featured.slug}/`}
+            heroSrc={getHeroImageSrc(featured.id)}
+            heroAlt={featured.data.heroAlt ?? ""}
+            pubDate={featured.data.pubDate}
+            title={featured.data.title}
+            teaser={featured.data.teaser ?? featured.data.description}
+            label="Nieuwste artikel"
+          />
+
+          {rest.length > 0 && (
+            <div class="blog-index__grid">
+              {rest.map((post) => (
+                <BlogCard
+                  href={`/blog/${post.slug}/`}
+                  heroSrc={getHeroImageSrc(post.id)}
+                  heroAlt={post.data.heroAlt ?? ""}
+                  pubDate={post.data.pubDate}
+                  title={post.data.title}
+                  teaser={post.data.teaser ?? post.data.description}
+                  headingLevel="h2"
+                />
+              ))}
             </div>
-            <p>{post.data.description}</p>
-          </li>
-        ))}
-      </ul>
-    )}
+          )}
+        </>
+      )}
+    </div>
   </section>
 </BaseLayout>
 
+<style>
+  .blog-index {
+    padding: 3rem 0 6rem;
+  }
+
+  .blog-index__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 6rem;
+  }
+</style>

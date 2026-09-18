@@ -1,22 +1,10 @@
 ---
-import { getPublishedPosts } from "../../lib/blog";
+import { getPublishedPosts, isBlogIndexThresholdMet, getHeroImageSrc } from "../../lib/blog";
+import BlogCard from "./BlogCard.astro";
 
 const allPosts = await getPublishedPosts();
-const posts = allPosts.slice(0, 4);
-const featuredPost = allPosts.length === 1 ? allPosts[0] : null;
-
-const heroImageModules = import.meta.glob<{ default: { src: string; width: number; height: number } }>(
-  "../../content/blog/*/hero.{jpg,jpeg,png}",
-  { eager: true }
-);
-
-function getHeroImageSrc(postId: string) {
-  const folder = postId.replace(/\/index\.mdx?$/, "");
-  const match = Object.entries(heroImageModules).find(([path]) =>
-    path.includes(`/content/blog/${folder}/hero.`)
-  );
-  return match?.[1]?.default?.src;
-}
+const posts = allPosts.slice(0, 3);
+const showAllLink = await isBlogIndexThresholdMet();
 ---
 
 {allPosts.length > 0 && (
@@ -26,52 +14,22 @@ function getHeroImageSrc(postId: string) {
         <h2>Laatste artikelen</h2>
       </div>
 
-      {featuredPost ? (
-        <div class="latest-articles__featured">
-          <span class="latest-articles__featured-label">Blog</span>
-          <h3 class="latest-articles__featured-title">{featuredPost.data.title}</h3>
-          {getHeroImageSrc(featuredPost.id) && (
-            <img
-              class="latest-articles__featured-image"
-              src={getHeroImageSrc(featuredPost.id)}
-              alt={featuredPost.data.heroAlt ?? ""}
-            />
-          )}
-          <p class="latest-articles__featured-teaser">
-            {featuredPost.data.teaser ?? featuredPost.data.description}
-          </p>
-          <a
-            class="btn btn-primary latest-articles__featured-button"
-            href={`/blog/${featuredPost.slug}/`}
-          >
-            Lees het artikel
-          </a>
-        </div>
-      ) : (
-        <div class="latest-articles__grid">
-          {posts.map((post) => {
-            const heroSrc = getHeroImageSrc(post.id);
-            return (
-              <a class="latest-articles__card" href={`/blog/${post.slug}/`}>
-                {heroSrc && (
-                  <img class="latest-articles__card-image" src={heroSrc} alt={post.data.heroAlt ?? ""} />
-                )}
-                <div class="latest-articles__card-body">
-                  <div class="latest-articles__date">
-                    {post.data.pubDate.toLocaleDateString("nl-NL", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </div>
-                  <h3 class="latest-articles__title">{post.data.title}</h3>
-                  <p class="latest-articles__description">
-                    {post.data.teaser ?? post.data.description}
-                  </p>
-                </div>
-              </a>
-            );
-          })}
+      <div class="latest-articles__grid">
+        {posts.map((post) => (
+          <BlogCard
+            href={`/blog/${post.slug}/`}
+            heroSrc={getHeroImageSrc(post.id)}
+            heroAlt={post.data.heroAlt ?? ""}
+            pubDate={post.data.pubDate}
+            title={post.data.title}
+            teaser={post.data.teaser ?? post.data.description}
+          />
+        ))}
+      </div>
+
+      {showAllLink && (
+        <div class="latest-articles__all">
+          <a class="btn btn-primary" href="/blog/">Bekijk alle artikelen</a>
         </div>
       )}
     </div>
@@ -84,128 +42,20 @@ function getHeroImageSrc(postId: string) {
     margin-bottom: 2.5rem;
   }
 
-  .latest-articles__featured {
-    display: grid;
-    grid-template-areas:
-      "label"
-      "title"
-      "image"
-      "teaser"
-      "button";
-    gap: 1rem;
-  }
-
-  .latest-articles__featured-label {
-    grid-area: label;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-secondary);
-  }
-
-  .latest-articles__featured-title {
-    grid-area: title;
-    color: var(--color-l-blue);
-  }
-
-  .latest-articles__featured-image {
-    grid-area: image;
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: 0.75rem;
-  }
-
-  .latest-articles__featured-teaser {
-    grid-area: teaser;
-    color: var(--color-body-text);
-  }
-
-  .latest-articles__featured-button {
-    grid-area: button;
-    justify-self: start;
-  }
-
-  @media (min-width: 1024px) {
-    .latest-articles__featured {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto 1fr auto 1fr auto;
-      grid-template-areas:
-        "image label"
-        "image title"
-        "image ."
-        "image teaser"
-        "image ."
-        "image button";
-      column-gap: 2rem;
-      row-gap: 0.5rem;
-    }
-
-    .latest-articles__featured-image {
-      align-self: center;
-    }
-
-    .latest-articles__featured-button {
-      align-self: center;
-    }
-  }
-
   .latest-articles__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
   }
 
-  .latest-articles__card {
+  .latest-articles__all {
     display: flex;
-    flex-direction: column;
-    border-radius: var(--radius);
-    background: var(--color-white);
-    box-shadow: var(--shadow-soft);
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.2s ease;
-    overflow: hidden;
+    justify-content: center;
+    margin-top: 3.5rem;
   }
 
-  .latest-articles__card-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
-
-  .latest-articles__card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 2rem;
-  }
-
-  .latest-articles__card:hover {
-    box-shadow:
-      0 10px 15px -3px rgba(23, 20, 18, 0.12),
-      0 4px 6px -2px rgba(18, 18, 23, 0.08);
-  }
-
-  .latest-articles__date {
-    font-size: 0.875rem;
-    color: var(--color-light-dark);
-  }
-
-  .latest-articles__title {
-    color: var(--color-l-blue);
-  }
-
-  .latest-articles__description {
-    color: var(--color-body-text);
-  }
-
-  @media (min-width: 1024px) {
-    .latest-articles__grid {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+  .latest-articles__all .btn {
+    display: inline-flex;
+    align-items: center;
   }
 </style>
