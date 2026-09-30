@@ -11,10 +11,10 @@ Blog articles have an inline product CTA (`ProductCta`), placed editorially per 
 ## Decisions already made (do not reopen)
 
 - **Scope:** all blog articles. No per-article opt-in or opt-out.
-- **Trigger:** appears at 10% scroll depth, measured against the article body element (not the full document). Changed from 25% after the visual check in Phase 4. Fixed percentage. Do NOT couple it to the position of the inline CTA.
-- **Scrolling back up above 10%:** the bar hides again.
+- **Trigger:** appears once the top of the article body element (`.article-content`) reaches the top of the viewport (`rect.top <= 0`). Replaced the percentage rule (25%, then 10%) after launch: a percentage depends on article length, and on short articles it was already met on load, so the bar showed immediately and never hid at the top. Do NOT couple it to the position of the inline CTA.
+- **Scrolling back up until the article top is below the top of the viewport again:** the bar hides again.
 - **Coexistence:** the sticky bar and the inline CTA may be visible at the same time. That is intended.
-- **Footer and bottom share row:** the bar hides as soon as the site footer or the bottom share row (`.blog-post__share--bottom`) enters the viewport, detected with an IntersectionObserver on both, using the same animation as it appears with. It comes back when neither is in the viewport and the reader is past 10%. No padding on the footer, no reserved space. (Share row added in Phase 3: otherwise the bar briefly covers the share row just before the footer appears.)
+- **Footer and bottom share row:** the bar hides as soon as the site footer or the bottom share row (`.blog-post__share--bottom`) enters the viewport, detected with an IntersectionObserver on both, using the same animation as it appears with. It comes back when neither is in the viewport and the reader is past the threshold. No padding on the footer, no reserved space. (Share row added in Phase 3: otherwise the bar briefly covers the share row just before the footer appears.)
 - **Not dismissible:** no close button, no remembered dismissed state, no storage of any kind.
 - **Animation:** subtle slide-in from the bottom. Must respect `prefers-reduced-motion` (no slide, just show/hide). Non-blocking, does not shift content, no layout shift.
 - **Copy:** supplied by me. Do not write, suggest or translate copy.
@@ -43,7 +43,7 @@ The homepage is the current destination, but this is intentionally temporary. Th
 - **Destination:** sticky click and impression events include the CTA destination, read from the same data file the bar links to, so what is measured always matches what is live. If the existing click event already records the destination under another property (such as `href`, `url` or `target`), reuse that property and convention. Do not add a second property with the same meaning.
 - PostHog project: website (not app).
 
-Why: the sticky bar is seen by everyone past 10%, the inline CTA only by readers who reach it. Clicks alone would favour the sticky bar for being more visible, not for working better. The destination property lets the homepage period and a later landing-page period be separated without relying on a remembered switch date. All of this must be correct from day one; old events cannot be enriched retroactively.
+Why: the sticky bar is seen by everyone who scrolls into the article, the inline CTA only by readers who reach it. Clicks alone would favour the sticky bar for being more visible, not for working better. The destination property lets the homepage period and a later landing-page period be separated without relying on a remembered switch date. All of this must be correct from day one; old events cannot be enriched retroactively.
 
 ## Out of scope
 
@@ -90,7 +90,7 @@ Propose:
 - implementation approach (Astro component with plain script vs island), with a one-line reason;
 - the exact impression event name and properties, and the destination property (new or reused), consistent with the click event;
 - how the "once per page view" guard works for both impressions;
-- how the 10% threshold is calculated against the article body;
+- how the threshold is determined against the article body;
 - styling: height, spacing, colours, z-index, using existing design tokens;
 - how you will verify: which pages, which events, which viewport widths.
 
@@ -103,7 +103,7 @@ One edit at a time. Show each edit before applying it. Do not batch edits.
 ### Phase 4: Verification
 
 - Check at 380px width and on desktop.
-- Confirm: appears at 10%, hides above 10%, hides at footer and returns when scrolling up, no layout shift, reduced motion works.
+- Confirm: appears when the article top reaches the viewport top, hides when scrolling back above it (test on a short article too, e.g. pgb-salarisverhoging-berekenen), hides at footer and returns when scrolling up, no layout shift, reduced motion works.
 - Confirm the build fails when a required field in the data file is removed (then restore it).
 - Confirm in the browser network tab or PostHog debug: sticky click sends `position: "sticky"` and the destination, inline click unchanged, each impression fires once per page view, sticky impression does not re-fire on reappearance.
 - Report results. Do not commit until I say so.

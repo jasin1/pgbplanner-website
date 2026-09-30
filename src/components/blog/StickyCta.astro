@@ -21,8 +21,6 @@ const { text, buttonText, destination } = cta.data;
 <script>
   import { trackBlogCtaViewed } from "../../lib/analytics";
 
-  const THRESHOLD = 0.1;
-
   const bar = document.querySelector<HTMLElement>(".sticky-cta");
   const link = bar?.querySelector<HTMLAnchorElement>("a[data-position]");
   const article = document.querySelector<HTMLElement>(".article-content");
@@ -44,8 +42,8 @@ const { text, buttonText, destination } = cta.data;
 
     const measure = () => {
       frame = 0;
-      const rect = article.getBoundingClientRect();
-      pastThreshold = window.innerHeight - rect.top >= rect.height * THRESHOLD;
+      // Past the threshold once the top of the article body reaches the top of the viewport
+      pastThreshold = article.getBoundingClientRect().top <= 0;
       update();
     };
 
