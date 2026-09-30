@@ -14,4 +14,23 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const ctaCopy = z
+  .string()
+  .min(1)
+  .refine((value) => !value.includes("AAN TE LEVEREN"), {
+    message:
+      "Sticky CTA copy is missing: replace the [AAN TE LEVEREN] placeholder in src/content/cta/sticky.md",
+  });
+
+const cta = defineCollection({
+  type: "content",
+  schema: z
+    .object({
+      text: ctaCopy,
+      buttonText: ctaCopy,
+      destination: z.string().regex(/^(\/|https:\/\/)/),
+    })
+    .strict(),
+});
+
+export const collections = { blog, cta };

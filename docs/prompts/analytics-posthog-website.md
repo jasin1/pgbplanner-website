@@ -104,13 +104,35 @@ known from `page_slug` on the click event.
 
 ## 4. Events
 
-Three explicit events, plus the standard pageview.
+Five explicit events, plus the standard pageview.
 
 ### `product_cta_clicked`
 
 Fires on click of any link to `app.pgbplanner.nl/registreer`.
 
 Properties: `page_type`, `page_slug`, `position`.
+
+Unchanged by the blog CTA work (sticky CTA task). This event means
+acquisition: clicks to registration only. Blog CTAs that link into the
+website (currently `/`) do not fire it; they use `blog_cta_clicked`. A blog
+CTA whose destination is a registration link fires both events, each
+exactly once.
+
+### `blog_cta_viewed`
+
+Impression of a blog article CTA. Fires once per page view per `position`:
+`inline` when at least 50% of the `ProductCta` block is in the viewport for
+the first time; `sticky` when the sticky bar appears for the first time.
+Does not fire again when the sticky bar reappears.
+
+Properties: `page_type`, `page_slug`, `position`, `destination`.
+
+### `blog_cta_clicked`
+
+Click on a blog article CTA (`ProductCta` link inside `.article-content`,
+or the sticky bar link). Fires exactly once per click.
+
+Properties: `page_type`, `page_slug`, `position`, `destination`.
 
 ### `share_clicked`
 
@@ -132,7 +154,7 @@ must never reach analytics.
 
 ## 4b. Acquisition properties on every event
 
-All three explicit events AND the standard pageview carry the stored
+All explicit events AND the standard pageview carry the stored
 first-touch context as properties:
 
 - `first_source`
@@ -156,7 +178,11 @@ automatically, rather than wiring them per event.
 
 `page_slug`: `home` for the homepage, otherwise the page or article slug.
 
-`position`: `header` | `hero` | `inline` | `section` | `bottom`
+`position`: `header` | `hero` | `inline` | `section` | `bottom` | `sticky`
+
+`destination`: the CTA link's `href` at the moment of the event, without
+query string or hash (e.g. `/`). Never hardcoded; the sticky bar's value
+comes from `src/content/cta/sticky.md`.
 
 `channel`: `mail` | `link` | `facebook` | `whatsapp`
 
@@ -171,8 +197,11 @@ Apply `position` as follows:
 - `src/pages/index.astro:34` (hero CTA) -> `hero`
 - `src/pages/index.astro:157` (mid-page CTA block) -> `section`
 - `src/pages/index.astro:240` (audience section CTA) -> `section`
-- `src/content/blog/2026-08-pgb-tekort-berekenen/index.md:115`
-  (styled product-cta block) -> `inline`
+- `ProductCta` blocks in `src/content/blog/*/index.mdx` -> `inline`.
+  Tracked by `blog_cta_viewed` and `blog_cta_clicked`, not by
+  `product_cta_clicked` (they link to `/`, not to registration)
+- sticky bar (`src/components/blog/StickyCta.astro`) -> `sticky`, same
+  two events
 - `src/content/blog/2026-08-pgb-tekort-berekenen/index.md:140`
   (plain inline text link at end of article) -> `bottom`
 - share controls, top instance -> `top` is NOT in the vocabulary; use

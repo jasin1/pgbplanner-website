@@ -504,7 +504,6 @@ input:focus {
   background: var(--color-secondary);
   border: 1px solid var(--color-secondary);
 }
-
 .sub-button {
   background: var(--color-form-btn);
 }
@@ -880,15 +879,26 @@ section[id] {
   background: rgba(0, 0, 0, 0.05);
 }
 
-.blog-post {
+/* .sticky-cta__inner shares the article column width so the sticky CTA aligns with the text */
+.blog-post,
+.sticky-cta__inner {
   max-width: 720px;
   margin-inline: auto;
-  padding: 1.5rem 1rem;
+  padding-inline: 1rem;
+}
+
+.blog-post {
+  padding-block: 1.5rem;
 }
 
 @media (min-width: 768px) {
+  .blog-post,
+  .sticky-cta__inner {
+    padding-inline: 0;
+  }
+
   .blog-post {
-    padding: 2.5rem 0rem;
+    padding-block: 2.5rem;
   }
 }
 

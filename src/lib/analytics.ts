@@ -5,6 +5,8 @@ const STORAGE_KEY = 'pgb_first_touch';
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 const SEARCH_ENGINES = ['google', 'bing', 'duckduckgo', 'yahoo', 'ecosia', 'startpage', 'yandex'];
 const REGISTRATION_SELECTOR = 'a[href^="https://app.pgbplanner.nl/registreer"]';
+const BLOG_CTA_SELECTOR = '.article-content .product-cta a[data-position], .sticky-cta a[data-position]';
+const INLINE_CTA_SELECTOR = '.article-content .product-cta';
 
 type FirstTouch = {
   source: string;
@@ -15,6 +17,7 @@ type FirstTouch = {
 };
 
 let ready = false;
+const viewedBlogCtaPositions = new Set<string>();
 
 function getStoredFirstTouch(): FirstTouch | null {
   try {
@@ -148,6 +151,54 @@ export function bindRegistrationCtaTracking(): void {
         });
       });
     });
+}
+
+function blogCtaProperties(el: HTMLAnchorElement): Record<string, string | undefined> {
+  const href = el.getAttribute('href') ?? '';
+  return {
+    page_type: document.body.dataset.pageType,
+    page_slug: document.body.dataset.pageSlug,
+    position: el.dataset.position,
+    destination: href.split(/[?#]/)[0],
+  };
+}
+
+export function bindBlogCtaTracking(): void {
+  document.querySelectorAll<HTMLAnchorElement>(BLOG_CTA_SELECTOR).forEach((el) => {
+    el.addEventListener('click', () => {
+      if (!ready) return;
+      posthog.capture('blog_cta_clicked', blogCtaProperties(el));
+    });
+  });
+}
+
+// Once per page view per position; later calls (e.g. the sticky bar reappearing) are ignored.
+// Returns true once the position is recorded (now or earlier), false if nothing could be captured yet.
+export function trackBlogCtaViewed(el: HTMLAnchorElement): boolean {
+  const position = el.dataset.position;
+  if (!ready || !position) return false;
+  if (viewedBlogCtaPositions.has(position)) return true;
+  viewedBlogCtaPositions.add(position);
+  posthog.capture('blog_cta_viewed', blogCtaProperties(el));
+  return true;
+}
+
+export function observeInlineCtaImpression(): void {
+  const blocks = document.querySelectorAll<HTMLElement>(INLINE_CTA_SELECTOR);
+  if (!blocks.length || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.5) return;
+        const link = entry.target.querySelector<HTMLAnchorElement>('a[data-position]');
+        if (link && trackBlogCtaViewed(link)) observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.5 },
+  );
+
+  blocks.forEach((block) => observer.observe(block));
 }
 
 export function bindShareTracking(): void {

@@ -6,6 +6,7 @@ import Mail from "./icons/Mail.astro";
 import Link from "./icons/Link.astro";
 import Facebook from "./icons/Facebook.astro";
 import Whatsapp from "./icons/Whatsapp.astro";
+import StickyCta from "./StickyCta.astro";
 
 type Props = {
   title: string;
@@ -88,6 +89,8 @@ const formattedDate = pubDate.toLocaleDateString("nl-NL", {
     </a>
   </div>
 </section>
+
+<StickyCta />
 
 <script>
   const CONFIRM_TEXT = "Link gekopieerd";

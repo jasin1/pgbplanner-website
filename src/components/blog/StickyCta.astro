@@ -1,0 +1,143 @@
+---
+import { getEntry } from "astro:content";
+
+const cta = await getEntry("cta", "sticky");
+if (!cta) {
+  throw new Error("Sticky CTA data missing: src/content/cta/sticky.md not found");
+}
+
+const { text, buttonText, destination } = cta.data;
+---
+
+<div class="sticky-cta" data-visible="false">
+  <div class="sticky-cta__inner">
+    <p class="sticky-cta__text font-bold">{text}</p>
+    <a class="btn btn-primary sticky-cta__button" href={destination} data-position="sticky">
+      {buttonText}
+    </a>
+  </div>
+</div>
+
+<script>
+  import { trackBlogCtaViewed } from "../../lib/analytics";
+
+  const THRESHOLD = 0.1;
+
+  const bar = document.querySelector<HTMLElement>(".sticky-cta");
+  const link = bar?.querySelector<HTMLAnchorElement>("a[data-position]");
+  const article = document.querySelector<HTMLElement>(".article-content");
+  const blockers = document.querySelectorAll<HTMLElement>(".blog-post__share--bottom, footer.footer");
+
+  if (bar && link && article && "IntersectionObserver" in window) {
+    const visibleBlockers = new Set<Element>();
+    let blockersKnown = blockers.length === 0;
+    let pastThreshold = false;
+    let frame = 0;
+
+    const update = () => {
+      if (!blockersKnown) return;
+      const show = pastThreshold && visibleBlockers.size === 0;
+      if ((bar.dataset.visible === "true") === show) return;
+      bar.dataset.visible = String(show);
+      if (show) trackBlogCtaViewed(link);
+    };
+
+    const measure = () => {
+      frame = 0;
+      const rect = article.getBoundingClientRect();
+      pastThreshold = window.innerHeight - rect.top >= rect.height * THRESHOLD;
+      update();
+    };
+
+    const scheduleMeasure = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+
+    const blockerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleBlockers.add(entry.target);
+        else visibleBlockers.delete(entry.target);
+      });
+      blockersKnown = true;
+      update();
+    });
+    blockers.forEach((el) => blockerObserver.observe(el));
+
+    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+    window.addEventListener("resize", scheduleMeasure, { passive: true });
+    scheduleMeasure();
+  }
+</script>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    padding-block: 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+    background: var(--color-bg-icon);
+    border-top: 1px solid var(--color-border-soft);
+    transform: translateY(100%);
+    visibility: hidden;
+    transition:
+      transform 0.2s ease,
+      visibility 0s linear 0.2s;
+  }
+
+  .sticky-cta[data-visible="true"] {
+    transform: translateY(0);
+    visibility: visible;
+    transition:
+      transform 0.2s ease,
+      visibility 0s linear 0s;
+  }
+
+  .sticky-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap);
+  }
+
+  .sticky-cta__text {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    line-height: 1.2;
+    color: var(--color-primary);
+  }
+
+  .sticky-cta__button {
+    flex-shrink: 0;
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    .sticky-cta__inner {
+      gap: 0.75rem;
+    }
+
+    .sticky-cta__text {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-cta,
+    .sticky-cta[data-visible="true"] {
+      transition: none;
+    }
+  }
+
+  @media print {
+    .sticky-cta {
+      display: none;
+    }
+  }
+</style>

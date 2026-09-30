@@ -52,6 +52,8 @@ Eén kleine set eventnamen die homepage, blogartikelen en latere landingspagina'
 
 De exacte namen en waarden worden apart vastgesteld en zijn daarna vast. Hernoemen achteraf knipt de geschiedenis in tweeën.
 
+Uitzondering met reden: `blog_cta_viewed` en `blog_cta_clicked` meten een andere stap dan `product_cta_clicked`, namelijk de doorklik vanuit een artikel naar de eigen site (nu de homepage, later een landingspagina). Ze splitsen geen bestaand event op per paginasoort. `product_cta_clicked` blijft uitsluitend klikken naar registratie meten.
+
 ### Twee ritmes van aflezen
 
 **Wekelijks, tijdens publicatie.** Vraag: werkt het. Komt er verkeer binnen, wordt er op de CTA geklikt, gebeurt er überhaupt iets. Kleine aantallen zijn hier bruikbaar, want nul is een duidelijk antwoord. Niet vergelijken tussen bronnen.
