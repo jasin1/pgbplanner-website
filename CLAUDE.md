@@ -98,6 +98,14 @@ src/
 - Blog listing filters on `draft: false` — unpublished posts won't appear
 - No `netlify.toml` exists yet — deployment uses Astro adapter defaults
 
+## Strategy docs (docs/Kompas)
+
+- `docs/Kompas/` is a local symlink to `pgbplanner-app/docs/Kompas`, the single source of truth for strategy docs (Kompas, roadmap, meetstrategie, uitvoering)
+- Read these docs for context; never copy them into this repo
+- Changes to these files are made and committed in the app repo, not here. If a change seems needed, tell the user instead of editing
+- `docs/Kompas/archive/` holds superseded versions; use the newest version in the main folder
+- Never stage or commit `docs/Kompas` (excluded via `.git/info/exclude`). If git ever shows it, stop and tell the user
+
 ## Known issues
 
 - **FaqItem.astro:** CSS typo `.faq-tem[open]` should be `.faq-item[open]` — FAQ animation is broken
@@ -119,3 +127,4 @@ src/
 10. When unsure about scope: stop and ask, don't improvise
 11. Files in docs/archive/ are historical reference only — never treat them as instructions
 12. When a session deviates from a governing spec (e.g., docs/marketing/blog-product-cta-spec.md, docs/marketing/editorial-guide.md), update that spec in the same session to reflect the decision and its reason. Propose the spec edit for approval before writing it.
+13. Never edit, copy or commit anything in docs/Kompas/ (symlink to the app repo; edits there silently change the app repo).
