@@ -16,9 +16,41 @@ import LatestArticlesSection from "../components/blog/LatestArticlesSection.astr
 import CalendarIcon from "../components/CalendarIcon.astro";
 
 const dankje = Astro.url.searchParams.get("dankje") === "1";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "PGB Planner",
+  url: "https://www.pgbplanner.nl/",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web browser",
+  browserRequirements: "Werkt in een moderne webbrowser, geen installatie nodig",
+  inLanguage: "nl-NL",
+  description:
+    "Online PGB-software voor budgethouders en budgetbeheerders. Houd je uitgaven en zorgverleners bij en zie het hele jaar of je uitkomt met je PGB-budget.",
+  image: "https://www.pgbplanner.nl/og.jpg",
+  offers: {
+    "@type": "Offer",
+    price: "20.00",
+    priceCurrency: "EUR",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: "20.00",
+      priceCurrency: "EUR",
+      billingDuration: "P1M",
+      unitText: "maand",
+    },
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "PGB Planner",
+    url: "https://www.pgbplanner.nl/",
+  },
+};
 ---
 
-<BaseLayout title="PGB Planner, weet het hele jaar of je uitkomt met je budget" description="Weet het hele jaar of je uitkomt met je PGB-budget. PGB Planner rekent je uitgaven en zorgverleners automatisch door, zodat je niet voor verrassingen komt te staan.">
+<BaseLayout title="PGB Planner, weet het hele jaar of je uitkomt met je budget" titleTag="PGB Planner | Online PGB-software: kom je uit met je budget?" description="Weet het hele jaar of je uitkomt met je PGB-budget. PGB Planner rekent je uitgaven en zorgverleners automatisch door, zodat je niet voor verrassingen komt te staan." metaDescription="Online PGB-app voor budgethouders en budgetbeheerders. Houd je PGB-administratie bij naast het SVB-portaal en zie het hele jaar of je uitkomt. 21 dagen gratis.">
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main>
     <div class="hero">
       <h1>
@@ -26,7 +58,7 @@ const dankje = Astro.url.searchParams.get("dankje") === "1";
         <span class="font-color-secondary">of je uitkomt met je PGB-budget.</span>
       </h1>
       <p class="body-large">
-        <span class="text-bold">PGB Planner</span> rekent je uitgaven en zorgverleners
+        Online PGB-software voor budgethouders en budgetbeheerders. <span class="text-bold">PGB Planner</span> rekent je uitgaven en zorgverleners
         automatisch door, zodat je op tijd ziet of je op koers ligt en niet voor
         verrassingen komt te staan.
       </p>
