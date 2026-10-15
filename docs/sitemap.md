@@ -15,6 +15,13 @@ Update this file when pages are added, removed, or renamed.
 **External services:** Kit.com (newsletter form submission), reCAPTCHA v2
 **Notes:** Bulk of page-specific CSS lives in scoped `<style>` block, not in main.css
 
+### /vooruitblik/ (vooruitblik.astro)
+**Purpose:** Compact product landing page for Vooruitblik (Facebook campaign `product-vooruitblik-okt26`, Oct 2026), basis for the later permanent product page. One action only: start the 21-day trial
+**Layout:** BaseLayout (prerendered, `export const prerender = true`)
+**Key components:** StepCard, FaqItem, CheckIcon
+**Tracking:** existing `product_cta_clicked` via registration links, `position` = `hero` / `bottom` (plus `header`), `page_slug` = `/vooruitblik/`
+**Notes:** Video and poster are served from `public/video/vooruitblik-16x9.mp4` and `public/video/vooruitblik-poster.jpg` (paths fixed in the page). FAQ items are page-specific and live in the page, not in FaqSection
+
 ### /lees-meer (lees-meer.astro)
 **Purpose:** Extended "about PGB Planner" page with longer prose and CTAs
 **Layout:** BaseLayout

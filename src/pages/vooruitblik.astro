@@ -1,0 +1,362 @@
+---
+export const prerender = true;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StepCard from "../components/StepCard.astro";
+import FaqItem from "../components/FaqItem.astro";
+import CheckIcon from "../components/CheckIcon.astro";
+
+const REGISTRATION_URL = "https://app.pgbplanner.nl/registreer";
+
+// Video en poster staan in public/video/.
+const VIDEO_SRC = "/video/vooruitblik-16x9.mp4";
+const POSTER_SRC = "/video/vooruitblik-poster.jpg";
+
+const benefits = [
+  "Je resterende budget aan het eind van het jaar, op basis van je eigen planning.",
+  "Wat een wijziging doet, zoals extra uren of een nieuw tarief, voordat je die doorvoert. Je administratie blijft zoals hij is.",
+  "Het werkt naast het SVB-portaal, niet in plaats ervan.",
+];
+
+const steps = [
+  { title: "Vul je budget in en wat je al hebt besteed." },
+  { title: "Voeg je zorgverleners toe, met hun tarief en werkgeverslasten." },
+  {
+    title: "Vul in Vooruitblik in hoeveel uur ze per week werken.",
+    description: "Je ziet direct wat er overblijft.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Hoe rekent Vooruitblik uit wat er overblijft?",
+    answer:
+      "Vooruitblik gebruikt je resterende jaarbudget en berekent wat je geplande zorg naar verwachting nog gaat kosten. Daarbij houdt het rekening met de uren, tarieven, eventuele werkgeverslasten en vakantieweken. Zo zie je wat er aan het einde van het jaar naar verwachting overblijft.",
+  },
+  {
+    question: "Verandert mijn administratie als ik iets uitprobeer?",
+    answer:
+      "Nee. Wat je in Vooruitblik aanpast, zoals extra uren of een ander tarief, staat los van je administratie. Je budget en je geregistreerde uren veranderen niet. Besluit je een wijziging echt door te voeren, dan regel je dat zelf, zoals je dat nu ook doet.",
+  },
+  {
+    question: "Moet ik mijn gegevens opnieuw invullen?",
+    answer:
+      "Vooruitblik neemt de zorgverleners, tarieven en werkgeverslasten over die je al in PGB Planner hebt staan. Je vult zelf de verwachte weekuren in. Daarna kun je veranderingen uitproberen.",
+  },
+  {
+    question: "Wat gebeurt er na de 21 dagen?",
+    answer:
+      "Je probeert PGB Planner 21 dagen gratis, met alle functies, ook Vooruitblik. Je vult geen betaalgegevens in en de proefperiode stopt automatisch. Wil je daarna verder, dan kost PGB Planner €20 per maand, inclusief btw. Je kunt maandelijks opzeggen.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kom je uit met je pgb-budget?"
+  titleTag="Vooruitblik: kom je uit met je pgb-budget? | PGB Planner"
+  description="Zie nu al wat er eind december overblijft van je pgb-budget, en wat er verandert als er iets verandert. 21 dagen gratis proberen, geen betaalgegevens nodig."
+  hideHeader={true}
+>
+  <div class="vb-topbar section-bg-color">
+    <div class="container-large vb-topbar__inner">
+      <a class="vb-topbar__logo" href="/" aria-label="PGB Planner home">
+        <img src="/main-logo-v2.svg" alt="" width="303" height="95" />
+      </a>
+      <a class="vb-topbar__link" href={REGISTRATION_URL} data-position="header">Aanmelden</a>
+    </div>
+  </div>
+
+  <section class="vb-hero section-bg-color">
+    <div class="container vb-hero__inner">
+      <h1 class="font-color-primary">Kom je uit met je pgb-budget?</h1>
+      <p class="body-large">
+        Met Vooruitblik zie je nu al wat er eind december overblijft. En wat er
+        gebeurt als er iets verandert, voordat je het doorvoert.
+      </p>
+      <div class="buttons-wrapper">
+        <a class="btn btn-primary" href={REGISTRATION_URL} data-position="hero">Probeer 21 dagen gratis</a>
+      </div>
+      <p class="vb-hero__note">Geen betaalgegevens nodig. Stopt automatisch.</p>
+      <div class="vb-video border-soft">
+        <video
+          width="1920"
+          height="1080"
+          poster={POSTER_SRC}
+          preload="metadata"
+          controls
+          muted
+          playsinline
+          aria-label="Demo van Vooruitblik in PGB Planner"
+        >
+          <source src={VIDEO_SRC} type="video/mp4" />
+        </video>
+      </div>
+      <div class="buttons-wrapper vb-video-cta">
+        <a class="btn btn-primary" href={REGISTRATION_URL} data-position="video">Probeer het met je eigen budget</a>
+      </div>
+      <p class="vb-hero__note vb-video-note">21 dagen gratis. Geen betaalgegevens nodig.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container vb-narrow">
+      <h2>Vooruit kijken, niet alleen terug</h2>
+      <ul class="vb-benefits">
+        {
+          benefits.map((text) => (
+            <li>
+              <span class="vb-benefits__icon" aria-hidden="true">
+                <CheckIcon />
+              </span>
+              <span>{text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-bg-color">
+    <div class="container vb-narrow">
+      <h2>In drie stappen</h2>
+      <ol class="vb-steps">
+        {
+          steps.map((step, i) => (
+            <li>
+              <StepCard title={step.title} description={step.description}>
+                <span slot="icon" class="vb-steps__number" aria-hidden="true">
+                  {i + 1}
+                </span>
+              </StepCard>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container vb-narrow">
+      <h2>Veelgestelde vragen</h2>
+      <div class="vb-faq">
+        {faqs.map((item) => <FaqItem question={item.question} answer={item.answer} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="container padding-bottom">
+    <div class="container container-block cta-block border-soft">
+      <div class="text-card">
+        <h2>Bekijk het voor je eigen budget</h2>
+        <p class="txt-w-60ch">
+          Ik heb PGB Planner gebouwd vanuit mijn eigen jaren als pgb-beheerder.
+          Met Vooruitblik weet je op tijd waar je staat.
+        </p>
+        <p class="txt-w-60ch">
+          21 dagen gratis proberen. Geen betaalgegevens nodig. Daarna €20 per
+          maand, maandelijks opzegbaar.
+        </p>
+        <div class="btn-one-wrapper">
+          <a class="btn btn-primary" href={REGISTRATION_URL} data-position="bottom">Probeer 21 dagen gratis</a>
+        </div>
+      </div>
+      <div class="logo-in-wrapper">
+        <img src="/main-logo-v2.svg" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Campagnerij i.p.v. de sitebrede header: maten gelijk aan Header.astro */
+    .vb-topbar {
+      width: 100%;
+    }
+
+    .vb-topbar__inner {
+      height: var(--header-h);
+      padding-inline: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .vb-topbar__logo {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .vb-topbar__logo img {
+      height: 37px;
+      width: auto;
+      border-radius: 0;
+    }
+
+    .vb-topbar__link {
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      font-weight: 500;
+      color: var(--color-l-blue);
+      white-space: nowrap;
+    }
+
+    .vb-topbar__link:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero: waarden gelijk aan de homepage-hero (index.astro) */
+    .vb-hero {
+      padding: 4.5rem 0 3rem;
+      text-align: center;
+    }
+
+    .vb-hero__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .vb-hero h1 {
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .vb-hero p {
+      max-width: 680px;
+    }
+
+    .vb-hero .buttons-wrapper {
+      margin-bottom: 0;
+    }
+
+    .vb-hero .btn-primary {
+      font-size: 1.25rem;
+    }
+
+    .vb-hero__note {
+      font-size: 1rem;
+      color: var(--color-body-text);
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .vb-video-note {
+      margin-bottom: 0;
+    }
+
+    /* Video: vaste 16:9-verhouding zodat de layout niet verspringt */
+    .vb-video {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: var(--color-white);
+    }
+
+    .vb-video video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .vb-narrow {
+      max-width: 720px;
+    }
+
+    .vb-narrow h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .vb-benefits {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .vb-benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      color: var(--color-black);
+    }
+
+    .vb-benefits__icon {
+      flex-shrink: 0;
+      display: flex;
+      margin-top: 0.125rem;
+    }
+
+    .vb-steps {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .vb-steps__number {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-secondary);
+    }
+
+    .vb-faq {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .text-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+    }
+
+    @media (max-width: 1024px) {
+      .vb-hero {
+        padding: 3.5rem 0 2.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .vb-hero {
+        padding: 2rem 0;
+      }
+
+      .vb-hero__note {
+        margin-bottom: 1.5rem;
+      }
+
+      .vb-hero .buttons-wrapper .btn {
+        width: 100%;
+      }
+
+      .text-card {
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+
+      /* Onderste knop: volle breedte en tapzone van minimaal 44px, zoals de hero-knop */
+      .cta-block .btn-one-wrapper {
+        width: 100%;
+      }
+
+      .cta-block .btn-one-wrapper .btn {
+        display: block;
+        text-align: center;
+        padding-block: 0.75rem;
+      }
+    }
+
+    /* Langere knoptekst onder de video: kleiner en mag afbreken, zodat hij niet buiten beeld valt */
+    @media (max-width: 400px) {
+      .vb-video-cta .btn {
+        font-size: 1.125rem;
+        white-space: normal;
+      }
+    }
+  </style>
+</BaseLayout>

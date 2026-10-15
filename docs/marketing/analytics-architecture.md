@@ -44,6 +44,8 @@ PostHog houdt twee sets bij. `Initial` wordt gezet bij het allereerste event van
 
 Voor de vraag welke bron klanten oplevert sturen we op **`Initial`**. Iemand die via de blog binnenkomt en later via een andere link terugkomt, blijft aan de blog toegerekend. `Latest` blijft beschikbaar als extra context, maar is niet de maatstaf.
 
+Bekende beperking: de website bewaart de first-touch-UTM's 30 dagen en overschrijft ze in die periode niet, ook niet als iemand via een nieuwe campagnelink binnenkomt. Registratielinks dragen dus de eerste bron mee. Een terugkerende bezoeker wordt daardoor mogelijk niet aan een latere, specifieke campagne toegeschreven, zoals `product-vooruitblik-okt26` (oktober 2026). Bewust zo gelaten voor die lancering; de campagne is aan de websitekant wel af te lezen via `page_slug` op `product_cta_clicked`.
+
 Openstaand: bij de test van 12 augustus was `Initial` niet met UTM's gevuld, waarschijnlijk doordat die browser de app al eerder had gezien. Dit wordt geverifieerd in de end-to-end test vanaf een browser die de app nooit heeft bezocht.
 
 ### Eventvocabulaire
