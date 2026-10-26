@@ -51,7 +51,7 @@ const schema = {
 
 <BaseLayout title="PGB Planner, weet het hele jaar of je uitkomt met je budget" titleTag="PGB Planner | Online PGB-software: kom je uit met je budget?" description="Weet het hele jaar of je uitkomt met je PGB-budget. PGB Planner rekent je uitgaven en zorgverleners automatisch door, zodat je niet voor verrassingen komt te staan." metaDescription="Online PGB-app voor budgethouders en budgetbeheerders. Houd je PGB-administratie bij naast het SVB-portaal en zie het hele jaar of je uitkomt. 21 dagen gratis.">
   <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <main>
+  <div class="page-main">
     <div class="hero">
       <h1>
         <span class="font-color-primary">Weet het hele jaar</span><br />
@@ -321,7 +321,7 @@ const schema = {
     </div>
     <LatestArticlesSection />
     <SignupSection />
-  </main>
+  </div>
   <style>
     .hero {
       background-color: var(--color-bg);
