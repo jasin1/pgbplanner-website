@@ -111,7 +111,6 @@ src/
 - **FaqItem.astro:** CSS typo `.faq-tem[open]` should be `.faq-item[open]` — FAQ animation is broken
 - **card.astro:** lowercase filename, all other components are PascalCase
 - **.obsidian/ in repo:** `src/content/blog/.obsidian/` should be gitignored
-- **GA4 without consent:** no cookie banner or consent mechanism — GDPR risk
 
 ## Hard rules for Claude Code
 
