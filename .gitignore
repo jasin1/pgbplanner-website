@@ -38,3 +38,7 @@ docs/marketing/artikelen/archive/
 
 # Local review screenshots
 screenshots/
+
+# Local AI tooling
+_local/
+.claude/settings.local.json

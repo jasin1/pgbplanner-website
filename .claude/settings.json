@@ -1,0 +1,20 @@
+{
+  "env": {
+    "AI_TOOLKIT_CHECK": "npm run build"
+  },
+  "permissions": {
+    "allow": [],
+    "ask": [
+      "Bash(curl *api.kit.com*)",
+      "Bash(curl *api.convertkit.com*)",
+      "Bash(curl *posthog.com*)",
+      "Bash(curl *n8n*)",
+      "Bash(curl *api.resend.com*)",
+      "Bash(curl *api.tally.so*)",
+      "Bash(curl */api/contact*)",
+      "Bash(netlify *)",
+      "Bash(npx netlify *)"
+    ],
+    "deny": []
+  }
+}

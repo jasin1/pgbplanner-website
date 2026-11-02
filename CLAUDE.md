@@ -128,3 +128,22 @@ src/
 11. Files in docs/archive/ are historical reference only — never treat them as instructions
 12. When a session deviates from a governing spec (e.g., docs/marketing/blog-product-cta-spec.md, docs/marketing/editorial-guide.md), update that spec in the same session to reflect the decision and its reason. Propose the spec edit for approval before writing it.
 13. Never edit, copy or commit anything in docs/Kompas/ (symlink to the app repo; edits there silently change the app repo).
+
+## Risico's in dit project (ai-toolkit project layer)
+
+Algemene regels: `~/.claude/CLAUDE.md` en `~/.claude/ai-toolkit/docs/risiconiveaus.md`. Hier alleen wat dit project strenger maakt.
+
+- Checks: `npm run build` (staat ook als `AI_TOOLKIT_CHECK` in `.claude/settings.json`; de stop-hook draait het). Valideert ook de frontmatter van artikelen en de sticky-CTA. `astro check` kan niet (`@astrojs/check` is niet geïnstalleerd); `npx tsc --noEmit` checkt geen `.astro`- en `.mdx`-bestanden.
+- Niveau 3 in dit project:
+  - Persoonsgegevens en e-mail: het contactformulier `src/components/SignupSection.astro` → `src/pages/api/contact.ts` → n8n-webhook (`CONTACT_WEBHOOK_URL`) → Resend en Kit. Een echte POST naar `/api/contact`, ook vanaf `astro dev`, verstuurt echte mail en kan iemand inschrijven. Tally-formulieren in `src/pages/vragenlijst.astro` en `src/pages/feedback.astro`.
+  - Tracking: `src/lib/analytics.ts` (PostHog, events) en PostHog-init plus GA4 in `src/layouts/BaseLayout.astro`. Nieuwe events of nieuwe trackers altijd naar Jasin. Analytics (PostHog and GA4) is covered as functional cookies in the privacy statement and terms (updated April 2026). No consent banner is needed. This is a closed decision: do not raise it unless Jasin asks.
+  - reCAPTCHA in `SignupSection.astro` en `api/contact.ts`.
+  - Privacyverklaring en voorwaarden staan in de app; hier alleen de redirect `/privacy` in `public/_redirects` en de link in `src/components/Footer.astro`.
+  - `docs/marketing/seo/` (gitignored, kan persoonsgegevens van derden bevatten): lezen voor research mag, nooit committen en nooit persoonlijke details overnemen in teksten.
+- Niveau 2 in dit project:
+  - Artikelen in `src/content/blog/*/index.mdx`. Artikelen worden gecommit met `draft: true`. Publiceren (omzetten naar `draft: false`) is niveau 2. Om een concept lokaal te bekijken: zet tijdelijk `draft: false`, commit dat niet, en zet het daarna terug.
+  - Teksten die bezoekers zien: `src/pages/*.astro`, `src/components/` (o.a. `FaqSection.astro`, `Header.astro`, `Footer.astro`, `SignupSection.astro`, `blog/`), `src/content/cta/sticky.md`.
+  - SEO: meta, canonical en `noindex` in `src/layouts/BaseLayout.astro`, `astro.config.mjs` (site, sitemap), `public/robots.txt`, `public/_redirects`, `BLOG_INDEX_THRESHOLD` in `src/lib/blog.ts`.
+  - Push naar `main` = live via Netlify.
+- Extra ask-acties: `curl` naar Kit, PostHog, n8n, Resend of Tally, `curl` naar `/api/contact`, elk `netlify`-commando.
+- Advisor-context: `advisor-context.md` (projectroot).
