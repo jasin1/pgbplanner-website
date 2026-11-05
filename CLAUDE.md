@@ -127,6 +127,7 @@ src/
 11. Files in docs/archive/ are historical reference only — never treat them as instructions
 12. When a session deviates from a governing spec (e.g., docs/marketing/blog-product-cta-spec.md, docs/marketing/editorial-guide.md), update that spec in the same session to reflect the decision and its reason. Propose the spec edit for approval before writing it.
 13. Never edit, copy or commit anything in docs/Kompas/ (symlink to the app repo; edits there silently change the app repo).
+14. Notion task work goes through `notion-tasks` (ai-toolkit; see its docs/commands.md, section "Notion"). No ad-hoc Notion scripts.
 
 ## Risico's in dit project (ai-toolkit project layer)
 
