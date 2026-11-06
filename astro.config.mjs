@@ -9,7 +9,7 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/vragenlijst'),
+      filter: (page) => !page.includes('/bedankt-feedback'),
     }),
     mdx(),
   ],

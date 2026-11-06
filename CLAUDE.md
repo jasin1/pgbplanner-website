@@ -39,9 +39,7 @@ src/
 ├── pages/
 │   ├── index.astro      # Landing page (hero, features, steps, FAQ, signup)
 │   ├── lees-meer.astro  # About page
-│   ├── vragenlijst.astro        # Tally.so embed
 │   ├── bedankt.astro            # Thank-you after newsletter signup
-│   ├── bedankt-vragenlijst.astro # Thank-you after questionnaire
 │   ├── email-bevestigen.astro   # Email verification screen
 │   ├── privacy.astro            # Privacy policy
 │   ├── blog/index.astro         # Blog listing
@@ -135,7 +133,7 @@ Algemene regels: `~/.claude/CLAUDE.md` en `~/.claude/ai-toolkit/docs/risiconivea
 
 - Checks: `npm run build` (staat ook als `AI_TOOLKIT_CHECK` in `.claude/settings.json`; de stop-hook draait het). Valideert ook de frontmatter van artikelen en de sticky-CTA. `astro check` kan niet (`@astrojs/check` is niet geïnstalleerd); `npx tsc --noEmit` checkt geen `.astro`- en `.mdx`-bestanden.
 - Niveau 3 in dit project:
-  - Persoonsgegevens en e-mail: het contactformulier `src/components/SignupSection.astro` → `src/pages/api/contact.ts` → n8n-webhook (`CONTACT_WEBHOOK_URL`) → Resend en Kit. Een echte POST naar `/api/contact`, ook vanaf `astro dev`, verstuurt echte mail en kan iemand inschrijven. Tally-formulieren in `src/pages/vragenlijst.astro` en `src/pages/feedback.astro`.
+  - Persoonsgegevens en e-mail: het contactformulier `src/components/SignupSection.astro` → `src/pages/api/contact.ts` → n8n-webhook (`CONTACT_WEBHOOK_URL`) → Resend en Kit. Een echte POST naar `/api/contact`, ook vanaf `astro dev`, verstuurt echte mail en kan iemand inschrijven.
   - Tracking: `src/lib/analytics.ts` (PostHog, events) en PostHog-init plus GA4 in `src/layouts/BaseLayout.astro`. Nieuwe events of nieuwe trackers altijd naar Jasin. Analytics (PostHog and GA4) is covered as functional cookies in the privacy statement and terms (updated April 2026). No consent banner is needed. This is a closed decision: do not raise it unless Jasin asks.
   - reCAPTCHA in `SignupSection.astro` en `api/contact.ts`.
   - Privacyverklaring en voorwaarden staan in de app; hier alleen de redirect `/privacy` in `public/_redirects` en de link in `src/components/Footer.astro`.

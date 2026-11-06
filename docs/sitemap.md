@@ -49,21 +49,14 @@ Update this file when pages are added, removed, or renamed.
 
 ## Form flows
 
-### /vragenlijst (vragenlijst.astro)
-**Purpose:** Full-page Tally.so feedback form (iframe embed)
-**Layout:** BaseLayout
-
 ### /bedankt (bedankt.astro)
-**Purpose:** Thank-you page after newsletter signup — links to questionnaire
-**Layout:** BaseLayout
-
-### /bedankt-vragenlijst (bedankt-vragenlijst.astro)
-**Purpose:** Thank-you page after completing the questionnaire
+**Purpose:** Thank-you page after newsletter signup
 **Layout:** BaseLayout
 
 ### /bedankt-feedback (bedankt-feedback.astro)
 **Purpose:** Thank-you page after completing a Tally feedback form from email — public page, user may or may not be logged in
 **Layout:** BaseLayout
+**Notes:** `noindex`, excluded from the XML sitemap via the filter in `astro.config.mjs`
 
 ### /email-bevestigen (email-bevestigen.astro)
 **Purpose:** Email verification confirmation screen (Kit.com double opt-in)
