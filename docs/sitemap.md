@@ -52,6 +52,7 @@ Update this file when pages are added, removed, or renamed.
 ### /bedankt (bedankt.astro)
 **Purpose:** Thank-you page after newsletter signup
 **Layout:** BaseLayout
+**Notes:** `noindex`, excluded from the XML sitemap via the filter in `astro.config.mjs`
 
 ### /bedankt-feedback (bedankt-feedback.astro)
 **Purpose:** Thank-you page after completing a Tally feedback form from email — public page, user may or may not be logged in
@@ -61,6 +62,7 @@ Update this file when pages are added, removed, or renamed.
 ### /email-bevestigen (email-bevestigen.astro)
 **Purpose:** Email verification confirmation screen (Kit.com double opt-in)
 **Layout:** BaseLayout
+**Notes:** `noindex`, excluded from the XML sitemap via the filter in `astro.config.mjs`
 
 ---
 

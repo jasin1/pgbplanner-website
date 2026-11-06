@@ -21,7 +21,7 @@ Users who log in are redirected to app.pgbplanner.nl — authentication and app 
 - **TypeScript:** strict mode
 - **Hosting:** Netlify
 - **Analytics:** GA4 (inline in BaseLayout.astro)
-- **Forms:** Kit.com (ConvertKit) for newsletter signup, Tally.so for questionnaires
+- **Forms:** Kit.com (ConvertKit) for newsletter signup
 - **Spam protection:** reCAPTCHA v2 (server-side verification via `/api/verify-recaptcha`)
 - **Content:** Astro Content Collections for blog (Markdown, Zod schema)
 
