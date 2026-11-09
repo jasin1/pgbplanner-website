@@ -125,7 +125,6 @@ External services: GA4, PostHog (EU), Google reCAPTCHA, n8n (with Resend and Kit
 ## Known issues
 
 - **card.astro:** lowercase filename, all other components are PascalCase
-- **.env.example:** lists only `PUBLIC_POSTHOG_KEY`; `PUBLIC_RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY` and `CONTACT_WEBHOOK_URL` are missing
 
 ## Hard rules for Claude Code
 
