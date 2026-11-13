@@ -54,7 +54,9 @@ Eén kleine set eventnamen die homepage, blogartikelen en latere landingspagina'
 
 De exacte namen en waarden worden apart vastgesteld en zijn daarna vast. Hernoemen achteraf knipt de geschiedenis in tweeën.
 
-Uitzondering met reden: `blog_cta_viewed` en `blog_cta_clicked` meten een andere stap dan `product_cta_clicked`, namelijk de doorklik vanuit een artikel naar de eigen site (nu de homepage, later een landingspagina). Ze splitsen geen bestaand event op per paginasoort. `product_cta_clicked` blijft uitsluitend klikken naar registratie meten.
+Uitzondering met reden: `blog_cta_viewed` en `blog_cta_clicked` meten een andere stap dan `product_cta_clicked`, namelijk de doorklik vanuit een artikel (het CTA-blok in de tekst en de sticky balk). Ze splitsen geen bestaand event op per paginasoort. `product_cta_clicked` blijft uitsluitend klikken naar registratie meten.
+
+Sinds 13 november 2026 gaan de blog-CTA's direct naar de aanmelding in de app (zie `blog-product-cta-spec.md`, sectie 8). Een klik op een blog-CTA levert daarom zowel `blog_cta_clicked` als `product_cta_clicked` op. Blogklikken zijn in `product_cta_clicked` te herkennen aan `page_type = blog` en `position` (`inline` of `sticky`); de productpagina en de homepage hebben een eigen `page_type`/`page_slug`. Vanaf deze datum stijgt `product_cta_clicked` dus met de blogklikken; vergelijk niet zonder dat filter met de periode ervoor.
 
 ### Twee ritmes van aflezen
 

@@ -44,6 +44,12 @@ Dat soort copy sluit onvoldoende aan op de vraag die de lezer op dat moment heef
 
 De CTA is een voortzetting van het artikel.
 
+Uitzondering, besloten op 13 november 2026: de knoptekst is overal gelijk,
+**Probeer 21 dagen gratis**, net als in de header. De knop zegt dan
+eerlijk waar hij heen gaat (de aanmelding, zie sectie 8). De sticky balk
+houdt één vaste zin over wat je krijgt. Kop en body van het inline blok
+blijven per artikel geschreven en vermijden de generieke copy hierboven.
+
 ---
 
 ## 3. Eén herbruikbare component, variabele inhoud
@@ -165,26 +171,23 @@ De CTA onderbreekt de betrouwbaarheid niet; hij markeert juist de overgang van i
 
 ## 8. Bestemming
 
-Voorlopige standaardbestemming:
+Standaardbestemming van alle product-CTA's op de blog (inline blok en
+sticky balk):
 
-**de PGB Planner-homepage**
+**de aanmelding in de app: `https://app.pgbplanner.nl/registreer`**
 
-Bouw niet automatisch een aparte content- of Vooruitblik-landingspagina alleen voor deze CTA.
+Besloten op 13 november 2026. Dit vervangt het besluit van 18 augustus
+2026 (CTA naar de homepage). Reden: van wie via een blog-CTA op de
+homepage landt, haakt ongeveer 85% daar af. De productpagina converteert
+nog niet en wordt eerst herbouwd. Wie op een product-CTA klikt, maakt
+vaak een account aan; de kortste route naar de aanmelding past daarbij.
 
-Een specifieke landingpage wordt pas opnieuw beoordeeld wanneer:
-- meerdere artikelen aantoonbaar dezelfde productintentie opleveren;
-- er genoeg verkeer is om de extra funnelstap zinvol te testen;
-- de homepage aantoonbaar onvoldoende aansluit op de klikintentie.
+De UTM-brug naar de app blijft: links naar `/registreer` krijgen
+automatisch de first-touch-UTM's mee. De stap van artikel naar aanmelding
+blijft meetbaar (zie sectie 9).
 
-Besloten op 18 augustus 2026: een CTA in een artikel linkt naar de
-homepage, niet direct naar registratie. Directe links naar registratie
-horen op de homepage zelf thuis, niet in een artikel. Dit houdt de stap
-van artikel naar product zichtbaar als aparte, meetbare stap in de
-funnel (zie sectie 9).
-
-Artikel 2 (pgb-tekort-berekenen) wijkt hier momenteel van af: de bestaande
-CTA linkt direct naar `app.pgbplanner.nl/registreer`. Dit wordt apart
-gecorrigeerd, los van deze specificatie.
+Na de nieuwe productpagina wordt opnieuw besloten, op basis van data: de
+CTA's naar de productpagina of direct naar de aanmelding.
 
 ---
 
@@ -247,13 +250,14 @@ De CTA-copy:
 - gebruikt geen angst als verkoopdruk.
 
 Onderstaand voorbeeld illustreert de toon en structuur. Het is geen vaste
-tekst: kop, body en knoptekst worden per artikel opnieuw geschreven.
+tekst: kop en body worden per artikel opnieuw geschreven. De knoptekst is
+vast: **Probeer 21 dagen gratis** (zie sectie 2).
 
 ### Goed
 
 > **Wat betekent dit voor je budget tot het einde van het jaar?**  
 > Een hoger bedrag per uur werkt iedere maand door. Met PGB Planner kun je werkgeverslasten meenemen in je planning en vooruitkijken naar wat je huidige situatie voor de rest van het jaar betekent.  
-> **Bekijk PGB Planner**
+> **Probeer 21 dagen gratis**
 
 (De component rendert de pijl als SVG; de knoptekst zelf bevat geen pijlteken.)
 

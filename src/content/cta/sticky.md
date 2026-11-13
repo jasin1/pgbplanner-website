@@ -1,5 +1,5 @@
 ---
 text: Zie of je PGB-budget het hele jaar uitkomt.
-buttonText: Bekijk PGB Planner
-destination: /
+buttonText: Probeer 21 dagen gratis
+destination: https://app.pgbplanner.nl/registreer
 ---
