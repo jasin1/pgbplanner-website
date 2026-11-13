@@ -126,6 +126,19 @@ const { text, buttonText, destination } = cta.data;
     }
   }
 
+  /* Narrow phones: sentence on its own line above a full-width button */
+  @media (max-width: 399px) {
+    .sticky-cta__inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .sticky-cta__button {
+      justify-content: center;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .sticky-cta,
     .sticky-cta[data-visible="true"] {
