@@ -202,7 +202,13 @@ Minimaal moet kunnen worden onderscheiden:
 
 Doel is later de route te kunnen analyseren:
 
-**artikelbezoek → product-CTA-klik → homepage/productbezoek → registratie → conversie**
+**artikelbezoek → product-CTA-klik → registratie → conversie**
+
+Sinds 13 november 2026 gaat de CTA direct naar de aanmelding (sectie 8),
+dus zonder tussenstap via homepage of productpagina. De klik is af te
+lezen via `blog_cta_clicked` en via `product_cta_clicked` met
+`page_type = blog`; de UTM-brug koppelt de bron aan de registratie in de
+app.
 
 Een pageview zonder signup is op zichzelf geen voldoende signaal om te bepalen waar de funnel stokt.
 
@@ -282,8 +288,10 @@ De auteur kiest per artikel:
 - of de CTA wordt gebruikt, en zo niet: waarom niet, vastgelegd in de brief van dat artikel;
 - waar hij staat;
 - welke kop wordt gebruikt;
-- welke tekst wordt gebruikt;
-- welke knoptekst wordt gebruikt.
+- welke tekst wordt gebruikt.
+
+De knoptekst en de bestemming kiest de auteur niet per artikel: die zijn
+vast (**Probeer 21 dagen gratis**, naar de aanmelding; zie sectie 2 en 8).
 
 Geen complexe targeting, personalisatie of automatische plaatsingslogica.
 
