@@ -79,8 +79,9 @@ export function ensureFirstTouch(): void {
 }
 
 export function applyUtmsToRegistrationLinks(): void {
-  const ft = getStoredFirstTouch();
-  if (!ft) return;
+  // Without localStorage (private mode, blocked storage) the source of the
+  // current page view is used, so the app still receives a source.
+  const ft = getStoredFirstTouch() ?? deriveFirstTouch();
 
   const mapping: Array<[string, string]> = [
     ['utm_source', ft.source],
@@ -89,12 +90,18 @@ export function applyUtmsToRegistrationLinks(): void {
     ['utm_content', ft.content],
   ];
 
+  // Blog CTAs also carry the article as `via`; utm_content stays reserved for
+  // the post that brought the visitor in.
+  const articleSlug = document.body.dataset.pageType === 'blog' ? document.body.dataset.pageSlug : undefined;
+  const blogCtas = new Set(document.querySelectorAll<HTMLAnchorElement>(BLOG_CTA_SELECTOR));
+
   document.querySelectorAll<HTMLAnchorElement>(REGISTRATION_SELECTOR).forEach((el) => {
     try {
       const url = new URL(el.href);
       mapping.forEach(([key, value]) => {
         if (value) url.searchParams.set(key, value);
       });
+      if (articleSlug && blogCtas.has(el)) url.searchParams.set('via', articleSlug);
       el.href = url.toString();
     } catch {
       // malformed href — leave untouched
