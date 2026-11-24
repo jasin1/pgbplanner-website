@@ -1,0 +1,628 @@
+---
+export const prerender = true;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StepCard from "../components/StepCard.astro";
+import FaqItem from "../components/FaqItem.astro";
+import CheckIcon from "../components/CheckIcon.astro";
+
+// Productpagina voor de zoekterm "pgb administratie software".
+// Opbouw: docs/marketing/productpagina-analyse-2026-11-20.md, besluiten 23 nov 2026.
+// Elke knop heeft een eigen data-position; analytics.ts meet de klik als product_cta_clicked.
+const REGISTRATION_URL = "https://app.pgbplanner.nl/registreer";
+
+// Video en poster staan in public/video/.
+const VIDEO_SRC = "/video/vooruitblik-16x9.mp4";
+const POSTER_SRC = "/video/vooruitblik-poster.jpg";
+
+const SCREEN_SIZES = "(max-width: 640px) 400px, (max-width: 1024px) 800px, 1200px";
+const srcset = (name: string, ext: string) =>
+  [400, 800, 1200, 1600].map((w) => `/${name}-${w}w.${ext} ${w}w`).join(", ");
+
+const screens = [
+  {
+    title: "Dashboard",
+    text: "Wat er is uitgegeven en wat er overblijft, op één scherm.",
+  },
+  {
+    title: "Diensten",
+    text: "De uren per zorgverlener, met de kosten erbij gerekend.",
+  },
+  {
+    title: "Vooruitblik",
+    text: "Probeer een wijziging uit, zoals extra uren of een nieuw tarief, voordat je hem doorvoert. Je administratie blijft zoals hij is.",
+  },
+];
+
+// Rekenvoorbeeld: verzonnen getallen, door mij gerekend (lexicon: "in dit voorbeeld").
+// Peildatum 1 juli, 26 weken tot en met december, geen vakantieweken.
+// Zorgverlener A: €20 x 12 uur x 26 weken = €6.240, plus 18% werkgeverslasten = €7.363,20.
+// Zorgverlener B (zzp): €35 x 6 uur x 26 weken = €5.460.
+// Over: €20.500 - €12.823,20 = €7.676,80.
+// Wijziging A naar 16 uur: €20 x 16 x 26 x 1,18 = €9.817,60; totaal €15.277,60; over €5.222,40.
+const example = [
+  { label: "Nog in je budget op 1 juli", value: "€ 20.500" },
+  {
+    label: "Zorgverlener A, met arbeidsovereenkomst: 12 uur per week, € 20 per uur, 18% werkgeverslasten",
+    value: "€ 7.363",
+  },
+  { label: "Zorgverlener B, zzp'er: 6 uur per week, € 35 per uur", value: "€ 5.460" },
+];
+
+const steps = [
+  { title: "Vul je budget in en wat je al hebt besteed." },
+  { title: "Voeg je zorgverleners toe, met hun tarief en werkgeverslasten." },
+  {
+    title: "Vul in Vooruitblik in hoeveel uur ze per week werken.",
+    description: "Je ziet direct wat er overblijft.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Waarom niet mijn eigen spreadsheet?",
+    answer:
+      "Een spreadsheet die je zelf hebt gemaakt en kent, werkt. Het verschil zit in het bijhouden en vooruitkijken. In PGB Planner vul je je zorgverleners, tarieven en werkgeverslasten één keer in. Wat er tot december nog aankomt, wordt voor je uitgerekend. Wil je weten wat extra uren of een nieuw tarief doen, dan probeer je dat uit zonder formules aan te passen.",
+  },
+  {
+    question: "Waar staan mijn gegevens?",
+    answer:
+      "Je gegevens blijven van jou en worden niet gedeeld met de SVB of het zorgkantoor. Hoe ik met je gegevens omga, lees je in de privacyverklaring. De link staat onderaan deze pagina.",
+  },
+  {
+    question: "Hoe rekent Vooruitblik uit wat er overblijft?",
+    answer:
+      "Vooruitblik gebruikt je resterende jaarbudget en berekent wat je geplande zorg naar verwachting nog gaat kosten. Daarbij houdt het rekening met de uren, tarieven, eventuele werkgeverslasten en vakantieweken. Zo zie je wat er aan het einde van het jaar naar verwachting overblijft.",
+  },
+  {
+    question: "Verandert mijn administratie als ik iets uitprobeer?",
+    answer:
+      "Nee. Wat je in Vooruitblik aanpast, zoals extra uren of een ander tarief, staat los van je administratie. Je budget en je geregistreerde uren veranderen niet. Besluit je een wijziging echt door te voeren, dan regel je dat zelf, zoals je dat nu ook doet.",
+  },
+  {
+    question: "Moet ik mijn gegevens opnieuw invullen?",
+    answer:
+      "Vooruitblik neemt de zorgverleners, tarieven en werkgeverslasten over die je al in PGB Planner hebt staan. Je vult zelf de verwachte weekuren in. Daarna kun je veranderingen uitproberen.",
+  },
+  {
+    question: "Wat gebeurt er na de 21 dagen?",
+    answer:
+      "Je probeert PGB Planner 21 dagen gratis, met alle functies, ook Vooruitblik. Je vult geen betaalgegevens in en de proefperiode stopt automatisch. Wil je daarna verder, dan kost PGB Planner €20 per maand, inclusief btw. Je kunt maandelijks opzeggen.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kom je uit met je pgb-budget?"
+  titleTag="Pgb-administratie software: kom je uit met je budget? | PGB Planner"
+  description="PGB Planner is software voor je pgb-administratie: uren, tarieven, werkgeverslasten en wat er eind december overblijft. 21 dagen gratis, geen betaalgegevens nodig."
+  hideHeader={true}
+>
+  <div class="pp-topbar section-bg-color">
+    <div class="container-large pp-topbar__inner">
+      <a class="pp-topbar__logo" href="/" aria-label="PGB Planner home">
+        <img src="/main-logo-v2.svg" alt="" width="303" height="95" />
+      </a>
+      <a class="pp-topbar__link" href={REGISTRATION_URL} data-position="header">Aanmelden</a>
+    </div>
+  </div>
+
+  <!-- 1. Hero -->
+  <section class="pp-hero section-bg-color">
+    <div class="container pp-hero__inner">
+      <p class="pp-eyebrow">Software voor je pgb-administratie</p>
+      <h1 class="font-color-primary">Kom je uit met je pgb-budget?</h1>
+      <p class="body-large">
+        PGB Planner houdt je pgb-administratie bij en rekent uit wat er eind
+        december overblijft. Met je eigen zorgverleners, uren en tarieven.
+      </p>
+      <div class="pp-cta">
+        <a class="btn btn-primary" href={REGISTRATION_URL} data-position="hero">Probeer 21 dagen gratis</a>
+        <p class="pp-note">
+          Geen betaalgegevens nodig. Daarna €20 per maand, maandelijks opzegbaar.
+        </p>
+      </div>
+      <div class="pp-shot border-soft">
+        <picture>
+          <source srcset={srcset("Dashboard", "avif")} type="image/avif" sizes={SCREEN_SIZES} />
+          <source srcset={srcset("Dashboard", "webp")} type="image/webp" sizes={SCREEN_SIZES} />
+          <img
+            src="/Dashboard-1200w.jpg"
+            srcset={srcset("Dashboard", "jpg")}
+            sizes={SCREEN_SIZES}
+            width="1600"
+            height="821"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            alt="Dashboard van PGB Planner met het restant van het budget, de uitgaven en wat er naar verwachting overblijft"
+          />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Herkenning -->
+  <section>
+    <div class="container pp-narrow">
+      <h2>Pas bij het declareren zie je waar je staat</h2>
+      <p>
+        Veel budgethouders doen hun administratie in één keer, als de declaratie
+        eraan komt. Het PGB Portaal laat zien wat er is betaald. Wat je wilt
+        weten, is wat er nog aankomt. Daar is geen overzicht voor, behalve je
+        eigen spreadsheet.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. De gids -->
+  <section class="section-bg-color">
+    <div class="container pp-narrow">
+      <h2>Gemaakt door iemand die het zelf deed</h2>
+      <p>
+        Ik beheerde jarenlang een pgb-administratie als mantelzorger. PGB Planner
+        is wat ik toen zelf wilde hebben: één plek waar uren, tarieven en
+        werkgeverslasten samenkomen, en een antwoord op de vraag of ik het tot
+        december red.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Wat je ziet -->
+  <section>
+    <div class="container pp-screens">
+      <h2>Wat je ziet</h2>
+      <ul class="pp-list">
+        {
+          screens.map((item) => (
+            <li>
+              <span class="pp-list__icon" aria-hidden="true">
+                <CheckIcon />
+              </span>
+              <span>
+                <strong>{item.title}.</strong> {item.text}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="pp-shot border-soft">
+        <picture>
+          <source srcset={srcset("Vooruitblik", "avif")} type="image/avif" sizes={SCREEN_SIZES} />
+          <source srcset={srcset("Vooruitblik", "webp")} type="image/webp" sizes={SCREEN_SIZES} />
+          <img
+            src="/Vooruitblik-1200w.jpg"
+            srcset={srcset("Vooruitblik", "jpg")}
+            sizes={SCREEN_SIZES}
+            width="1600"
+            height="821"
+            loading="lazy"
+            decoding="async"
+            alt="Vooruitblik in PGB Planner: per zorgverlener het tarief, de weekuren en de kosten, met wat er naar verwachting overblijft"
+          />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Rekenvoorbeeld -->
+  <section class="section-bg-color">
+    <div class="container pp-narrow">
+      <h2>Een voorbeeld</h2>
+      <p>
+        In dit voorbeeld is het 1 juli. Er staat nog € 20.500 in het budget en
+        twee zorgverleners werken tot en met december, 26 weken.
+      </p>
+      <dl class="pp-example border-soft">
+        {
+          example.map((row) => (
+            <div class="pp-example__row">
+              <dt>{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))
+        }
+        <div class="pp-example__row pp-example__total">
+          <dt>In dit voorbeeld blijft er eind december over</dt>
+          <dd>€ 7.677</dd>
+        </div>
+      </dl>
+      <p>
+        Gaat zorgverlener A vanaf juli 16 uur per week werken, dan blijft er in
+        dit voorbeeld € 5.222 over. Dat zie je in Vooruitblik voordat je iets
+        afspreekt.
+      </p>
+      <p class="pp-small">
+        Verzonnen getallen, door mij gerekend en afgerond op hele euro's. Geen
+        officiële bedragen.
+      </p>
+      <div class="pp-cta">
+        <a class="btn btn-primary" href={REGISTRATION_URL} data-position="example">Reken het uit voor je eigen budget</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Video -->
+  <section>
+    <div class="container pp-screens">
+      <h2>Zo werkt Vooruitblik</h2>
+      <div class="pp-video border-soft">
+        <video
+          width="1920"
+          height="1080"
+          poster={POSTER_SRC}
+          preload="metadata"
+          controls
+          muted
+          playsinline
+          aria-label="Demo van Vooruitblik in PGB Planner"
+        >
+          <source src={VIDEO_SRC} type="video/mp4" />
+        </video>
+      </div>
+      <div class="pp-cta">
+        <a class="btn btn-primary" href={REGISTRATION_URL} data-position="video">Probeer het met je eigen budget</a>
+        <p class="pp-note">21 dagen gratis. Geen betaalgegevens nodig.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. In drie stappen -->
+  <section class="section-bg-color">
+    <div class="container pp-narrow">
+      <h2>In drie stappen</h2>
+      <ol class="pp-steps">
+        {
+          steps.map((step, i) => (
+            <li>
+              <StepCard title={step.title} description={step.description}>
+                <span slot="icon" class="pp-steps__number" aria-hidden="true">
+                  {i + 1}
+                </span>
+              </StepCard>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- 8. Naast het PGB Portaal -->
+  <section>
+    <div class="container pp-narrow">
+      <h2>Naast het PGB Portaal, niet in plaats ervan</h2>
+      <p>
+        Het zorgkantoor kent toe, de SVB betaalt uit, PGB Planner rekent vooruit.
+        Je gegevens blijven van jou en worden niet gedeeld met de SVB of het
+        zorgkantoor.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. Citaat: weggelaten tot er toestemming is (besluit Jasin 23 nov 2026). -->
+
+  <!-- 10. FAQ -->
+  <section id="faq" class="section-bg-color">
+    <div class="container pp-narrow">
+      <h2>Veelgestelde vragen</h2>
+      <div class="pp-faq">
+        {faqs.map((item) => <FaqItem question={item.question} answer={item.answer} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Slot -->
+  <section class="container padding-bottom">
+    <div class="container container-block cta-block border-soft">
+      <div class="text-card">
+        <h2>Bekijk het voor je eigen budget</h2>
+        <p class="txt-w-60ch">
+          Ik heb PGB Planner gebouwd vanuit mijn eigen jaren als pgb-beheerder.
+          Met Vooruitblik weet je op tijd waar je staat.
+        </p>
+        <p class="txt-w-60ch">
+          21 dagen gratis proberen. Geen betaalgegevens nodig. Daarna €20 per
+          maand, maandelijks opzegbaar.
+        </p>
+        <div class="btn-one-wrapper">
+          <a class="btn btn-primary" href={REGISTRATION_URL} data-position="bottom">Probeer 21 dagen gratis</a>
+        </div>
+      </div>
+      <div class="logo-in-wrapper">
+        <img src="/main-logo-v2.svg" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Mobiel eerst: basisregels gelden voor smalle schermen, min-width voegt ruimte toe. */
+
+    /* Topbalk i.p.v. de sitebrede header (één actie): maten gelijk aan Header.astro */
+    .pp-topbar {
+      width: 100%;
+    }
+
+    .pp-topbar__inner {
+      height: var(--header-h);
+      padding-inline: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .pp-topbar__logo {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .pp-topbar__logo img {
+      height: 37px;
+      width: auto;
+      border-radius: 0;
+    }
+
+    .pp-topbar__link {
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      font-weight: 500;
+      color: var(--color-l-blue);
+      white-space: nowrap;
+    }
+
+    .pp-topbar__link:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .pp-hero {
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .pp-hero__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pp-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .pp-hero h1 {
+      font-size: clamp(2.25rem, 7vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .pp-hero .body-large {
+      max-width: 680px;
+    }
+
+    /* Knop met notitie: op mobiel volle breedte, tapzone minimaal 44px */
+    .pp-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+
+    .pp-cta .btn {
+      display: block;
+      width: 100%;
+      min-height: 44px;
+      padding-block: 0.75rem;
+      text-align: center;
+      font-size: 1.125rem;
+      white-space: normal;
+    }
+
+    .pp-note {
+      font-size: 0.9375rem;
+      color: var(--color-body-text);
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    .pp-shot,
+    .pp-video {
+      width: 100%;
+      margin-top: 2rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: var(--color-white);
+    }
+
+    .pp-shot img {
+      border-radius: 0;
+    }
+
+    .pp-video {
+      margin-top: 0;
+    }
+
+    .pp-video video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Tekstblokken */
+    .pp-narrow {
+      max-width: 720px;
+    }
+
+    .pp-screens {
+      max-width: 960px;
+    }
+
+    .pp-narrow h2,
+    .pp-screens h2 {
+      margin-bottom: 1.25rem;
+    }
+
+    .pp-narrow p {
+      font-size: 1.125rem;
+      color: var(--color-black);
+    }
+
+    .pp-narrow p + p {
+      margin-top: 1rem;
+    }
+
+    .pp-list {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      color: var(--color-black);
+    }
+
+    .pp-list strong {
+      color: var(--color-primary);
+    }
+
+    .pp-list__icon {
+      flex-shrink: 0;
+      display: flex;
+      margin-top: 0.125rem;
+    }
+
+    /* Rekenvoorbeeld */
+    .pp-example {
+      margin: 1.5rem 0;
+      padding: 0.5rem 1.25rem;
+      background: var(--color-white);
+      border-radius: var(--radius);
+    }
+
+    .pp-example__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-border-soft);
+    }
+
+    .pp-example__row:last-child {
+      border-bottom: none;
+    }
+
+    .pp-example dt {
+      color: var(--color-body-text);
+    }
+
+    .pp-example dd {
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--color-black);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pp-example__total dt,
+    .pp-example__total dd {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .pp-narrow .pp-small {
+      font-size: 0.9375rem;
+      color: var(--color-body-text);
+    }
+
+    /* Stappen en FAQ */
+    .pp-steps {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pp-steps__number {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-secondary);
+    }
+
+    .pp-faq {
+      display: grid;
+      gap: 1rem;
+    }
+
+    /* Slot */
+    .text-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .cta-block .btn-one-wrapper {
+      width: 100%;
+    }
+
+    .cta-block .btn-one-wrapper .btn {
+      display: block;
+      text-align: center;
+      padding-block: 0.75rem;
+    }
+
+    /* Vanaf tablet: knoppen op eigen breedte, meer lucht */
+    @media (min-width: 641px) {
+      .pp-hero {
+        padding: 3.5rem 0 2.5rem;
+      }
+
+      .pp-cta .btn {
+        display: inline-block;
+        width: auto;
+        font-size: 1.25rem;
+        white-space: nowrap;
+      }
+
+      .pp-shot {
+        margin-top: 2.5rem;
+      }
+
+      .pp-narrow h2,
+      .pp-screens h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .text-card {
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+      }
+
+      .cta-block .btn-one-wrapper {
+        width: auto;
+      }
+
+      .cta-block .btn-one-wrapper .btn {
+        display: inline-block;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .pp-hero {
+        padding: 4.5rem 0 3rem;
+      }
+    }
+  </style>
+</BaseLayout>

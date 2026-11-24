@@ -45,7 +45,8 @@ src/
 │   └── blog.ts          # getPublishedPosts, BLOG_INDEX_THRESHOLD, reading time, hero image, date format
 ├── pages/
 │   ├── index.astro              # Landing page (hero, features, steps, latest articles, FAQ, contact form)
-│   ├── vooruitblik.astro        # Product page for the Vooruitblik feature (video, steps, FAQ)
+│   ├── pgb-administratie-software.astro # Product page (target term "pgb administratie software")
+│   ├── vooruitblik.astro        # Old product page; /vooruitblik 301-redirects to /pgb-administratie-software, excluded from sitemap
 │   ├── bedankt.astro            # Thank-you after signing up for updates (noindex)
 │   ├── bedankt-feedback.astro   # Thank-you after feedback (noindex, no header)
 │   ├── email-bevestigen.astro   # Email confirmation screen (noindex)
