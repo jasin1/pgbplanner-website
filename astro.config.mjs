@@ -3,7 +3,8 @@ import netlify from '@astrojs/netlify';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
-const excludedFromSitemap = ['/bedankt/', '/bedankt-feedback/', '/email-bevestigen/'];
+// /vooruitblik/ redirects to /pgb-administratie-software (public/_redirects).
+const excludedFromSitemap = ['/bedankt/', '/bedankt-feedback/', '/email-bevestigen/', '/vooruitblik/'];
 
 export default defineConfig({
   site: 'https://www.pgbplanner.nl',
