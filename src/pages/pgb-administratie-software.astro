@@ -36,15 +36,16 @@ const screens = [
 
 // Rekenvoorbeeld: verzonnen getallen, door mij gerekend (lexicon: "in dit voorbeeld").
 // Peildatum 1 juli, 26 weken tot en met december, geen vakantieweken.
-// Zorgverlener A: €20 x 12 uur x 26 weken = €6.240, plus 18% werkgeverslasten = €7.363,20.
+// Werkgeverslasten 17,54%: het lage tarief 2026, zoals de app het als keuze aanbiedt.
+// Zorgverlener A: €20 x 12 uur x 26 weken = €6.240, plus 17,54% werkgeverslasten = €7.334,496 (getoond als €7.334).
 // Zorgverlener B (zzp): €35 x 6 uur x 26 weken = €5.460.
-// Over: €20.500 - €12.823,20 = €7.676,80.
-// Wijziging A naar 16 uur: €20 x 16 x 26 x 1,18 = €9.817,60; totaal €15.277,60; over €5.222,40.
+// Over: €20.500 - €12.794,496 = €7.705,504 (getoond als €7.706).
+// Wijziging A naar 16 uur: €20 x 16 x 26 x 1,1754 = €9.779,33; totaal €15.239,33; over €5.260,67.
 const example = [
   { label: "Nog in je budget op 1 juli", value: "€ 20.500" },
   {
-    label: "Zorgverlener A, met arbeidsovereenkomst: 12 uur per week, € 20 per uur, 18% werkgeverslasten",
-    value: "€ 7.363",
+    label: "Zorgverlener A, met arbeidsovereenkomst: 12 uur per week, € 20 per uur, 17,54% werkgeverslasten",
+    value: "€ 7.334",
   },
   { label: "Zorgverlener B, zzp'er: 6 uur per week, € 35 per uur", value: "€ 5.460" },
 ];
@@ -54,7 +55,7 @@ const steps = [
   { title: "Voeg je zorgverleners toe, met hun tarief en werkgeverslasten." },
   {
     title: "Vul in Vooruitblik in hoeveel uur ze per week werken.",
-    description: "Je ziet direct wat er overblijft.",
+    description: "Je ziet wat er aan het eind van het jaar naar verwachting overblijft.",
   },
 ];
 
@@ -224,12 +225,12 @@ const faqs = [
         }
         <div class="pp-example__row pp-example__total">
           <dt>In dit voorbeeld blijft er eind december over</dt>
-          <dd>€ 7.677</dd>
+          <dd>€ 7.706</dd>
         </div>
       </dl>
       <p>
         Gaat zorgverlener A vanaf juli 16 uur per week werken, dan blijft er in
-        dit voorbeeld € 5.222 over. Dat zie je in Vooruitblik voordat je iets
+        dit voorbeeld € 5.261 over. Dat zie je in Vooruitblik voordat je iets
         afspreekt.
       </p>
       <p class="pp-small">
